@@ -14,7 +14,11 @@
   "dependencies": {
     "@piveau/sdk-core": "^0.0.0-beta.1",
     "@piveau/sdk-vue": "^1.0.0-beta.8",
+    "pinia": "^3.0.3",
+    "swiper": "^11.2.10",
+    "uuid": "^11.1.0",
     "vue": "^3.5.17",
+    "vue-inline-svg": "^4.0.1",
     "vue-router": "^4.5.1"
   },
   "devDependencies": {
