@@ -1,20 +1,20 @@
 <template>
   <nav id="main-navigation" :class="mainNavigationClass" aria-label="Main">
     <ul>
-      <li>
-        <a href="javascript:alert('link')">
-          <span>News</span>
-        </a>
+        <li>
+          <RouterLink to="/" active-class="active" :aria-current="showActiveNavigation ? 'page' : false">
+            <span>home RT</span>
+          </RouterLink>
       </li>
       <li>
-        <a href="javascript:alert('link)">
-          <span>Geodaten</span>
-        </a>
+          <RouterLink to="datasets" active-class="active" :aria-current="showActiveNavigation ? 'page' : false">
+            <span>Datasets RT</span>
+          </RouterLink>
       </li>
-      <li>
-        <a href="javascript:alert('link')">
-          <span>Karten</span>
-        </a>
+       <li>
+          <RouterLink to="datasets" active-class="active" :aria-current="showActiveNavigation ? 'page' : false">
+            <span>Datasets RT</span>
+          </RouterLink>
       </li>
       <li>
         <a href="javascript:alert('link')">
@@ -139,39 +139,6 @@
           </li>
           <li><a href="javascript:alert('link')">Verwaltungseinheiten</a></li>
         </ul>
-      </li>
-      <li>
-        <a href="javascript:alert('link')"> Forschung und Lehre </a>
-      </li>
-      <li>
-        <a href="javascript:alert('link')"> Über geo.admin.ch </a>
-      </li>
-      <li>
-        <a href="javascript:alert('link')"> test1 </a>
-      </li>
-      <li>
-        <a href="javascript:alert('link')"> test2 </a>
-      </li>
-      <li>
-        <a href="javascript:alert('link')"> test3 </a>
-      </li>
-      <li>
-        <a href="javascript:alert('link')"> Extra mainmenu example </a>
-      </li>
-      <li>
-        <a href="javascript:alert('link')"> Try to limit mainmenus to 5 </a>
-      </li>
-      <!-- more button -->
-      <li v-if="context == 'desktop'" id="more-button">
-        <a
-          href="javascript:void(0)"
-          role="button"
-          class="navy__has-children desktop-menu__more"
-        >
-          <span>Mehr</span>
-          <SvgIcon icon="MoreFilled" size="lg" />
-        </a>
-        <ul id="more-container" />
       </li>
     </ul>
   </nav>

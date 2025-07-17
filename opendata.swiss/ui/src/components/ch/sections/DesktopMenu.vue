@@ -98,8 +98,8 @@ onMounted(async () => {
     closeButton: '#desktop-menu-closer',
   })
   // demo only: force to show 2nd level of sub-navigation
-  Navy.showLevel(props.showActiveNavigation ? 2 : 0)
-
+ // Navy.showLevel(props.showActiveNavigation ? 2 : 0)
+  Navy.showLevel(0)
   // demo only: force level-0 to open when more button is clicked
   if (!props.isSimplePage) {
     ;(document.getElementById('more-button') as HTMLElement).addEventListener(
