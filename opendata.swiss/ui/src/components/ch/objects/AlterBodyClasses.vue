@@ -1,3 +1,5 @@
+
+
 <script setup lang="ts">
 import { watch, onMounted, onUnmounted } from 'vue'
 import { useLayoutStore } from '../../../store/layout'
@@ -92,3 +94,7 @@ onUnmounted(() => {
   window.removeEventListener('resize', alterMenuClasses)
 })
 </script>
+
+<template>
+  <div style="display: none;"></div>
+</template>
