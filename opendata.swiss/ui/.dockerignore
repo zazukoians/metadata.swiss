@@ -3,5 +3,5 @@
 .gitignore
 .gitattributes
 Dockerfile
-dist/
+.output/
 node_modules/
