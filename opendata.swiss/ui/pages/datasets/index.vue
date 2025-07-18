@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { SearchParamsBase } from '@piveau/sdk-core'
 import { computed, reactive, ref, toRefs } from 'vue'
-import { useDatasetsSearch } from '../piveau/search'
+import { useDatasetsSearch } from '../../app/piveau/search.js'
 
 // 👇 Query parameters
 
@@ -56,13 +56,13 @@ const onSearch = () => queryParams.q = searchInput.value
         <hr>
         <ul class="dataset-list">
           <li v-for="dataset in getSearchResultsEnhanced" :key="dataset.getId">
-            <RouterLink :to="{ name: 'dataset-details-view', params: { datasetId: dataset.getId } }">
+            <NuxtLink :to="{ name: 'datasets-datasetId', params: { datasetId: dataset.getId } }">
               <div class="search-result-summary">
                 <small>{{ dataset.getPublisher?.name }}</small>
                 <h4>{{ dataset.getTitle }}</h4>
                 <p>{{ dataset.getDescription }}</p>
-               </div>
-            </RouterLink>
+              </div>
+            </NuxtLink>
           </li>
         </ul>
         <hr>

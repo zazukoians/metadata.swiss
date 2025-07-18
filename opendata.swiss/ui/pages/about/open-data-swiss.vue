@@ -1,6 +1,6 @@
 
 <template>
-   <h1>The quick brown fox jumps over the lazy dog</h1>
+  <h1>About Opendata Swiss</h1>
 
 </template>
 <script lang="ts" setup>

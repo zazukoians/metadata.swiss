@@ -2,7 +2,7 @@
 import { definePropertyNode, PropertyTable, PropertyTableNode } from '@piveau/sdk-vue'
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
-import { useDatasetsSearch } from '../piveau/search'
+import { useDatasetsSearch } from '../../app/piveau/search.js'
 
 const route = useRoute()
 const datasetId = computed(() => route.params.datasetId as string)

@@ -2,19 +2,14 @@
   <nav id="main-navigation" :class="mainNavigationClass" aria-label="Main">
     <ul>
         <li>
-          <RouterLink to="/" active-class="active" :aria-current="showActiveNavigation ? 'page' : false">
+          <NuxtLink to="/" active-class="active" :aria-current="showActiveNavigation ? 'page' : false">
             <span>home RT</span>
-          </RouterLink>
+          </NuxtLink>
       </li>
       <li>
-          <RouterLink to="datasets" active-class="active" :aria-current="showActiveNavigation ? 'page' : false">
+          <NuxtLink to="datasets" active-class="active" :aria-current="showActiveNavigation ? 'page' : false">
             <span>Datasets RT</span>
-          </RouterLink>
-      </li>
-       <li>
-          <RouterLink to="datasets" active-class="active" :aria-current="showActiveNavigation ? 'page' : false">
-            <span>Datasets RT</span>
-          </RouterLink>
+          </NuxtLink>
       </li>
       <li>
         <a href="javascript:alert('link')">

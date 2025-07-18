@@ -9,7 +9,9 @@
       <MobileMenu :showActiveNavigation="true" />
     </header>
     <main id="main-content">
-        <RouterView />
+      <NuxtLayout>
+      <NuxtPage :page-key="route => route.fullPath" />
+      </NuxtLayout>
     </main>
     <footer id="main-footer" class="footer">
       <FooterInformation />
@@ -27,6 +29,7 @@ import MobileMenu from './components/ch/sections/MobileMenu.vue'
 import FooterInformation from './components/ch/sections/FooterInformation.vue'
 import FooterNavigation from './components/ch/sections/FooterNavigation.vue'
 import { useLayoutStore } from './store/layout'
+import './assets/main.css'
 
 const layoutStore = useLayoutStore()
 

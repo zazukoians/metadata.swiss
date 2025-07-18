@@ -101,19 +101,5 @@ onMounted(async () => {
  // Navy.showLevel(props.showActiveNavigation ? 2 : 0)
   Navy.showLevel(0)
   // demo only: force level-0 to open when more button is clicked
-  if (!props.isSimplePage) {
-    ;(document.getElementById('more-button') as HTMLElement).addEventListener(
-      'click',
-      function () {
-        Navy.showLevel(0)
-      },
-    )
-
-    MenuMore.init({
-      navigationItem: '#desktop-menu > div > div > .container > nav',
-      moreButton: '#more-button',
-      moreContainer: '#more-container',
-    })
-  }
 })
 </script>
