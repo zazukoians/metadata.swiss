@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 function getFocusableElements(element = document) {
   return [
     ...element.querySelectorAll(
@@ -9,7 +10,7 @@ function getFocusableElements(element = document) {
 }
 
 const Popover = {
-  init(target) {
+  init(target: any) {
     const wrapper = document.querySelector(target)
     const button = wrapper.querySelector('.popover-button')
     const backdrop = wrapper.querySelector('.popover-backdrop')
@@ -18,10 +19,10 @@ const Popover = {
     const focusableElements = getFocusableElements(popover)
 
     focusableElements.forEach((item) => {
-      item.tabIndex = -1
+      (item as HTMLElement).tabIndex = -1
     })
 
-    function handleClickOutside(event) {
+    function handleClickOutside(event: Event) {
       const target = event.target
       if (target !== button && !wrapper.contains(target)) {
         closePopover()
@@ -35,7 +36,7 @@ const Popover = {
       backdrop.classList.remove('popover-backdrop--active')
       // make focusable popover unfocusable
       focusableElements.forEach((item) => {
-        item.tabIndex = -1
+        (item as HTMLElement).tabIndex = -1
       })
       document.removeEventListener('click', handleClickOutside)
     }
@@ -47,7 +48,7 @@ const Popover = {
       backdrop.classList.add('popover-backdrop--active')
       // make focusable popover focusable again
       focusableElements.forEach((item) => {
-        item.tabIndex = undefined
+        (item as HTMLElement).tabIndex = -1
       })
       document.addEventListener('click', handleClickOutside)
     }

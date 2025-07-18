@@ -22,7 +22,7 @@
 </template>
 
 <script setup lang="ts">
-import Navy from '../../../scripts/Navy.js'
+import Navy from '../../../scripts/Navy'
 import CarouselNavigation from '../navigations/CarouselNavigation.vue'
 import MainNavigation from '../navigations/MainNavigation.vue'
 import MetaNavigationMobile from '../navigations/MobileMetaNavigation.vue'
