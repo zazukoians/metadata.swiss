@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 function getFocusableElements(element = document) {
   return [
     ...element.querySelectorAll(
@@ -9,14 +10,14 @@ function getFocusableElements(element = document) {
 }
 
 const Accordion = {
-  init(target) {
+  init(target: any) {
     const buttons = document.querySelectorAll(target)
     buttons.forEach((button) => {
       const content = button.nextElementSibling
       const focusableElements = getFocusableElements(content)
       // make focusable content unfocusable
       focusableElements.forEach((item) => {
-        item.tabIndex = -1
+        (item as HTMLElement).tabIndex = -1
       })
 
       button.addEventListener('click', () => {
@@ -28,7 +29,7 @@ const Accordion = {
           content.setAttribute('aria-hidden', true)
           // make focusable content unfocusable
           focusableElements.forEach((item) => {
-            item.tabIndex = -1
+            (item as HTMLElement).tabIndex = -1
           })
         } else {
           // open drawer
@@ -38,7 +39,7 @@ const Accordion = {
           button.setAttribute('aria-expanded', true)
           // make focusable content focusable again
           focusableElements.forEach((item) => {
-            item.tabIndex = undefined
+            (item as HTMLElement).tabIndex = -1
           })
         }
       })

@@ -28,8 +28,7 @@
 </template>
 
 <script setup lang="ts">
-import MenuMore from '../../../scripts/MenuMore.js'
-import Navy from '../../../scripts/Navy.js'
+import Navy from '../../../scripts/Navy'
 import SvgIcon from '../components/SvgIcon.vue'
 import MainNavigation from '../navigations/MainNavigation.vue'
 import MainNavigationSimple from '../navigations/MainNavigationSimple.vue'
@@ -97,23 +96,8 @@ onMounted(async () => {
     overlay: '#desktop-menu__overlay',
     closeButton: '#desktop-menu-closer',
   })
-  // demo only: force to show 2nd level of sub-navigation
- // Navy.showLevel(props.showActiveNavigation ? 2 : 0)
   Navy.showLevel(0)
-  // demo only: force level-0 to open when more button is clicked
-  if (!props.isSimplePage) {
-    ;(document.getElementById('more-button') as HTMLElement).addEventListener(
-      'click',
-      function () {
-        Navy.showLevel(0)
-      },
-    )
 
-    MenuMore.init({
-      navigationItem: '#desktop-menu > div > div > .container > nav',
-      moreButton: '#more-button',
-      moreContainer: '#more-container',
-    })
-  }
+
 })
 </script>

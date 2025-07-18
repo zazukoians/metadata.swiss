@@ -15,7 +15,6 @@ import { ref, useTemplateRef, type PropType } from 'vue'
 import type Checkbox from './Checkbox.vue'
 import type Fieldset from './Fieldset.vue'
 import type Input from './Input.vue'
-import type MultiSelect from './MultiSelect.vue'
 import type Radio from './Radio.vue'
 import type Select from './Select.vue'
 import type TextArea from './Textarea.vue'
@@ -48,7 +47,6 @@ type ChildComponent =
   | typeof Checkbox
   | typeof Fieldset
   | typeof Input
-  | typeof MultiSelect
   | typeof Radio
   | typeof Select
   | typeof TextArea

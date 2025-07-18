@@ -34,7 +34,7 @@
 
 <script setup lang="ts">
 import SvgIcon from '../components/SvgIcon.vue'
-import Popover from '../../../scripts/Popover.js'
+import Popover from '../../../scripts/Popover'
 import { computed, onMounted } from 'vue'
 
 const props = defineProps({

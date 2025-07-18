@@ -203,8 +203,8 @@
                     size="lg"
                     @click="
                       () => {
-                        filterString = ''
-                        $refs.searchInput.focus()
+                        filterString = '';
+                        ($refs.searchInput as HTMLInputElement).focus()
                       }
                     "
                   />
