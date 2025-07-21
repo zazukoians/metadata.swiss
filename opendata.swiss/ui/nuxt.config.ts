@@ -32,5 +32,8 @@ export default defineNuxtConfig({
         transformAssetUrls,
       },
     },
-  }
+  },
+  plugins: [
+    { src: '~/plugins/piveau', mode: 'client' },
+  ],
 })
