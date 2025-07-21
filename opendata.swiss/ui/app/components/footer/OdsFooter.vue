@@ -10,10 +10,17 @@
             <div class="footer-information__entry">
                 <h3>{{t('message.ods-footer.block_2.title') }}</h3>
                 <div class="footer-information__social">
-                 <a class="footer__link" href="https://www.facebook.com/people/opendataswiss/61558495974785/" target="_blank"> <div class="media"><font-awesome-icon :icon="['fab', 'facebook']" /><span>Facebook</span></div></a>
-                 <a class="footer__link" href="https://www.linkedin.com/showcase/opendata-swiss/" target="_blank"> <div class="media"><font-awesome-icon :icon="['fab', 'linkedin']" /><span>LinkedIn</span></div></a>
-                 <a class="footer__link"  href="https://www.instagram.com/opendata.swiss/" target="_blank"> <div class="media"><font-awesome-icon :icon="['fab', 'instagram']" /><span>Instagram</span></div></a>
-                 <a class="footer__link"  href="https://x.com/opendataswiss" target="_blank"> <div class="media"><font-awesome-icon :icon="['fab', 'x-twitter']" /><span>X</span></div></a>
+                 <a class="footer__link" href="https://www.facebook.com/people/opendataswiss/61558495974785/" target="_blank">
+                      <v-icon icon="fa-brands fa-facebook-f" class="icon icon--base footer-information__icon" />
+                      Facebook
+                  </a>
+                 <a class="footer__link" href="https://www.linkedin.com/showcase/opendata-swiss/" target="_blank">
+                  <v-icon icon="fa-brands fa-linkedin"  class="icon icon--base footer-information__icon"/>
+                  Linkedin</a>
+                 <a class="footer__link"  href="https://www.instagram.com/opendata.swiss/" target="_blank">
+                  <v-icon icon="fa-brands fa-instagram" class="icon icon--base footer-information__icon" />Instagram</a>
+                 <a class="footer__link"  href="https://x.com/opendataswiss" target="_blank">
+                  <v-icon icon="fa-brands fa-x-twitter" class="icon icon--base footer-information__icon" />𝕏</a>
               </div>
                <v-btn
                 :href="t('message.ods-footer.block_2.news_mail_href')"
@@ -21,12 +28,12 @@
                 color="secondary"
                 rounded="0"
                 variant="outlined"
-                append-icon="mdi-arrow-right"
+                append-icon="mdi:mdi-arrow-right"
                 :title="t('message.ods-footer.block_2.news_mail_aria_label')"
                 :aria-label="t('message.ods-footer.block_2.news_mail_aria_label')"
                 ><strong>NewsMail</strong></v-btn>
-
             </div>
+
             <div class="footer-information__entry">
                 <h3>{{t('message.ods-footer.block_3.title') }}</h3>
                 <div>
@@ -47,4 +54,11 @@ const { t } = useI18n()
 
 <style lang="scss" scoped>
 
+.footer-information__icon {
+  font-size: 18px;
+}
+
+a {
+  text-decoration: none !important;
+}
 </style>
