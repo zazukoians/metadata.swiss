@@ -1,0 +1,12 @@
+{
+    "message": {
+        "bottom_footer": {
+            "ods_a_1": "Legal framework",
+            "ods_href_1": "https://opendata.swiss/en/legal-framework",
+            "ods_aria_label_1": "Legal framework of opendata.swiss",
+            "ods_a_2": "Imprint",
+            "ods_href_2": "https://www.bfs.admin.ch/bfs/de/home/bfs/bundesamt-statistik/rechtliche-hinweise.html",
+            "ods_aria_label_2": "Imprint of opendata.swiss"
+        }
+    }
+}

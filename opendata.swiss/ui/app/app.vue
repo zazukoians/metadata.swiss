@@ -11,18 +11,10 @@
           </v-app-bar>
           <v-main>
             <v-container>
-          <NuxtPage :page-key="route => route.fullPath" />
+              <NuxtPage :page-key="route => route.fullPath" />
             </v-container>
           </v-main>
-          <v-footer app>
-            <v-container>
-              <v-row>
-                <v-col class="text-center">
-                  <span>&copy; 2025 Linda's Next Piveau</span>
-                </v-col>
-              </v-row>
-            </v-container>
-          </v-footer>
+          <OdsBottomFooter />
         </v-app>
       </NuxtLayout>
     </main>
@@ -32,6 +24,6 @@
 <script setup lang="ts">
 
 import './assets/main.css'
-
+import OdsBottomFooter from '@/components/footer/OdsBottomFooter.vue'
 
 </script>
