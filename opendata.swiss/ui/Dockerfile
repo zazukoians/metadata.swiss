@@ -10,9 +10,14 @@ RUN npm ci
 COPY . .
 RUN npm run build
 
-# Serve the build using Nginx
-FROM nginx:1.29-alpine
+# Serve the build
+FROM node:22-alpine
 WORKDIR /app
-COPY nginx.conf /etc/nginx/nginx.conf
-COPY --from=builder /app/dist /app
+COPY --from=builder /app/.output /app
+
+ENV PORT=80
+ENV HOST=0.0.0.0
+
 EXPOSE 80
+
+CMD ["node", "/app/server/index.mjs"]
