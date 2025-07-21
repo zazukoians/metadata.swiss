@@ -1,5 +1,9 @@
 {
     "message": {
+        "top_header": {
+            "logout": "Abmelden",
+            "login": "Anmelden"
+        },
         "bottom_footer": {
             "ods_a_1": "Rechtliches",
             "ods_href_1": "https://opendata.swiss/de/legal-framework",

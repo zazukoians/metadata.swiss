@@ -1,5 +1,9 @@
 {
     "message": {
+        "top_header": {
+            "logout": "Disconnettiti",
+            "login": "Accedi"
+        },
         "bottom_footer": {
             "ods_a_1": "Quadro giuridico",
             "ods_href_1": "https://opendata.swiss/it/legal-framework",

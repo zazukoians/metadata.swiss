@@ -1,48 +1,50 @@
 <template>
-    <header class="top-header">
-        <div class="top-header-container">
-            <div class="left">
+    <header id="top-bar-container" class="top-bar">
+        <div id="top-bar" class="top-bar__bar">
+          <div class="container container--flex ">
+            <div class="top-bar__btn"/>
+            <div class="top-bar__right">
 
-            </div>
-            <div class="right">
-                <div v-if="props.enableAuthentication">
+ <div v-if="props.enableAuthentication">
                 <v-btn
                     v-if="props.authenticated"
                     variant="plain"
-                    append-icon="mdi-logout"
-                    :title="t('message.header.subnav.logout')"
-                    :aria-label="t('message.header.subnav.logout')"
+                    append-icon="mdi:mdi-logout"
+                    :title="t('message.top_header.logout')"
+                    :aria-label="t('message.top_header..logout')"
                     @click="loginOrLogout"
                 >
-                    {{ props.username ? props.username : t('message.header.subnav.logout')}}
+                    {{ props.username ? props.username : t('message.top_header.logout')}}
 
                 </v-btn>
                 <v-btn
                     v-if="!props.authenticated"
                     variant="plain"
-                    append-icon="mdi-login"
+                    append-icon="mdi:mdi-login"
                     @click="loginOrLogout"
-                    :title="t('message.header.subnav.login')"
-                    :aria-label="t('message.header.subnav.login')"
+                    :title="t('message.top_header.login')"
+                    :aria-label="t('message.top_header.login')"
                 >
-                    {{ t('message.header.subnav.login') }}
+                    {{ t('message.top_header.login') }}
 
                 </v-btn>
                 </div>
-                <div class="language-selector">
+
+               <!--<div class="language-selector">
                     <OdsLanguageSelector />
-                </div>
+                </div>-->
             </div>
-           
+          </div>
         </div>
-      
-    </header>   
+
+    </header>
 </template>
 
 
 
 <script lang="ts" setup>
-import OdsLanguageSelector from '../OdsLanguageSelector.vue';
+// import OdsLanguageSelector from '../OdsLanguageSelector.vue';
+
 import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()
@@ -75,7 +77,13 @@ const emit = defineEmits<{
 
 
 <style lang="scss" scoped>
-@use '@/styles/ods_breakpoints.scss' as mdeia;
+@use '@/assets/ods/ods_breakpoints.scss' as mdeia;
+
+ul {
+    list-style-type: none;
+    list-style-position: outside;
+    line-height: 12px;
+}
 
 .top-header {
     width: 100vw;
@@ -120,7 +128,7 @@ const emit = defineEmits<{
             justify-content: flex-end;
             gap: 24px;
             color: white;
-           
+
         }
     }
 

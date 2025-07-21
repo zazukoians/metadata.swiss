@@ -1,5 +1,9 @@
 {
     "message": {
+        "top_header": {
+            "logout": "Logout",
+            "login": "login"
+        },
         "bottom_footer": {
             "ods_a_1": "Legal framework",
             "ods_href_1": "https://opendata.swiss/en/legal-framework",
