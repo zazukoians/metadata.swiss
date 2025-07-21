@@ -68,7 +68,7 @@
 
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
-import { useLayoutStore } from '../../../store/layout'
+import { useLayoutStore  } from '../../../store/layout'
 import Burger from '../components/Burger.vue'
 import LanguageSwitcher from '../components/LanguageSwitcher.vue'
 import Logo from '../components/Logo.vue'
