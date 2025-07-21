@@ -7,6 +7,20 @@
             "ods_a_2": "Impressum",
             "ods_href_2": "https://www.bfs.admin.ch/bfs/de/home/bfs/bundesamt-statistik/rechtliche-hinweise.html",
             "ods_aria_label_2": "Impressum von opendata.swiss"
+        },
+        "ods-footer": {
+            "block_1": {
+                "title": "Über uns",
+                "paragraph_1": "Das Portal opendata.swiss ist ein gemeinsames Projekt von Bund, Kantonen, Gemeinden und weiteren Organisationen mit einem staatlichen Auftrag. Es stellt der Allgemeinheit offene Behördendaten in einem zentralen Katalog zur Verfügung. Das Bundesamt für Statistik betreibt opendata.swiss."
+            },
+            "block_2": {
+                "title": "Folgen Sie uns",
+                "news_mail_href": "https://www.bfs.admin.ch/bfs/de/home/dienstleistungen/ogd/gemeinschaft/newsmail.html",
+                "news_mail_aria_label": "News abonnieren"
+            },
+            "block_3": {
+                "title": "Weitere Informationen"
+            }
         }
     }
 }
