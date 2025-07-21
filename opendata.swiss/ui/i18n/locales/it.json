@@ -7,6 +7,20 @@
             "ods_a_2": "Impressum",
             "ods_href_2": "https://www.bfs.admin.ch/bfs/de/home/bfs/bundesamt-statistik/rechtliche-hinweise.html",
             "ods_aria_label_2": "Impressum di opendata.swiss"
+        },
+        "ods-footer": {
+            "block_1": {
+                "title": "Chi siamo",
+                "paragraph_1": "Mettere a disposizione della collettività i dati aperti dell’amministrazione pubblica in un repertorio centralizzato: è questo l’obiettivo perseguito con il portale opendata.swiss, un progetto comune di Confederazione, Cantoni, Comuni e di altre organizzazioni che adempiono un mandato statale. La gestione del portale è affidata all’Ufficio federale di statistica."
+            },
+            "block_2": {
+                "title": "Rimanete informati",
+                "news_mail_href": "https://www.bfs.admin.ch/bfs/it/home/services/ogd/communaute/newsmail.html",
+                "news_mail_aria_label": "Iscriviti alla newsletter di opendata.swiss"
+            },
+            "block_3": {
+                "title": "Ulteriori informazioni"
+            }
         }
     }
 }

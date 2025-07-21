@@ -10,10 +10,11 @@
             <v-btn text to="/about">About</v-btn>
           </v-app-bar>
           <v-main>
-            <v-container>
+            <v-container :style="'min-height: calc(100vh - 64px);'">
               <NuxtPage :page-key="route => route.fullPath" />
             </v-container>
           </v-main>
+          <OdsFooter />
           <OdsBottomFooter />
         </v-app>
       </NuxtLayout>
@@ -25,5 +26,6 @@
 
 import './assets/main.css'
 import OdsBottomFooter from '@/components/footer/OdsBottomFooter.vue'
+import OdsFooter from './components/footer/OdsFooter.vue';
 
 </script>
