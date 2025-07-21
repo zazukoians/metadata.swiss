@@ -1,0 +1,13 @@
+
+.v-list-item {
+     border-left: none !important;
+     padding-left: 21px !important;
+}
+
+.v-list-item--active {
+     border-left: 5px solid var(--ods-color) !important;
+}
+
+.v-btn__content {
+    text-transform: capitalize !important;
+}

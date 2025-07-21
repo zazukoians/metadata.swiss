@@ -7,18 +7,18 @@
         <div class="app-title">
           <h1>opendata.swiss</h1>
           <h1>Portal</h1>
-          
+
         </div>
-        
+
       </div>
     </nav>
   </div>
   <!-- menu -->
   <div class="nav-tabs">
     <div class="nav-tabs-container">
-      <v-tabs align-tabs="start" v-model="selectedTab">
+      <v-tabs v-model="selectedTab" align-tabs="start">
         <template v-for="item in tabItems" :key="item.label">
-        <v-tab rounded="0" variant="plain" :to="item.to" v-if="!item.subMenu">
+        <v-tab v-if="!item.subMenu" rounded="0" variant="plain" :to="item.to">
           {{ t(item.label) }}
         </v-tab>
         <v-menu v-if="item.subMenu"  :key="item.label">
@@ -205,7 +205,8 @@ function setCurrentItemToMenuItem (parent: OdsNavTabItem, ref:any) {
 
 
 <style lang="scss" scoped>
-@use '@/styles/ods_breakpoints.scss' as mdeia;
+
+@use '@/assets/ods/ods_breakpoints.scss' as mdeia;
 .ods-header {
   background-color: white;
   display: flex;
@@ -213,7 +214,7 @@ function setCurrentItemToMenuItem (parent: OdsNavTabItem, ref:any) {
   justify-content: center;
   align-items: center;
   border-bottom: 1px solid rgb(229, 231, 235);
- 
+
   .navbar {
     max-width: var(--ods-max-content-width);
     width: 100%;
@@ -243,7 +244,7 @@ function setCurrentItemToMenuItem (parent: OdsNavTabItem, ref:any) {
   .nav-tabs-container {
     width: 100%;
     max-width: var(--ods-max-content-width);
-   
+
   }
 }
 
@@ -300,7 +301,7 @@ function setCurrentItemToMenuItem (parent: OdsNavTabItem, ref:any) {
     }
     .logo-lg {
       display: none;
-    } 
+    }
   }
   @include mdeia.respond-to-md {
     .logo-small{
@@ -308,11 +309,11 @@ function setCurrentItemToMenuItem (parent: OdsNavTabItem, ref:any) {
     }
     .logo-lg {
       display: block;
-    } 
+    }
   }
 }
-  
 
 
- 
+
+
 </style>
