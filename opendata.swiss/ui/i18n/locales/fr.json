@@ -1,0 +1,12 @@
+{
+    "message": {
+        "bottom_footer": {
+            "ods_a_1": "Cadre juridique",
+            "ods_href_1": "https://opendata.swiss/fr/legal-framework",
+            "ods_aria_label_1": "Cadre juridique du portail opendata.swiss",
+            "ods_a_2": "Impressum",
+            "ods_href_2": "https://www.bfs.admin.ch/bfs/de/home/bfs/bundesamt-statistik/rechtliche-hinweise.html",
+            "ods_aria_label_2": "Mentions légales d’opendata.swiss"
+        }
+    }
+}

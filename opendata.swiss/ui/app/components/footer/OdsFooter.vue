@@ -9,12 +9,12 @@
             <div class="block">
                 <h1>{{t('message.ods-footer.block_2.title') }}</h1>
                 <div class="social">
-                 <a href="https://www.facebook.com/people/opendataswiss/61558495974785/" target="_blank"> <div class="media"><font-awesome-icon :icon="['fab', 'facebook']" /><span>Facebook</span></div></a> 
+                 <a href="https://www.facebook.com/people/opendataswiss/61558495974785/" target="_blank"> <div class="media"><font-awesome-icon :icon="['fab', 'facebook']" /><span>Facebook</span></div></a>
                  <a href="https://www.linkedin.com/showcase/opendata-swiss/" target="_blank"> <div class="media"><font-awesome-icon :icon="['fab', 'linkedin']" /><span>LinkedIn</span></div></a>
                  <a href="https://www.instagram.com/opendata.swiss/" target="_blank"> <div class="media"><font-awesome-icon :icon="['fab', 'instagram']" /><span>Instagram</span></div></a>
                  <a href="https://x.com/opendataswiss" target="_blank"> <div class="media"><font-awesome-icon :icon="['fab', 'x-twitter']" /><span>X</span></div></a>
               </div>
-               <v-btn 
+               <v-btn
                 :href="t('message.ods-footer.block_2.news_mail_href')"
                 target="_blank"
                 color="secondary"
@@ -44,10 +44,11 @@ const { t } = useI18n()
 </script>
 
 <style lang="scss" scoped>
-@use '@/styles/ods_breakpoints.scss' as mdeia;
+@use '@/assets/ods/ods_breakpoints.scss' as mdeia;
 
 .ods-footer {
-    background-color: var(--ods-light-dark-background-color);
+ //   background-color: var(--ods-light-dark-background-color);
+ background-color: rgba(200,200,200, 1);
     color: #fff;
     display: flex;
     flex-direction: row;
@@ -107,7 +108,7 @@ const { t } = useI18n()
         .block-large {
             width: 50%;
 
-          
+
         }
     }
     @include mdeia.respond-to-sm {
@@ -140,7 +141,7 @@ const { t } = useI18n()
             h1 {
                 font-size: 1.25rem !important;
                 margin-bottom: 24px !important;
-            }  
+            }
             p:not(:last-child) {
                 margin-bottom: 12px !important;
             }
@@ -199,8 +200,8 @@ const { t } = useI18n()
             width: 50%;
         }
     }
- 
-   
+
+
 }
 
 
