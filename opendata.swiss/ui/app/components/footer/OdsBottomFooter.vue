@@ -16,3 +16,8 @@ const { t } = useI18n()
 
 </script>
 
+<style lang="scss" scoped>
+a {
+  text-decoration: none !important;
+}
+</style>
