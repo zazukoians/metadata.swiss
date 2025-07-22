@@ -32,10 +32,9 @@ import OdsHeader from './components/headers/OdsHeader.vue';
 import OdsBottomFooter from '@/components/footer/OdsBottomFooter.vue'
 import OdsFooter from './components/footer/OdsFooter.vue';
 import type { OdsNavTabItem } from './components/headers/model/ods-nav-tab-item';
+import { APP_NAVIGATION_ITEMS } from './constants/navigation-items';
 
-const navigationItems = ref<OdsNavTabItem[]>([
-  { label: 'home', to: '/' },
-  { label: 'datasets', to: '/datasets' },
-  { label: 'about', to: '/about' },
-]);
+
+
+const navigationItems = ref<OdsNavTabItem[]>(APP_NAVIGATION_ITEMS);
 </script>

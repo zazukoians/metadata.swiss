@@ -12,7 +12,7 @@ import { createVuetify } from 'vuetify'
 export default defineNuxtPlugin((app) => {
   const vuetify = createVuetify({
     icons: {
-      defaultSet: 'fa',
+      defaultSet: 'mdi',
       aliases,
       sets: {
         fa,

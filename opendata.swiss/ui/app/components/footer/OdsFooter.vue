@@ -11,16 +11,16 @@
                 <h3>{{t('message.ods-footer.block_2.title') }}</h3>
                 <div class="footer-information__social">
                  <a class="footer__link" href="https://www.facebook.com/people/opendataswiss/61558495974785/" target="_blank">
-                      <v-icon icon="fa-brands fa-facebook-f" class="icon icon--base footer-information__icon" />
+                      <v-icon icon="fa:fa-brands fa-facebook-f" class="icon icon--base footer-information__icon" />
                       Facebook
                   </a>
                  <a class="footer__link" href="https://www.linkedin.com/showcase/opendata-swiss/" target="_blank">
-                  <v-icon icon="fa-brands fa-linkedin"  class="icon icon--base footer-information__icon"/>
+                  <v-icon icon="fa:fa-brands fa-linkedin"  class="icon icon--base footer-information__icon"/>
                   Linkedin</a>
                  <a class="footer__link"  href="https://www.instagram.com/opendata.swiss/" target="_blank">
-                  <v-icon icon="fa-brands fa-instagram" class="icon icon--base footer-information__icon" />Instagram</a>
+                  <v-icon icon="fa:fa-brands fa-instagram" class="icon icon--base footer-information__icon" />Instagram</a>
                  <a class="footer__link"  href="https://x.com/opendataswiss" target="_blank">
-                  <v-icon icon="fa-brands fa-x-twitter" class="icon icon--base footer-information__icon" />𝕏</a>
+                  <v-icon icon="fa:fa-brands fa-x-twitter" class="icon icon--base footer-information__icon" />𝕏</a>
               </div>
                <v-btn
                 :href="t('message.ods-footer.block_2.news_mail_href')"

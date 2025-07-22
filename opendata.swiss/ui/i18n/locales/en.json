@@ -4,6 +4,17 @@
             "logout": "Logout",
             "login": "login"
         },
+        "header": {
+            "ods_logo": "Logo of opendata.swiss",
+            "navigation": {
+                "home": "Home",
+                "datasets": "Datasets",
+                "about": "About us",
+                "contact": "Contact",
+                "what_is_ods": "What is opendata.swiss?",
+                "terms_of_use": "Terms of use"
+            }
+        },
         "bottom_footer": {
             "ods_a_1": "Legal framework",
             "ods_href_1": "https://opendata.swiss/en/legal-framework",
