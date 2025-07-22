@@ -48,43 +48,24 @@
         <div class="container__aside">
           <div id="aside-content" class="sticky sticky--top">
             <div class="card card--default">
-              <!----><!---->
               <div class="card__content">
                 <div class="card__body">
                   <div class="card__title">
                     <h2>Inhaltverzeichnis</h2>
                   </div>
                   <ul class="menu text--sm">
-                    <li><a href="#einleitung" class="menu__item menu__item--border menu__item--condensed">
-                      <div>Einleitung</div>
-                      <svg viewBox="0 0 24 24" enable-background="new 0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="icon icon--base icon--ArrowAngleBottomLeft menu__item__icon">
-                        <path xmlns="http://www.w3.org/2000/svg" d="m17.7 13.7v-8.4h-.8v7.7h-11.8l2.4-4.2-.6-.4-2.9 4.9 2.9 4.9.6-.4-2.4-4.2z">
-                        </path>
-                      </svg>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#datenmodell-ablage" class="menu__item menu__item--border menu__item--condensed menu__item--active">
-                      <div>Datenmodellablage ansehen</div>
-                      <svg viewBox="0 0 24 24" enable-background="new 0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="icon icon--base icon--ArrowAngleBottomLeft menu__item__icon">
-                        <path xmlns="http://www.w3.org/2000/svg" d="m17.7 13.7v-8.4h-.8v7.7h-11.8l2.4-4.2-.6-.4-2.9 4.9 2.9 4.9.6-.4-2.4-4.2z">
-                        </path>
-                      </svg>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#dokumente" class="menu__item menu__item--border menu__item--condensed">
-                      <div>Weitere Informationen</div>
-                      <svg viewBox="0 0 24 24" enable-background="new 0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="icon icon--base icon--ArrowAngleBottomLeft menu__item__icon"><path xmlns="http://www.w3.org/2000/svg" d="m17.7 13.7v-8.4h-.8v7.7h-11.8l2.4-4.2-.6-.4-2.9 4.9 2.9 4.9.6-.4-2.4-4.2z"></path>
-                      </svg>
-                    </a>
-                  </li>
-                </ul>
-              <!---->
+                    <li v-for="heading in headings" :key="heading.id">
+                      <a :href="`#${heading.id}`" class="menu__item menu__item--border menu__item--condensed">
+                        <div>{{ heading.text }}</div>
+                        <svg viewBox="0 0 24 24" enable-background="new 0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="icon icon--base icon--ArrowAngleBottomLeft menu__item__icon">
+                          <path xmlns="http://www.w3.org/2000/svg" d="m17.7 13.7v-8.4h-.8v7.7h-11.8l2.4-4.2-.6-.4-2.9 4.9 2.9 4.9.6-.4-2.4-4.2z"></path>
+                        </svg>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
               </div>
-            <!---->
             </div>
-          </div>
         </div>
         </div>
       </div>
@@ -95,8 +76,8 @@
 <script lang="ts" setup>
 import type { Breadcrumb } from '../../app/model/breadcrumb';
 import ExternalLink  from '../../app/components/ExternalLink.vue';
-
 import { useI18n } from 'vue-i18n'
+import { ref, onMounted, nextTick } from 'vue';
 
 const { t } = useI18n()
 
@@ -112,6 +93,20 @@ const breadcrumbs: Breadcrumb[] = [
     to: '/',
   },
 ];
+
+const headings = ref<{ id: string, text: string }[]>([]);
+
+onMounted(async () => {
+  await nextTick();
+  const mainContent = document.getElementById('main-content');
+  if (mainContent) {
+    const h2s = mainContent.querySelectorAll('h2[id]');
+    headings.value = Array.from(h2s).map(h2 => ({
+      id: h2.id,
+      text: h2.textContent || '',
+    }));
+  }
+});
 </script>
 
 
