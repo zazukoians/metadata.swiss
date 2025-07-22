@@ -4,7 +4,16 @@ import {resolve} from 'node:path'
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
-  modules: ['@nuxt/eslint', '@nuxt/content', '@pinia/nuxt'],
+  modules: [
+    '@nuxt/eslint',
+    '@nuxt/content',
+    '@pinia/nuxt',
+    '@nuxtjs/i18n',
+    '@nuxt/ui-pro',
+  ],
+  css: [
+    '~/assets/main.css',
+  ],
   dir:{
     pages: resolve(import.meta.dirname, 'pages'),
   },
@@ -12,6 +21,16 @@ export default defineNuxtConfig({
     enabled: true,
   },
   routeRules: {
-    '/datasets/**': { ssr: false }
+    '**': { ssr: false }
+  },
+  i18n: {
+    defaultLocale: 'de',
+    strategy: 'prefix',
+    locales: [
+      { code: 'de', name: 'English', file: 'de.json' },
+      { code: 'fr', name: 'Français', file: 'fr.json' },
+      { code: 'it', name: 'Italiano', file: 'it.json' },
+      { code: 'en', name: 'English', file: 'en.json' },
+    ]
   },
 })
