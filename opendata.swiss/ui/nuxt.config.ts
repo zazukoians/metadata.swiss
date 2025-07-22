@@ -41,7 +41,8 @@ export default defineNuxtConfig({
     { src: '~/plugins/piveau', mode: 'client' },
   ],
   i18n: {
-    defaultLocale: 'en',
+    defaultLocale: 'de',
+    strategy: 'prefix',
     locales: [
       { code: 'de', name: 'Deutsch', file: 'de.json' },
       { code: 'en', name: 'English', file: 'en.json' },
