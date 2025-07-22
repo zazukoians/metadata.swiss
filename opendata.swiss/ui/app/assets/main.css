@@ -1,6 +1,6 @@
 @import './base.css';
-@import "tailwindcss";
-@import "@nuxt/ui-pro";
+@import './swiss/designsystem/1.0.36.css';
+@import './ods/ods_vuetify.scss';
 
 @layer base {
   .body--freebrand {

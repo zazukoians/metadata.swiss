@@ -1,1 +1,41 @@
-{}
+{
+    "message": {
+        "top_header": {
+            "logout": "Logout",
+            "login": "login"
+        },
+        "header": {
+            "ods_logo": "Logo of opendata.swiss",
+            "navigation": {
+                "home": "Home",
+                "datasets": "Datasets",
+                "about": "About us",
+                "contact": "Contact",
+                "what_is_ods": "What is opendata.swiss?",
+                "terms_of_use": "Terms of use"
+            }
+        },
+        "bottom_footer": {
+            "ods_a_1": "Legal framework",
+            "ods_href_1": "https://opendata.swiss/en/legal-framework",
+            "ods_aria_label_1": "Legal framework of opendata.swiss",
+            "ods_a_2": "Imprint",
+            "ods_href_2": "https://www.bfs.admin.ch/bfs/de/home/bfs/bundesamt-statistik/rechtliche-hinweise.html",
+            "ods_aria_label_2": "Imprint of opendata.swiss"
+        },
+        "ods-footer": {
+            "block_1": {
+                "title": "About us",
+                "paragraph_1": "The opendata.swiss portal is a joint project of the Confederation, cantons, communes and other organizations with a mandate from the state. It makes open government data available to the general public in a central catalogue. opendata.swiss is operated by the Federal Statistical Office."
+            },
+            "block_2": {
+                "title": "Stay informed",
+                "news_mail_href": "https://www.bfs.admin.ch/bfs/en/home/services/ogd/community/newsmail.html",
+                "news_mail_aria_label": "Subscribe to newsletter"
+            },
+            "block_3": {
+                "title": "Further Information"
+            }
+        }
+    }
+}

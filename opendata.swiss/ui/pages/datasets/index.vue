@@ -1,11 +1,9 @@
 <script setup lang="ts">
 import type { SearchParamsBase } from '@piveau/sdk-core'
-import { useLocale } from '@piveau/sdk-vue'
 import { computed, reactive, ref, toRefs } from 'vue'
 import { useDatasetsSearch } from '../../app/piveau/search.js'
 
 const { locale } = useI18n();
-useLocale().setLocale(locale.value)
 
 // 👇 Query parameters
 

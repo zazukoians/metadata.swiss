@@ -1,4 +1,6 @@
-import {resolve} from 'node:path'
+import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
+
+import { resolve } from 'node:path'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -10,6 +12,11 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     '@nuxtjs/i18n',
     '@nuxt/ui-pro',
+      (_options, nuxt) => {
+          nuxt.hooks.hook('vite:extendConfig', (config) => {
+              config.plugins?.push(vuetify({ autoImport: true }))
+          })
+      },
   ],
   css: [
     '~/assets/main.css',
@@ -21,16 +28,30 @@ export default defineNuxtConfig({
     enabled: true,
   },
   routeRules: {
-    '**': { ssr: false }
+    '/datasets/**': { ssr: false },
+    '/*/datasets/**': { ssr: false }
   },
-  i18n: {
-    defaultLocale: 'de',
-    strategy: 'prefix',
-    locales: [
-      { code: 'de', name: 'English', file: 'de.json' },
-      { code: 'fr', name: 'Français', file: 'fr.json' },
-      { code: 'it', name: 'Italiano', file: 'it.json' },
-      { code: 'en', name: 'English', file: 'en.json' },
-    ]
-  },
+    build: {
+        transpile: ['vuetify'],
+    },
+    vite: {
+        vue: {
+            template: {
+                transformAssetUrls,
+            },
+        },
+    },
+    plugins: [
+        { src: '~/plugins/piveau', mode: 'client' },
+    ],
+    i18n: {
+        defaultLocale: 'de',
+        strategy: 'prefix',
+        locales: [
+            { code: 'de', name: 'Deutsch', file: 'de.json' },
+            { code: 'en', name: 'English', file: 'en.json' },
+            { code: 'fr', name: 'Francais', file: 'fr.json' },
+            { code: 'it', name: 'Itlaliano', file: 'it.json' },
+        ]
+    }
 })
