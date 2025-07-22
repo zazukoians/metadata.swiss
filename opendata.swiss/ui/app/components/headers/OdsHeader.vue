@@ -12,15 +12,15 @@
       <div class="right">
       <BurgerButton v-model="menuOpen" />
       </div>
-       
+
     </nav>
   </div>
   <!-- menu -->
   <div class="nav-tabs">
     <div class="nav-tabs-container">
-      <v-tabs align-tabs="start" v-model="selectedTab">
+      <v-tabs v-model="selectedTab" align-tabs="start">
         <template v-for="item in props.navigationItems" :key="item.label">
-        <v-tab rounded="0" variant="plain" :to="item.to" v-if="!item.subMenu">
+        <v-tab v-if="!item.subMenu" rounded="0"  variant="plain" :to="item.to">
           {{ t(item.label) }}
         </v-tab>
         <v-menu v-if="item.subMenu"  :key="item.label">
@@ -32,15 +32,15 @@
                     variant="plain"
                     v-bind="props"
                   >
-                {{ t(item.label) }} <v-icon icon="mdi-menu-down" v-bind="props"></v-icon>
+                {{ t(item.label) }} <v-icon icon="mdi-menu-down" v-bind="props" />
               </v-btn>
             </template>
             <v-list>
               <v-list-item
-                @click="setCurrentItemToMenuItem(item, subItem)"
                 v-for="subItem in item.subMenu"
                 :key="subItem.label"
                 :to="subItem.to"
+                @click="setCurrentItemToMenuItem(item, subItem)"
               >
                 {{ t(subItem.label) }}
               </v-list-item>
@@ -52,23 +52,22 @@
   </div>
   <!-- Mobile menu -->
   <Transition name="fade-menu">
-    <div class="ods-mobile-menu" v-if="menuOpen" >
-      <OdsNavigationPanel  :items="props.navigationItems" @requestClose="closeMobileMenu"></OdsNavigationPanel>
+    <div v-if="menuOpen" class="ods-mobile-menu"  >
+      <OdsNavigationPanel  :items="props.navigationItems" @request-close="closeMobileMenu" />
     </div>
   </Transition>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, watch } from 'vue';
-import { useRoute } from 'vue-router';
+import { ref, watch, defineEmits } from 'vue';
 import { useI18n } from 'vue-i18n';
 
-import { OdsNavTabItem } from '@/components/headers/model/ods-nav-tab-item';
+import type { OdsNavTabItem } from '@/components/headers/model/ods-nav-tab-item';
 import Logo from '@/components/Logo.vue';
 import LogoSmall from '@/components/LogoSmall.vue';
 import BurgerButton from '@/components/BurgerButton.vue';
 import OdsNavigationPanel from '@/components/OdsNavigationPanel.vue';
-// Props definition
+
 interface Props {
   enableAuthentication?: boolean;
   authenticated?: boolean;
@@ -81,26 +80,17 @@ const props = withDefaults(defineProps<Props>(), {
   navItems: []
 });
 
-import { defineEmits } from 'vue';
 
 const emit = defineEmits<{
   (e: 'mobileMenuStateChange', value: boolean): void;
 }>();
 
-
-
-const route = useRoute();
 const { t } = useI18n();
-const isNuxt = ref(false);
 
 const selectedTab = ref<string | null>(null);
 const menuOpen = ref(false);
 
 
-// Lifecycle hook
-onMounted(() => {
-  isNuxt.value = !!(globalThis as any).$nuxt;
-});
 
 
 function setCurrentItemToMenuItem (parent: OdsNavTabItem, ref:any) {
@@ -120,7 +110,8 @@ function closeMobileMenu() {
 
 
 <style lang="scss" scoped>
-@use '@/styles/ods_breakpoints.scss' as mdeia;
+@use '@/assets/ods/ods_breakpoints.scss' as mdeia;
+
 .ods-header {
   background-color: white;
   display: flex;
@@ -128,7 +119,7 @@ function closeMobileMenu() {
   justify-content: center;
   align-items: center;
   border-bottom: 1px solid rgb(229, 231, 235);
- 
+
   .navbar {
     max-width: var(--ods-max-content-width);
     width: 100%;
@@ -162,10 +153,10 @@ function closeMobileMenu() {
   .nav-tabs-container {
     width: 100%;
     max-width: var(--ods-max-content-width);
-   
+
   }
 
-  
+
 }
 
 
@@ -221,7 +212,7 @@ function closeMobileMenu() {
     }
     .logo-lg {
       display: none;
-    } 
+    }
   }
   @include mdeia.respond-to-md {
     .logo-small{
@@ -229,7 +220,7 @@ function closeMobileMenu() {
     }
     .logo-lg {
       display: block;
-    } 
+    }
   }
 }
 
@@ -244,7 +235,7 @@ function closeMobileMenu() {
 .ods-mobile-menu {
    @include mdeia.respond-to-xs {
     display: flex;
-   
+
     height: calc(100vh - 65px);
     background-color: var(--ods-light-dark-background-color);
   }

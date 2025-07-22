@@ -3,6 +3,7 @@
       <NuxtLayout>
         <v-app>
           <OdsTopHeader :enable-authentication="true" :authenticated="false" :username="undefined" />
+          <OdsHeader :navigation-items="navigationItems" />
          <!-- <v-app-bar app>
             <v-toolbar-title>Linda's Next Piveau</v-toolbar-title>
             <v-spacer />
@@ -27,7 +28,14 @@
 
 import './assets/main.css'
 import OdsTopHeader from './components/headers/OdsTopHeader.vue'
+import OdsHeader from './components/headers/OdsHeader.vue';
 import OdsBottomFooter from '@/components/footer/OdsBottomFooter.vue'
 import OdsFooter from './components/footer/OdsFooter.vue';
+import type { OdsNavTabItem } from './components/headers/model/ods-nav-tab-item';
 
+const navigationItems = ref<OdsNavTabItem[]>([
+  { label: 'home', to: '/' },
+  { label: 'datasets', to: '/datasets' },
+  { label: 'about', to: '/about' },
+]);
 </script>
