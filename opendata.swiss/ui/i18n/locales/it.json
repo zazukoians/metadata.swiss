@@ -4,6 +4,17 @@
             "logout": "Disconnettiti",
             "login": "Accedi"
         },
+        "header": {
+            "ods_logo": "Logo di opendata.swiss",
+            "navigation": {
+                "home": "Home",
+                "datasets": "Set di dati",
+                "about": "Chi siamo",
+                "contact": "Contatto",
+                "what_is_ods": "Cos'è opendata.swiss?",
+                "terms_of_use": "Termini di utilizzo"
+            }
+        },
         "bottom_footer": {
             "ods_a_1": "Quadro giuridico",
             "ods_href_1": "https://opendata.swiss/it/legal-framework",

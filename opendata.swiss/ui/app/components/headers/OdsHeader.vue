@@ -1,3 +1,51 @@
+<script setup lang="ts">
+import { ref, watch, defineEmits } from 'vue';
+import { useI18n } from 'vue-i18n';
+
+import type { OdsNavTabItem } from '@/components/headers/model/ods-nav-tab-item';
+import Logo from '@/components/Logo.vue';
+import LogoSmall from '@/components/LogoSmall.vue';
+import BurgerButton from '@/components/BurgerButton.vue';
+import OdsNavigationPanel from '@/components/OdsNavigationPanel.vue';
+
+interface Props {
+  enableAuthentication?: boolean;
+  authenticated?: boolean;
+  navigationItems: OdsNavTabItem[];
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  enableAuthentication: false,
+  authenticated: false,
+  navItems: []
+});
+
+
+const emit = defineEmits<{
+  (e: 'mobileMenuStateChange', value: boolean): void;
+}>();
+
+const { t } = useI18n();
+
+const selectedTab = ref<string | null>(null);
+const menuOpen = ref(false);
+
+
+function setCurrentItemToMenuItem (parent: OdsNavTabItem, ref:any) {
+   selectedTab.value = '3';
+}
+
+watch(menuOpen, (val) => {
+  emit('mobileMenuStateChange', val);
+});
+
+
+function closeMobileMenu() {
+  menuOpen.value = false;
+  emit('mobileMenuStateChange', false);
+}
+</script>
+
 <template>
   <div class="ods-header">
     <nav id="piveau-header" class="navbar" >
@@ -57,57 +105,6 @@
     </div>
   </Transition>
 </template>
-
-<script setup lang="ts">
-import { ref, watch, defineEmits } from 'vue';
-import { useI18n } from 'vue-i18n';
-
-import type { OdsNavTabItem } from '@/components/headers/model/ods-nav-tab-item';
-import Logo from '@/components/Logo.vue';
-import LogoSmall from '@/components/LogoSmall.vue';
-import BurgerButton from '@/components/BurgerButton.vue';
-import OdsNavigationPanel from '@/components/OdsNavigationPanel.vue';
-
-interface Props {
-  enableAuthentication?: boolean;
-  authenticated?: boolean;
-  navigationItems: OdsNavTabItem[];
-}
-
-const props = withDefaults(defineProps<Props>(), {
-  enableAuthentication: false,
-  authenticated: false,
-  navItems: []
-});
-
-
-const emit = defineEmits<{
-  (e: 'mobileMenuStateChange', value: boolean): void;
-}>();
-
-const { t } = useI18n();
-
-const selectedTab = ref<string | null>(null);
-const menuOpen = ref(false);
-
-
-
-
-function setCurrentItemToMenuItem (parent: OdsNavTabItem, ref:any) {
-   selectedTab.value = '3';
-}
-
-watch(menuOpen, (val) => {
-  emit('mobileMenuStateChange', val);
-});
-
-
-function closeMobileMenu() {
-  menuOpen.value = false;
-  emit('mobileMenuStateChange', false);
-}
-</script>
-
 
 <style lang="scss" scoped>
 @use '@/assets/ods/ods_breakpoints.scss' as mdeia;
