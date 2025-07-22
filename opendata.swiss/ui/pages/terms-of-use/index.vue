@@ -1,88 +1,61 @@
 <template>
-
-    <div class="page">
-        <div class="page-content">
-            <section>
-                <p>{{ t('message.terms_of_use.ods_paragraph_1') }}</p>
-                <p>{{ t('message.terms_of_use.ods_paragraph_2') }}</p>
-            </section>
-
-            <section>
-                <div class="row">
-                    <div class="term-icon">
-                        <OdsTermsOpen />
-                    </div>
-                    <div class="term-description">
-                        <p>{{ t('message.terms_of_use.ods_open.title') }}</p>
-                        <ul>
-                            <li>{{ t('message.terms_of_use.ods_open.condition_1') }}</li>
-                            <li>{{ t('message.terms_of_use.ods_open.condition_2') }}</li>
-                            <li>{{ t('message.terms_of_use.ods_open.condition_3') }}</li>
-                        </ul>
-                    </div>
-                </div>
-            </section>
-            <section>
-                <div class="row">
-                    <div class="term-icon">
-                        <OdsTermsBy />
-                    </div>
-                <div class="term-description">
-                    <p>{{ t('message.terms_of_use.ods_by.title') }}</p>
-                    <ul>
-                        <li>{{ t('message.terms_of_use.ods_by.condition_1') }}</li>
-                        <li>{{ t('message.terms_of_use.ods_by.condition_2') }}</li>
-                        <li>{{ t('message.terms_of_use.ods_by.condition_3') }}</li>
-                    </ul>
-                </div>
-                </div>
-
-            </section>
-            <section>
-                <div class="row">
-                    <div class="term-icon">
-                        <OdsTermsAsk />
-                    </div>
-                    <div class="term-description">
-                        <p>{{ t('message.terms_of_use.ods_ask.title') }}</p>
-                        <ul>
-                            <li>{{ t('message.terms_of_use.ods_ask.condition_1') }}</li>
-                            <li>{{ t('message.terms_of_use.ods_ask.condition_2') }}</li>
-                            <li>{{ t('message.terms_of_use.ods_ask.condition_3') }}</li>
-                        </ul>
-                    </div>
-                </div>
-            </section>
-            <section>
-                    <div class="row">
-                        <div class="term-icon">
-                            <OdsTermsByAsk />
-                        </div>
-                    <div class="term-description">
-                            <p>{{ t('message.terms_of_use.ods_by_ask.title') }}</p>
-                            <ul>
-                                <li>{{ t('message.terms_of_use.ods_by_ask.condition_1') }}</li>
-                                <li>{{ t('message.terms_of_use.ods_by_ask.condition_2') }}</li>
-                                <li>{{ t('message.terms_of_use.ods_by_ask.condition_3') }}</li>
-                            </ul>
-                        </div>
-                    </div>
-            </section>
-
-            <section>
-                <p>{{ t('message.terms_of_use.ods_trailing_paragraph_1_1') }}
-                    <RouterLink to="/contact">
-                        {{ t('message.terms_of_use.ods_trailing_paragraph_1_2_a') }}
-                    </RouterLink>.
-                    {{ t('message.terms_of_use.ods_trailing_paragraph_1_3') }}
-                    <a :href="t('message.terms_of_use.ods_trailing_paragraph_1_4_href')"
-                    target="_blank">
-                        {{ t('message.terms_of_use.ods_trailing_paragraph_1_4_a') }}
-                    </a>.
-                </p>
-            </section>
+  <div id="main-content">
+      <section class="hero hero--default">
+        <div class="container container--grid gap--responsive">
+          <div class="hero__content">
+            <h2 class="hero__title">{{ t('message.header.navigation.terms_of_use') }}</h2>
+            <div class="hero__description">
+              <p>{{ t('message.terms_of_use.ods_paragraph_1') }}</p>
+              <p>{{ t('message.terms_of_use.ods_paragraph_2') }}</p>
+            </div>
+          </div>
         </div>
+      </section>
+<section class="section section--py">
+      <div class="container container--grid container--reverse-mobile gap--responsive">
+        <div class="container__main vertical-spacing">
+        <h2 class="h2">{{ t('message.terms_of_use.ods_open.title') }}</h2>
+        <OdsTermsOpen />
+          <ul>
+            <li>{{ t('message.terms_of_use.ods_open.condition_1') }}</li>
+            <li>{{ t('message.terms_of_use.ods_open.condition_2') }}</li>
+            <li>{{ t('message.terms_of_use.ods_open.condition_3') }}</li>
+          </ul>
+        <h2 class="h2">{{ t('message.terms_of_use.ods_by.title') }}</h2>
+        <OdsTermsBy />
+        <ul>
+          <li>{{ t('message.terms_of_use.ods_by.condition_1') }}</li>
+          <li>{{ t('message.terms_of_use.ods_by.condition_2') }}</li>
+          <li>{{ t('message.terms_of_use.ods_by.condition_3') }}</li>
+        </ul>
+        <OdsTermsAsk />
+        <h2 class="h2">{{ t('message.terms_of_use.ods_ask.title') }}</h2>
+        <ul>
+          <li>{{ t('message.terms_of_use.ods_ask.condition_1') }}</li>
+          <li>{{ t('message.terms_of_use.ods_ask.condition_2') }}</li>
+          <li>{{ t('message.terms_of_use.ods_ask.condition_3') }}</li>
+        </ul>
+        <h2 class="h2">{{ t('message.terms_of_use.ods_by_ask.title') }}</h2>
+        <OdsTermsByAsk />
+        <ul>
+          <li>{{ t('message.terms_of_use.ods_by_ask.condition_1') }}</li>
+          <li>{{ t('message.terms_of_use.ods_by_ask.condition_2') }}</li>
+          <li>{{ t('message.terms_of_use.ods_by_ask.condition_3') }}</li>
+        </ul>
+        <h2 class="h2">{{ t('message.terms_of_use.ods_trailing.title') }}</h2>
+        <p>{{ t('message.terms_of_use.ods_trailing_paragraph_1_1') }} <RouterLink to="/contact">{{ t('message.terms_of_use.ods_trailing_paragraph_1_2_a') }}</RouterLink>.
+                    {{ t('message.terms_of_use.ods_trailing_paragraph_1_3') }}
+            <a
+              :href="t('message.terms_of_use.ods_trailing_paragraph_1_4_href')"
+              target="_blank">
+                {{ t('message.terms_of_use.ods_trailing_paragraph_1_4_a') }}
+              </a>.
+        </p>
+      </div>
     </div>
+    </section>
+        </div>
+
 </template>
 
 <script lang="ts" setup>
