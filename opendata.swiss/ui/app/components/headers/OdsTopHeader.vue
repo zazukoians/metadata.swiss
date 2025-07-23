@@ -1,5 +1,6 @@
 <script lang="ts" setup>
-// import OdsLanguageSelector from '../OdsLanguageSelector.vue';
+
+import LanguageSelector from '../LanguageSelector.vue';
 
 import { useI18n } from 'vue-i18n'
 
@@ -61,9 +62,9 @@ const emit = defineEmits<{
                   </v-btn>
                 </div>
 
-               <!--<div class="language-selector">
-                    <OdsLanguageSelector />
-                </div>-->
+               <div class="language-selector">
+                    <LanguageSelector />
+                </div>
             </div>
           </div>
         </div>
