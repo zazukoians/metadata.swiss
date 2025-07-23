@@ -26,7 +26,6 @@
 
 <script setup lang="ts">
 
-import './assets/main.css'
 import OdsTopHeader from './components/headers/OdsTopHeader.vue'
 import OdsHeader from './components/headers/OdsHeader.vue';
 import OdsBottomFooter from '@/components/footer/OdsBottomFooter.vue'

@@ -2,7 +2,8 @@
 import type { SearchParamsBase } from '@piveau/sdk-core'
 import { computed, reactive, ref, toRefs } from 'vue'
 import { useDatasetsSearch } from '../../app/piveau/search.js'
-const localePath = useLocalePath()
+
+const { locale } = useI18n();
 
 // 👇 Query parameters
 
@@ -32,7 +33,7 @@ const {
   },
 })
 
-const availableFacetsEn = getAvailableFacetsLocalized('en');
+const availableFacetsEn = getAvailableFacetsLocalized(locale.value);
 const availableCategories = computed(() =>
   availableFacetsEn.value.find((f) => f.id === 'categories')
 );
@@ -235,13 +236,13 @@ const onSearch = () => queryParams.q = searchInput.value
         <hr>
         <ul class="dataset-list">
           <li v-for="dataset in getSearchResultsEnhanced" :key="dataset.getId">
-            <NuxtLink :to="localePath({ name: 'datasets-datasetId', params: { datasetId: dataset.getId } })">
+            <NuxtLinkLocale :to="{ name: 'datasets-datasetId', params: { datasetId: dataset.getId } }">
               <div class="search-result-summary">
                 <small>{{ dataset.getPublisher?.name }}</small>
                 <h4>{{ dataset.getTitle }}</h4>
                 <p>{{ dataset.getDescription }}</p>
               </div>
-            </NuxtLink>
+            </NuxtLinkLocale>
           </li>
         </ul>
         <hr>

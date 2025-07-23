@@ -51,8 +51,8 @@ function closeMobileMenu() {
   <div class="ods-header">
     <nav id="piveau-header" class="navbar" >
       <div class="left">
-        <router-link class="logo-lg" to="/"><Logo/></router-link>
-        <router-link class="logo-small" to="/"><LogoSmall/></router-link>
+        <NuxtLinkLocale class="logo-lg" to="/"><Logo/></NuxtLinkLocale>
+        <NuxtLinkLocale class="logo-small" to="/"><LogoSmall/></NuxtLinkLocale>
         <div class="app-title">
           <h1>opendata.swiss</h1>
           <h1>Portal</h1>
