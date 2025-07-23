@@ -7,6 +7,7 @@ export default defineContentConfig({
       type: 'page',
       schema: z.object({
         title: z.string(),
+        heading: z.string().optional(),
         description: z.string(),
         permalink: z.string().optional(),
       })

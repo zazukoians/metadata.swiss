@@ -17,9 +17,9 @@ const {data: page} = await useAsyncData(route.path, () => {
     <section class="hero hero--default">
       <div class="container container--grid gap--responsive">
         <div class="hero__content">
-          <h2 class="hero__title">{{ page.title }}</h2>
-          <div v-if="page.description" class="hero__description">
-            {{ page.description }}
+          <h2 class="hero__title">{{ page.heading || page.title }}</h2>
+          <div class="hero__description">
+            <MDC :value="page.description"></MDC>
           </div>
         </div>
       </div>
