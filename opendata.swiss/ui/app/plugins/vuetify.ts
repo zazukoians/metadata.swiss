@@ -42,6 +42,7 @@ export default defineNuxtPlugin((app) => {
         odsTheme,
       },
     },
+    ssr: true,
   })
   app.vueApp.use(vuetify)
 })
