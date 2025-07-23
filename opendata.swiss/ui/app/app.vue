@@ -34,7 +34,11 @@ import OdsFooter from './components/footer/OdsFooter.vue';
 import type { OdsNavTabItem } from './components/headers/model/ods-nav-tab-item';
 import { APP_NAVIGATION_ITEMS } from './constants/navigation-items';
 
-
-
 const navigationItems = ref<OdsNavTabItem[]>(APP_NAVIGATION_ITEMS);
+
+useHead({
+  bodyAttrs: {
+    class: 'body--ods-brand'
+  }
+})
 </script>
