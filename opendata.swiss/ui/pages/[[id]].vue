@@ -10,6 +10,10 @@ const {data: page} = await useAsyncData(route.path, () => {
     .first()
 })
 
+useSeoMeta({
+  title: `${page.value?.title} | opendata.swiss`,
+})
+
 </script>
 
 <template>
