@@ -19,6 +19,7 @@ const { data } = await useAsyncData(route.path, () => {
   return query.first()
 })
 
+// TODO: make sidebar navigation dynamic based on the handbook content
 const navigation = ref([
   {
     title: 'Guide',
@@ -55,18 +56,15 @@ const navigation = ref([
 </script>
 
 <template>
-  <UContainer>
-    <UPage v-if="data">
-      <template #left>
-        <UPageAside>
-          <UContentNavigation
-            v-if="navigation?.length"
-            :navigation="navigation"
-          />
-        </UPageAside>
-      </template>
+  <v-container v-if="data" >
+    <v-row no-gutters>
+      <v-col class="v-col-2">
+        <v-list :items="navigation"></v-list>
+      </v-col>
 
-      <ContentRenderer v-if="data" :value="data" />
-    </UPage>
-  </UContainer>
+      <v-col>
+        <ContentRenderer v-if="data" :value="data"/>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
