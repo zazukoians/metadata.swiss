@@ -1,6 +1,12 @@
 ---
 title: Conditions d’utilisation
-description: Les conditions d’utilisation des données mises à disposition par les autorités fédérales sur opendata.swiss sont régies par la législation en vigueur. Lorsque la loi prévoit que la source doit être indiquée, le jeu de données en question est assorti du symbole correspondant. Dans tous les autres cas, l’indication de la source est recommandée.
+description: >-
+  Les conditions d’utilisation des données mises à disposition par les autorités
+  fédérales sur opendata.swiss sont régies par la législation en vigueur.
+  Lorsque la loi prévoit que la source doit être indiquée, le jeu de données en
+  question est assorti du symbole correspondant. Dans tous les autres cas,
+  l’indication de la source est recommandée.
+
 
   Les symboles accompagnant chaque jeu de données indiquent le type d’utilisation autorisé. Tous les services proposant des données emploient les mêmes symboles.
 ---

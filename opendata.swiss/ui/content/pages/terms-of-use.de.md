@@ -1,6 +1,12 @@
 ---
 title: Nutzungsbedingungen
-description: Massgeblich für die Ausgestaltung der Nutzungsbedingungen der Datensätze von Bundesbehörden auf opendata.swiss sind die bestehenden gesetzlichen Grundlagen. Falls eine gesetzliche Pflicht zur Quellenangabe besteht, ist dies beim jeweiligen Datensatz mit dem entsprechenden Symbol vermerkt. In allen anderen Fällen wird eine Quellenangabe empfohlen.
+description: >-
+  Massgeblich für die Ausgestaltung der Nutzungsbedingungen der Datensätze von
+  Bundesbehörden auf opendata.swiss sind die bestehenden gesetzlichen
+  Grundlagen. Falls eine gesetzliche Pflicht zur Quellenangabe besteht, ist dies
+  beim jeweiligen Datensatz mit dem entsprechenden Symbol vermerkt. In allen
+  anderen Fällen wird eine Quellenangabe empfohlen.
+
 
   Die Symbole bei jedem Datensatz erklären die erlaubte Nutzung. Alle Datenlieferanten verwenden die gleichen Symbole.
 ---

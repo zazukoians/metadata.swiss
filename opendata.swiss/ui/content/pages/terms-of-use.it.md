@@ -1,6 +1,12 @@
 ---
 title: Termini di utilizzo
-description: Le condizioni d’uso applicabili ai dati che l’amministrazione pubblica svizzera mette a diposizione sul portale opendata.swiss si fondano sulle basi legali vigenti. I dataset per i quali l’indicazione della fonte è obbligatoria per legge sono contrassegnati dall’apposito simbolo. In tutti gli altri casi l’indicazione della fonte è raccomandata.
+description: >-
+  Le condizioni d’uso applicabili ai dati che l’amministrazione pubblica
+  svizzera mette a diposizione sul portale opendata.swiss si fondano sulle basi
+  legali vigenti. I dataset per i quali l’indicazione della fonte è obbligatoria
+  per legge sono contrassegnati dall’apposito simbolo. In tutti gli altri casi
+  l’indicazione della fonte è raccomandata.
+
 
   I simboli riportati accanto a ogni set di dati ne spiegano l’utilizzo ammesso. Tutti i fornitori di dati sono tenuti a usare gli stessi simboli.
 ---
