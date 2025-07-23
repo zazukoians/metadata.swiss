@@ -69,8 +69,8 @@ function closeMobileMenu() {
     <div class="nav-tabs-container">
       <v-tabs v-model="selectedTab" align-tabs="start">
         <template v-for="item in props.navigationItems" :key="item.label">
-        <v-tab v-if="!item.subMenu" rounded="0"  variant="plain">
-          <NuxtLinkLocale :to="localePath(item.to as string)">{{ t(item.label) }}</NuxtLinkLocale>
+        <v-tab v-if="!item.subMenu" rounded="0"  variant="plain" :to="localePath(item.to as string)">
+          {{ t(item.label) }}
         </v-tab>
         <v-menu v-if="item.subMenu"  :key="item.label">
             <template v-slot:activator="{ props }">
