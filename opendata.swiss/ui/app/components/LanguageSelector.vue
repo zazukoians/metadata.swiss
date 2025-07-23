@@ -4,16 +4,18 @@
     <Select
 
       id="lang-switcher"
+      v-model="selectedLocale"
       size="sm"
       bare
       :variant="type"
-      :model-value="selectedLocale"
-      @change="onLangChange"
     >
-      <option value="de">DE</option>
-      <option value="fr">FR</option>
-      <option value="it">IT</option>
-      <option value="en">EN</option>
+      <option
+        v-for="availableLocale in locales"
+        :key="availableLocale.code"
+        :value="availableLocale.code"
+        :selected="selectedLocale == availableLocale.code">
+        {{ availableLocale.code.toUpperCase() }}
+      </option>
     </Select>
   </div>
 </template>
@@ -24,7 +26,7 @@ import { ref, computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 const switchLocalePath = useSwitchLocalePath()
-const { locale } = useI18n()
+const { locale, locales } = useI18n()
 
 // Props
 defineProps({
@@ -40,12 +42,11 @@ const computedClass = computed(() => 'language-switcher')
 // Reactive selected locale (safe for hydration)
 const selectedLocale = ref(locale.value)
 
-
 // Handle language switching
-function onLangChange(newLocale: 'de' | 'en' | 'fr' | 'it') {
+watch(selectedLocale, (newLocale) => {
   if (newLocale !== locale.value) {
     const newPath = switchLocalePath(newLocale)
     navigateTo(newPath)
   }
-}
+})
 </script>
