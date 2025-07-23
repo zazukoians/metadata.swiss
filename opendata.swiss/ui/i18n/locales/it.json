@@ -15,6 +15,130 @@
                 "terms_of_use": "Termini di utilizzo"
             }
         },
+        "about": {
+            "ods_paragraph_1": "opendata.swiss è il portale centrale in cui sono archiviati i dati liberamente accessibili («open government data» o «OGD») dell’amministrazione pubblica svizzera.",
+            "ods_paragraph_2": "Il portale opendata.swiss, strumento centralizzato e attendibile, offre un accesso semplice ai dati pubblici della Confederazione, dei Cantoni e dei Comuni. Oltre a quelli pubblici, sul portale sono archiviati anche dati di terzi (imprese parastatali o attori privati che assumono compiti per conto della Confederazione, dei Cantoni e dei Comuni), purché tali dati siano di interesse pubblico e anche se figurano già su altri portali.",
+            "ods_paragraph_3": "Il portale opendata.swiss intende in particolare:",
+            "ods_list_1": "fornire un quadro generale dei dati pubblici aperti attualmente pubblicati in Svizzera, in modo da facilitare lo scambio tra i fornitori e gli utenti dei dati;",
+            "ods_list_2": "creare un ambiente che favorisca l’utilizzo dei dati pubblici;",
+            "ods_list_3": "fornire supporto alla creazione di un elemento cardine per l’infrastruttura dei dati svizzeri.",
+            "ods_paragraph_4": "Si tiene a precisare che il portale si limita ad archiviare i dati. L’hosting dei dati è garantito dal loro proprietario, ciò che di fatto ne impedisce la ridondanza. Di norma, gli open government data non contengono alcun dato personale, bensì dati aggregati e anonimizzati, che non consentono di risalire alle persone cui si riferiscono. Si tratta di una conditio sine qua non per poter proporre questi dati per la pubblicazione.",
+            "ods_title_2": "Desiderate pubblicare dati su opendata.swiss?",
+            "ods_paragraph_5": "Le organizzazioni interessate alla pubblicazione di dati liberamente accessibili troveranno informazioni in merito nel manuale online seguente:",
+            "ods_title_3": "Chi gestisce il portale?",
+            "ods_paragraph_6": "Il portale è gestito dalla Segreteria Open Government Data, annessa all’Ufficio federale di statistica (UST). La Segreteria OGD sostiene le organizzazioni nella pubblicazione dei loro dati aperti e svolge un monitoraggio continuo della qualità del catalogo.",
+            "ods_paragraph_7": "opendata.swiss è gestito e sviluppato nel quadro della «",
+            "ods_paragraph_7_a": "Strategia sul libero accesso ai dati pubblici in Svizzera 2019–2023",
+            "ods_paragraph_7_href": "https://www.news.admin.ch/it/nsb?id=73188",
+            "ods_paragraph_7_1": "», adottata dal Consiglio federale il 30 novembre 2018. Per l’Amministrazione federale la strategia è a carattere obbligatorio.",
+            "ods_title_4": "Organizzazioni partner",
+            "ods_paragraph_8": "opendata.swiss è stato messo a punto da diverse organizzazioni partner sotto l’egida degli Archivi federali (AFS) fino al 2018. Nel 2019, su mandato del Dipartimento federale dell’interno (DFI), ne ha assunto la responsabilità della gestione l’Ufficio federale di statistica (UST). Il portale è in continuo sviluppo in collaborazione con i partner. È disponibile un ",
+            "ods_paragraph_8_a": "elenco di tutte le organizzazioni che pubblicano dati",
+            "ods_paragraph_8_1": ".",
+            "ods_paragraph_9": "Le organizzazioni elencate di seguito forniscono supporto alla Segreteria OGD per la gestione e lo sviluppo del portale:",
+            "ods_title_5": "Domande?",
+            "ods_paragraph_10": "Troverete informazioni supplementari e la documentazione in merito agli OGD",
+            "ods_paragraph_10_a": "sul sito Internet dell’Ufficio federale di statistica (UST)",
+            "ods_paragraph_10_href": "https://www.bfs.admin.ch/bfs/it/home/servizi/ogd/documentazione.html",
+            "ods_paragraph_11": "Se la domanda riguarda uno specifico set di dati, siete pregati di rivolgervi direttamente al punto di contatto indicato nel set di dati. Per domande generiche riguardanti il portale o il tema dei dati pubblici aperti, vi invitiamo a",
+            "ods_paragraph_11_a": "contattarci"
+        },
+        "ods_legal_framework": {
+            "title": "Quadro giuridico",
+            "section_1": {
+                "title": "Utilizzo dei dataset su opendata.swiss",
+                "p1": "I termini di utilizzo applicabili a opendata.swiss sono spiegati",
+                "linkText": "qui"
+            },
+            "section_2": {
+                "title": "Limitazione di responsabilità",
+                "p1": "Nonostante l'impegno delle autorità coinvolte nel portale opendata.swiss nella verifica delle informazioni pubblicate, non può essere fornita alcuna garanzia riguardo alla correttezza, accuratezza, attualità, affidabilità o completezza di tali informazioni.",
+                "p2": "Le autorità coinvolte nel portale opendata.swiss si riservano espressamente il diritto di modificare, cancellare o sospendere la pubblicazione di contenuti, in tutto o in parte, in qualsiasi momento e senza preavviso.",
+                "p3": "In nessun caso le autorità saranno responsabili per eventuali danni materiali o immateriali derivanti dall'accesso, utilizzo o mancato utilizzo delle informazioni pubblicate, da un uso improprio della connessione o da guasti tecnici."
+            },
+            "section_3": {
+                "title": "Riferimenti e link",
+                "p1": "I riferimenti e i link a siti web di terzi esulano dalla responsabilità delle autorità coinvolte nel portale opendata.swiss. L'accesso e l'utilizzo di tali siti web avviene interamente a proprio rischio. Le autorità dichiarano espressamente di non avere alcuna influenza sulla struttura, il contenuto o le offerte dei siti collegati. La responsabilità per le informazioni e i servizi dei siti collegati ricade esclusivamente sui rispettivi terzi. Non si assume alcuna responsabilità per i contenuti di tali siti."
+            },
+            "section_4": {
+                "title": "Protezione dei dati",
+                "p1": "In base all'articolo 13 della Costituzione federale svizzera e alle disposizioni della legislazione svizzera sulla protezione dei dati, ogni persona ha diritto alla protezione della propria sfera privata e alla protezione contro l'abuso dei propri dati personali. Le autorità coinvolte nel portale opendata.swiss rispettano queste disposizioni. I dati personali sono trattati in modo strettamente confidenziale su opendata.swiss e non vengono né ceduti né venduti a terzi.",
+                "p2": "In stretta collaborazione con i nostri fornitori di hosting, facciamo ogni sforzo per proteggere le banche dati da accessi esterni, perdita di dati, uso improprio o falsificazione.",
+                "p3": "Quando si accede a opendata.swiss, i seguenti dati vengono memorizzati nei file di log: indirizzo IP, data, ora, richiesta del browser e informazioni generali sul sistema operativo e sul browser. I server web dei nostri fornitori registrano solo dati di utilizzo impersonali (file di log) per analizzare le tendenze per le autorità coinvolte e migliorare l'offerta informativa. Per ulteriori informazioni sull'analisi web, consultare la sezione successiva.",
+                "p4": "I dati di utilizzo non sono collegati ai dati personali. Fa eccezione il caso in cui scegliate di contattarci. Se registrate il vostro indirizzo e-mail, questo verrà memorizzato in un database separato non collegato ai file di log anonimi. È possibile cancellare la registrazione in qualsiasi momento."
+            },
+            "section_5": {
+                "title": "Analisi web",
+                "p1": "opendata.swiss utilizza il servizio open-source di analisi web Piwik. Piwik utilizza i cookie, che sono file di testo memorizzati sul vostro computer per aiutare il sito web ad analizzare l'utilizzo da parte degli utenti. A tal fine, le informazioni generate dal cookie (compreso il vostro indirizzo IP abbreviato) vengono trasmesse al nostro server in Svizzera e memorizzate per scopi di analisi. Questi dati vengono utilizzati per ottimizzare il sito web. In questo processo, il vostro indirizzo IP viene immediatamente anonimizzato.",
+                "p2": "Potete impedire la memorizzazione dei cookie modificando di conseguenza le impostazioni del vostro browser; tuttavia, ciò potrebbe significare che non tutte le funzionalità del sito web saranno disponibili."
+            },
+            "section_6": {
+                "title": "Copyright",
+                "p1": "Le informazioni pubblicate su opendata.swiss di norma non sono soggette a copyright. Lo stesso vale per i decreti ufficiali, le decisioni amministrative non interne, i verbali e i rapporti. In questi casi, l'interesse alla diffusione senza ostacoli prevale sugli interessi dell'autore alla protezione. Le informazioni contenute in opendata.swiss sono messe a disposizione del pubblico."
+            },
+            "section_7": {
+                "title": "Codice sorgente",
+                "p1_1": "Il portale opendata.swiss utilizza",
+                "p1_2": ", una soluzione per la gestione dei dati utilizzata da molte autorità e organizzazioni per la gestione dei dati aperti. CKAN e tutti i suoi componenti sono",
+                "p1_3": "Sotto la licenza Affero GNU GPL v3.0, anche le estensioni sviluppate per questa piattaforma sono",
+                "a1": "liberamente disponibili"
+            }
+        },
+        "terms_of_use": {
+            "ods_paragraph_1": "Le condizioni d’uso applicabili ai dati che l’amministrazione pubblica svizzera mette a diposizione sul portale opendata.swiss si fondano sulle basi legali vigenti. I dataset per i quali l’indicazione della fonte è obbligatoria per legge sono contrassegnati dall’apposito simbolo. In tutti gli altri casi l’indicazione della fonte è raccomandata.",
+            "ods_paragraph_2": "I simboli riportati accanto a ogni set di dati ne spiegano l’utilizzo ammesso. Tutti i fornitori di dati sono tenuti a usare gli stessi simboli.",
+            "ods_trailing_paragraph_1_1": "Il portale opendata.swiss mette a disposizione di altre autorità svizzere e organizzazioni che adempiono un mandato statale il suo modello per l’utilizzo dei dati aperti. Se avete domande",
+            "ods_trailing_paragraph_1_2_a": "contattateci",
+            "ods_trailing_paragraph_1_3": "Maggiori informazioni sono disponibili a questo",
+            "ods_trailing_paragraph_1_4_a": "link",
+            "ods_trailing_paragraph_1_4_href": "http://handbook.opendata.swiss/",
+            "ods_open": {
+                "title": "Libero utilizzo",
+                "condition_1": "Questo set di dati può essere utilizzato a fini non commerciali.",
+                "condition_2": "Questo set di dati può essere utilizzato a fini commerciali.",
+                "condition_3": "È raccomandata l’indicazione della fonte (autore, titolo e link al set di dati)."
+            },
+            "ods_by": {
+                "title": "Libero utilizzo. Indicazione della fonte obbligatoria.",
+                "condition_1": "Questo set di dati può essere utilizzato a fini non commerciali.",
+                "condition_2": "Questo set di dati può essere utilizzato a fini commerciali.",
+                "condition_3": "È obbligatoria l’indicazione della fonte (autore, titolo e link al set di dati)."
+            },
+            "ods_ask": {
+                "title": "Libero utilizzo. Utilizzo a fini commerciali ammesso soltanto previo consenso del titolare dei dati.",
+                "condition_1": "Questo set di dati può essere utilizzato a fini non commerciali.",
+                "condition_2": "Questo set di dati può essere utilizzato a fini commerciali soltanto previo consenso del titolare dei dati.",
+                "condition_3": "È raccomandata l’indicazione della fonte (autore, titolo e link al set di dati)."
+            },
+            "ods_by_ask": {
+                "title": "Libero utilizzo. Indicazione della fonte obbligatoria. Utilizzo a fini commerciali ammesso soltanto previo consenso del titolare dei dati.",
+                "condition_1": "Questo set di dati può essere utilizzato a fini non commerciali.",
+                "condition_2": "Questo set di dati può essere utilizzato a fini commerciali soltanto previo consenso del titolare dei dati.",
+                "condition_3": "È obbligatoria l’indicazione della fonte (autore, titolo e link al set di dati)."
+            }
+        },
+        "contact": {
+            "ods_section_1": {
+                "ods_title": "Siete alla ricerca di dati?",
+                "ods_paragraph_1": "Siete alla ricerca di set di dati non presenti nel nostro catalogo? Se sì, contattateci per richiederne la pubblicazione.",
+                "ods_list_1": "Scriveteci a opendata(at)bfs.admin.ch"
+            },
+            "ods_section_2": {
+                "ods_title": "Avete creato un’applicazione?",
+                "ods_paragraph_1": "Avete creato un’applicazione utilizzando i dati di riferimento su opendata.swiss? Non esitate a contattarci affinché possiamo menzionarvi nel nostro catalogo di applicazioni.",
+                "ods_list_1": "Scriveteci a opendata(at)bfs.admin.ch"
+            },
+            "ods_section_3": {
+                "ods_title": "Desiderate fornirci dei dati?",
+                "ods_paragraph_1": "L’obiettivo del portale è raccogliere tutti i dati amministrativi aperti della Confederazione, dei Cantoni e dei Comuni in Svizzera. Anche le imprese statali e le persone che assumono incarichi della Confederazione, dei Cantoni o dei Comuni sono invitate a pubblicare i loro dati, a condizione che questi ultimi presentino un interesse pubblico, a prescindere che siano già disponibili su altri portali.",
+                "ods_paragraph_2": "Desiderate proporre su opendata.swiss «dati aperti» della vostra organizzazione?",
+                "ods_list_1": "Scriveteci a opendata(at)bfs.admin.ch",
+                "ods_list_2": {
+                    "ods_label": "Consultate le informazioni di base su come pubblicare OGD",
+                    "ods_href": "https://handbook.opendata.swiss/de/pages/index"
+                }
+            }
+        },
         "bottom_footer": {
             "ods_a_1": "Quadro giuridico",
             "ods_href_1": "https://opendata.swiss/it/legal-framework",

@@ -7,6 +7,7 @@ import Logo from '@/components/Logo.vue';
 import LogoSmall from '@/components/LogoSmall.vue';
 import BurgerButton from '@/components/BurgerButton.vue';
 import OdsNavigationPanel from '@/components/OdsNavigationPanel.vue';
+const localePath = useLocalePath()
 
 interface Props {
   enableAuthentication?: boolean;
@@ -69,7 +70,7 @@ function closeMobileMenu() {
       <v-tabs v-model="selectedTab" align-tabs="start">
         <template v-for="item in props.navigationItems" :key="item.label">
         <v-tab v-if="!item.subMenu" rounded="0"  variant="plain">
-          <NuxtLinkLocale :to="item.to">{{ t(item.label) }}</NuxtLinkLocale>
+          <NuxtLinkLocale :to="localePath(item.to as string)">{{ t(item.label) }}</NuxtLinkLocale>
         </v-tab>
         <v-menu v-if="item.subMenu"  :key="item.label">
             <template v-slot:activator="{ props }">
@@ -87,7 +88,7 @@ function closeMobileMenu() {
               <v-list-item
                 v-for="subItem in item.subMenu"
                 :key="subItem.label"
-                :to="subItem.to"
+                :to="localePath(subItem.to as string)"
                 @click="setCurrentItemToMenuItem(item, subItem)"
               >
                 {{ t(subItem.label) }}
