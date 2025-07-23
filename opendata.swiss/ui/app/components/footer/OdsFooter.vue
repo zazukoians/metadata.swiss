@@ -25,7 +25,6 @@
                <v-btn
                 :href="t('message.ods-footer.block_2.news_mail_href')"
                 target="_blank"
-                color="secondary"
                 rounded="0"
                 variant="outlined"
                 append-icon="mdi:mdi-arrow-right"

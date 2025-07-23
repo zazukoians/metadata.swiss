@@ -38,7 +38,7 @@ const navigationItems = ref<OdsNavTabItem[]>(APP_NAVIGATION_ITEMS);
 
 useHead({
   bodyAttrs: {
-    class: 'body--freebrand'
+    class: 'body--ods-brand'
   }
 })
 </script>
