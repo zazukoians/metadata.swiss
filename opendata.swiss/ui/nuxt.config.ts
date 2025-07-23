@@ -26,6 +26,12 @@ export default defineNuxtConfig({
   pages: {
     enabled: true,
   },
+  components: {
+    global: true,
+    dirs: [
+      '~/components/content',
+    ]
+  },
   routeRules: {
     '/datasets/**': { ssr: false },
     '/*/datasets/**': { ssr: false }

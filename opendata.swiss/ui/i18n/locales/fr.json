@@ -85,13 +85,6 @@
             }
         },
         "terms_of_use": {
-            "ods_paragraph_1": "Les conditions d’utilisation des données mises à disposition par les autorités fédérales sur opendata.swiss sont régies par la législation en vigueur. Lorsque la loi prévoit que la source doit être indiquée, le jeu de données en question est assorti du symbole correspondant. Dans tous les autres cas, l’indication de la source est recommandée.",
-            "ods_paragraph_2": "Les symboles accompagnant chaque jeu de données indiquent le type d’utilisation autorisé. Tous les services proposant des données emploient les mêmes symboles.",
-            "ods_trailing_paragraph_1_1": "opendata.swiss met son modèle d’utilisation à la disposition des autorités et organisations investies d’un mandat étatique. Si vous avez des questions, n’hésitez pas à nous",
-            "ods_trailing_paragraph_1_2_a": "contacter",
-            "ods_trailing_paragraph_1_3": "Pour de plus amples informations, veuillez cliquer",
-            "ods_trailing_paragraph_1_4_a": "ici",
-            "ods_trailing_paragraph_1_4_href": "https://handbook.opendata.swiss/fr/",
             "ods_open": {
                 "title": "Utilisation libre",
                 "condition_1": "Vous pouvez utiliser ce jeu de données à des fins non commerciales.",

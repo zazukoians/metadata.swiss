@@ -85,13 +85,6 @@
             }
         },
         "terms_of_use": {
-            "ods_paragraph_1": "Le condizioni d’uso applicabili ai dati che l’amministrazione pubblica svizzera mette a diposizione sul portale opendata.swiss si fondano sulle basi legali vigenti. I dataset per i quali l’indicazione della fonte è obbligatoria per legge sono contrassegnati dall’apposito simbolo. In tutti gli altri casi l’indicazione della fonte è raccomandata.",
-            "ods_paragraph_2": "I simboli riportati accanto a ogni set di dati ne spiegano l’utilizzo ammesso. Tutti i fornitori di dati sono tenuti a usare gli stessi simboli.",
-            "ods_trailing_paragraph_1_1": "Il portale opendata.swiss mette a disposizione di altre autorità svizzere e organizzazioni che adempiono un mandato statale il suo modello per l’utilizzo dei dati aperti. Se avete domande",
-            "ods_trailing_paragraph_1_2_a": "contattateci",
-            "ods_trailing_paragraph_1_3": "Maggiori informazioni sono disponibili a questo",
-            "ods_trailing_paragraph_1_4_a": "link",
-            "ods_trailing_paragraph_1_4_href": "http://handbook.opendata.swiss/",
             "ods_open": {
                 "title": "Libero utilizzo",
                 "condition_1": "Questo set di dati può essere utilizzato a fini non commerciali.",

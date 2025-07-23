@@ -85,13 +85,6 @@
             }
         },
         "terms_of_use": {
-            "ods_paragraph_1": "Massgeblich für die Ausgestaltung der Nutzungsbedingungen der Datensätze von Bundesbehörden auf opendata.swiss sind die bestehenden gesetzlichen Grundlagen. Falls eine gesetzliche Pflicht zur Quellenangabe besteht, ist dies beim jeweiligen Datensatz mit dem entsprechenden Symbol vermerkt. In allen anderen Fällen wird eine Quellenangabe empfohlen.",
-            "ods_paragraph_2": "Die Symbole bei jedem Datensatz erklären die erlaubte Nutzung. Alle Datenlieferanten verwenden die gleichen Symbole.",
-            "ods_trailing_paragraph_1_1": "Opendata.swiss stellt sein Nutzungsmodell weiteren Schweizer Behörden und Organisationen mit einem staatlichen Auftrag zur Verfügung. Falls Sie Fragen haben,",
-            "ods_trailing_paragraph_1_2_a": "kontaktieren",
-            "ods_trailing_paragraph_1_3": "Sie uns, wenn Sie Interesse haben, das Nutzungsmodell zu verwenden. Weitere Informationen finden Sie zudem",
-            "ods_trailing_paragraph_1_4_a": "hier",
-            "ods_trailing_paragraph_1_4_href": "http://handbook.opendata.swiss/",
             "ods_open": {
                 "title": "Freie Nutzung",
                 "condition_1": "Sie dürfen diesen Datensatz für nicht kommerzielle Zwecke nutzen.",
