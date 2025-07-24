@@ -138,7 +138,8 @@ a {
     height: calc(100vh - 65px);
     background-color: var(--ods-light-dark-background-color);
   }
-  @include mdeia.respond-to-sm {
+
+  @media (min-width: 1024px) {
     display: none;
   }
 }
