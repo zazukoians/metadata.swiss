@@ -3,10 +3,11 @@ import { ref, watch, defineEmits } from 'vue';
 import { useI18n } from 'vue-i18n';
 
 import type { OdsNavTabItem } from '@/components/headers/model/ods-nav-tab-item';
-import Logo from '@/components/Logo.vue';
+import NamedLogo from '~/components/NamedLogo.vue';
 import LogoSmall from '@/components/LogoSmall.vue';
 import BurgerButton from '@/components/BurgerButton.vue';
 import OdsNavigationPanel from '@/components/OdsNavigationPanel.vue';
+import { NuxtLinkLocale } from '#components';
 const localePath = useLocalePath()
 
 interface Props {
@@ -28,12 +29,12 @@ const emit = defineEmits<{
 
 const { t } = useI18n();
 
-const selectedTab = ref<string | null>(null);
+const selectedTab = ref<number | null>(null);
 const menuOpen = ref(false);
 
 
-function setCurrentItemToMenuItem (parent: OdsNavTabItem, ref:any) {
-   selectedTab.value = '3';
+function setCurrentItemToMenuItem (tabIndex: number) {
+   selectedTab.value = tabIndex;
 }
 
 watch(menuOpen, (val) => {
@@ -48,57 +49,58 @@ function closeMobileMenu() {
 </script>
 
 <template>
-  <div class="ods-header">
-    <nav id="piveau-header" class="navbar" >
-      <div class="left">
-        <NuxtLinkLocale class="logo-lg" to="/"><Logo/></NuxtLinkLocale>
-        <NuxtLinkLocale class="logo-small" to="/"><LogoSmall/></NuxtLinkLocale>
-        <div class="app-title">
-          <h1>opendata.swiss</h1>
-          <h1>Portal</h1>
+  <div id="top-header-id" class="top-header">
+    <div class="container container--flex">
+      <div class="logo" to="/" aria-label="Home">
+        <NuxtLinkLocale class="logo" to="/" aria-label="Home"><LogoSmall/></NuxtLinkLocale>
+        <NuxtLinkLocale class="logo" to="/" aria-label="Home"><NamedLogo/></NuxtLinkLocale>
+      <div class="logo__separator" role="separator" aria-hidden="true"/>
+      <div class="logo-title__container">
+        <div class="logo__accronym">ODS Portal</div>
+        <div class="logo__title">
+          <div>opendata.swiss<br>Portal</div>
         </div>
       </div>
-      <div class="right">
-      <BurgerButton v-model="menuOpen" />
       </div>
-
-    </nav>
+      <div class="top-header__right">
+        <BurgerButton v-model="menuOpen"  title="Toggle mobile menu" />
+      </div>
+     </div>
   </div>
-  <!-- menu -->
-  <div class="nav-tabs">
-    <div class="nav-tabs-container">
-      <v-tabs v-model="selectedTab" align-tabs="start">
-        <template v-for="item in props.navigationItems" :key="item.label">
-        <v-tab v-if="!item.subMenu" rounded="0"  variant="plain" :to="localePath(item.to as string)">
-          {{ t(item.label) }}
-        </v-tab>
-        <v-menu v-if="item.subMenu"  :key="item.label">
-            <template v-slot:activator="{ props }">
-              <v-btn
-                    class="align-self-center me-4"
-                    height="100%"
-                    rounded="0"
-                    variant="plain"
-                    v-bind="props"
-                  >
-                {{ t(item.label) }} <v-icon icon="mdi-menu-down" v-bind="props" />
-              </v-btn>
-            </template>
-            <v-list>
-              <v-list-item
-                v-for="subItem in item.subMenu"
-                :key="subItem.label"
-                :to="localePath(subItem.to as string)"
-                @click="setCurrentItemToMenuItem(item, subItem)"
-              >
-                {{ t(subItem.label) }}
-              </v-list-item>
-            </v-list>
-          </v-menu>
+  <div id="desktop-navigation-id">
+    <div class="container container--flex">
+      <nav id="main-navigation" class="main-navigation main-navigation--desktop">
+      <ul>
+        <template v-for="(item, index) in props.navigationItems" :key="item.label">
+        <!-- a normal tab -->
+        <li v-if="!item.subMenu"  class="tab" @click="setCurrentItemToMenuItem(index)">
+          <NuxtLinkLocale active-class="active" :to="localePath(item.to as string)"><span> {{ t(item.label) }}</span></NuxtLinkLocale>
+        </li>
+        <li  v-if="item.subMenu"  class="tab">
+          <v-menu>
+              <template #activator="{ props: menuProps }">
+                <a v-bind="menuProps" :class="{ active: selectedTab === index }"><span>{{ t(item.label) }}</span></a>
+              </template>
+              <v-list>
+                <v-list-item
+                  v-for="subItem in item.subMenu"
+                  :key="subItem.label"
+                  :to="localePath(subItem.to as string)"
+                  @click="setCurrentItemToMenuItem(index)"
+                >
+                  {{ t(subItem.label) }}
+                </v-list-item>
+              </v-list>
+            </v-menu>
+          </li>
+
         </template>
-      </v-tabs>
+      </ul>
+      </nav>
     </div>
   </div>
+
+
   <!-- Mobile menu -->
   <Transition name="fade-menu">
     <div v-if="menuOpen" class="ods-mobile-menu"  >
@@ -110,126 +112,25 @@ function closeMobileMenu() {
 <style lang="scss" scoped>
 @use '@/assets/ods/ods_breakpoints.scss' as mdeia;
 
-.ods-header {
-  background-color: white;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
+// keep
+#desktop-navigation-id{
   border-bottom: 1px solid rgb(229, 231, 235);
+}
+a {
+  text-decoration: none;
+}
 
-  .navbar {
-    max-width: var(--ods-max-content-width);
-    width: 100%;
-    background-color: white !important;
-    color: #333 !important;
-    background: var(--ods-background-color) !important;
-    padding: 0 0 ;
+.tab {
+  display: block;
+  margin-top: 0 !important;
+  a {
     display: flex;
-    flex-direction: row;
     align-items: center;
-    justify-content: space-between;
-    @include mdeia.respond-to-xs {
-      height: 65px;
-    }
-    @include mdeia.respond-to-lg {
-      height: 173px;
-    }
-  }
-}
-
-.nav-tabs {
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  @include mdeia.respond-to-xs {
-    display: none;
-  }
-  @include mdeia.respond-to-sm {
-    display: flex;
-  }
-  .nav-tabs-container {
-    width: 100%;
-    max-width: var(--ods-max-content-width);
-
-  }
-
-
-}
-
-
-.left {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 16px;
-  margin-left: 16px;
-
-  .app-title {
-    border-left: 1px solid rgb(229, 231, 235);
-    display: flex;
-    flex-direction: column;
     justify-content: center;
-    align-items: flex-start;
-    padding-left: 16px;
-    @include mdeia.respond-to-xs {
-      height: 65px;
-      h1 {
-        font-size: 0.75rem !important;
-        font-weight: bold !important;
-        margin: 0;
-      }
-    }
-    @include mdeia.respond-to-sm {
-      height: 65px;
-      h1 {
-        font-size: 0.85rem !important;
-        font-weight: bold !important;
-        margin: 0;
-      }
-    }
-    @include mdeia.respond-to-lg {
-      height: 100px;
-
-      h1 {
-        font-size: 18px !important;
-        font-weight: bold !important;
-      }
-    }
-    @include mdeia.respond-to-xl {
-      h1 {
-        font-size: 18px !important;
-        font-weight: bold !important;
-      }
-    }
-  }
-  @include mdeia.respond-to-xs {
-    .logo-small{
-      display: block;
-    }
-    .logo-lg {
-      display: none;
-    }
-  }
-  @include mdeia.respond-to-md {
-    .logo-small{
-      display: none;
-    }
-    .logo-lg {
-      display: block;
-    }
   }
 }
 
-.right {
-  margin-right: 28px;
-  @include mdeia.respond-to-sm {
-    display: none;
-  }
-
-}
-
+// end keep
 .ods-mobile-menu {
    @include mdeia.respond-to-xs {
     display: flex;
@@ -256,4 +157,6 @@ function closeMobileMenu() {
 .fade-menu-enter-to, .fade-menu-leave-from {
   opacity: 1;
 }
+
+
 </style>
