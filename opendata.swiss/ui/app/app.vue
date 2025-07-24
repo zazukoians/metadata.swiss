@@ -2,18 +2,22 @@
     <main id="main-content">
       <NuxtLayout>
         <v-app>
-          <OdsTopHeader :enable-authentication="true" :authenticated="false" :username="undefined" />
-          <OdsHeader :navigation-items="navigationItems" />
-         <!-- <v-app-bar app>
-            <v-toolbar-title>Linda's Next Piveau</v-toolbar-title>
-            <v-spacer />
-            <v-btn text to="/">Home</v-btn>
-            <v-btn text to="/datasets">Datasets</v-btn>
-            <v-btn text to="/about">About</v-btn>
-          </v-app-bar>-->
+          <Transition name="shrink-header">
+            <OdsTopHeader
+              v-if="!isMobileMenuOpen"
+              :enable-authentication="true"
+              :authenticated="false"
+              :username="undefined"
+            />
+          </Transition>
+          <OdsHeader :navigation-items="navigationItems" @mobile-menu-state-change="mobileMenuOpened" />
           <v-main>
             <v-container :style="'min-height: calc(100vh - 64px);'">
-              <NuxtPage :page-key="route => route.fullPath" />
+              <Transition name="fade-content">
+                <div v-if="!isMobileMenuOpen">
+                  <NuxtPage  :page-key="route => route.fullPath" />
+                </div>
+              </Transition>
             </v-container>
           </v-main>
           <OdsFooter />
@@ -34,10 +38,45 @@ import type { OdsNavTabItem } from './components/headers/model/ods-nav-tab-item'
 import { APP_NAVIGATION_ITEMS } from './constants/navigation-items';
 
 const navigationItems = ref<OdsNavTabItem[]>(APP_NAVIGATION_ITEMS);
+const isMobileMenuOpen = ref(false);
 
 useHead({
   bodyAttrs: {
     class: 'body--ods-brand'
   }
 })
+
+function mobileMenuOpened(value: boolean) {
+  isMobileMenuOpen.value = value;
+}
+
+
 </script>
+
+
+<style lang="scss" scoped>
+
+
+.shrink-header-enter-active, .shrink-header-leave-active {
+  transition: max-height 1.0s cubic-bezier(0.4,0,0.2,1);
+  overflow: hidden;
+}
+.shrink-header-enter-from, .shrink-header-leave-to {
+  max-height: 0 !important;
+}
+.shrink-header-enter-to, .shrink-header-leave-from {
+  max-height: 300px;
+}
+
+
+.fade-content-enter-active, .fade-content-leave-active {
+  transition: opacity 0.6s cubic-bezier(0.4,0,0.2,1);
+}
+.fade-content-enter-from, .fade-content-leave-to {
+  opacity: 0;
+}
+.fade-content-enter-to, .fade-content-leave-from {
+  opacity: 1;
+}
+
+</style>
