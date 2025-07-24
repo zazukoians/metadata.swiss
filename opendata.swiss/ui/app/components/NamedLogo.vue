@@ -1,12 +1,9 @@
-/** * Vue component for displaying an svg. Workaround in order to have svg inline rather than as a
-href * due to file path complications when used as a plugin by other apps. * When built, this svg
-file will be provided inline. */
-
 <template>
   <NuxtImg
     src="/img/logo_horizontal.png"
     :alt="t('message.header.ods_logo')"
     :title="t('message.header.ods_logo')"
+    class="logo__freebrand"
   />
 </template>
 
@@ -21,8 +18,15 @@ const { t } = useI18n();
 </script>
 
 <style scoped>
-img {
-  width: 244px;
-  height: 30px;
+
+.logo__freebrand {
+  display: none;
 }
+
+@media (min-width: 1280px) {
+    .logo__freebrand {
+        display: block;
+    }
+}
+
 </style>

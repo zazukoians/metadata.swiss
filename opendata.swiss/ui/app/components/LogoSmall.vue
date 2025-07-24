@@ -6,7 +6,8 @@ file will be provided inline. */
   <NuxtImg
     src="/img/logo.png"
     :alt="t('message.header.ods_logo')"
-    :title="t('message.header.ods_logo')" />
+    :title="t('message.header.ods_logo')"
+    class="logo__freebrand" />
 </template>
 
 <script lang="ts" setup>
@@ -22,12 +23,20 @@ const { t } = useI18n();
 <style lang="scss" scoped>
 @use '@/assets/ods/ods_breakpoints.scss' as mdeia;
 
-img {
-  width: 70px;
-  height: 70px;
-  @include mdeia.respond-to-xs {
-    height: 35px;
-    max-width: 35px;
-  }
+
+.logo__freebrand {
+  display: block;
+}
+
+@media (min-width: 1280px) {
+    .logo__freebrand {
+        display: none;
+    }
+}
+
+@media (min-width: 768px) {
+    .logo__freebrand {
+        height: 60px;
+    }
 }
 </style>
