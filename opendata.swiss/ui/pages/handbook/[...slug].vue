@@ -56,15 +56,5 @@ const navigation = ref([
 </script>
 
 <template>
-  <v-container v-if="data" >
-    <v-row no-gutters>
-      <v-col class="v-col-2">
-        <v-list :items="navigation"></v-list>
-      </v-col>
-
-      <v-col>
-        <ContentRenderer v-if="data" :value="data"/>
-      </v-col>
-    </v-row>
-  </v-container>
+  <OdsPage v-if="data" :page="data" />
 </template>

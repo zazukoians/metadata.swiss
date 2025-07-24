@@ -15,6 +15,9 @@
                 "terms_of_use": "Conditions d'utilisation"
             }
         },
+        "ods_toc": {
+            "contents": "Table des matières"
+        },
         "terms_of_use": {
             "ods_open": {
                 "condition_1": "Vous pouvez utiliser ce jeu de données à des fins non commerciales.",

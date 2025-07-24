@@ -17,24 +17,5 @@ useSeoMeta({
 </script>
 
 <template>
-  <div v-if="page" id="main-content">
-    <section class="hero hero--default">
-      <div class="container container--grid gap--responsive">
-        <div class="hero__content">
-          <h2 class="hero__title">{{ page.heading || page.title }}</h2>
-          <div class="hero__description">
-            <MDC v-if="page.subHeading" :value="page.subHeading"></MDC>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="section section--py">
-      <div class="container container--grid container--reverse-mobile gap--responsive">
-        <div class="container__main vertical-spacing">
-          <ContentRenderer :value="page"/>
-        </div>
-      </div>
-    </section>
-  </div>
-
+  <OdsPage v-if="page" :page="page" />
 </template>

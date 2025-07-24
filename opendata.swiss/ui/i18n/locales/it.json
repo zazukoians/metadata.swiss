@@ -15,6 +15,9 @@
                 "terms_of_use": "Termini di utilizzo"
             }
         },
+        "ods_toc": {
+            "contents": "Contenuti"
+        },
         "terms_of_use": {
             "ods_open": {
                 "condition_1": "Questo set di dati può essere utilizzato a fini non commerciali.",
