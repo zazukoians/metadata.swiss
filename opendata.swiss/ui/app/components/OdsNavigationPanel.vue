@@ -1,39 +1,47 @@
 <template>
-    <nav class="ods-navigation-panel">
-        <Transition :name="transitionName" mode="out-in">
-            <div :key="menuKey">
-                <template v-for="item in currentMenu" :key="item.label">
-                    <div
-                        v-if="item.to"
-                        class="ods-list-item ods-nav-router-item"
-                        :class="{ 'active-nav-item': isActive(item) }"
-                    >
-                        <RouterLink
-                            :to="item.to"
-                            class="ods-nav-router-item"
-                            :aria-label="t(item.label)"
-                            @click.native="emitRequestClose"
-                        >
-                            {{t(item.label)}}
-                        </RouterLink>
-                    </div>
-                    <div v-else-if="item.subMenu?.length > 0" class="ods-list-item ods-nav-router-item" @click="drillDown(item)">
-                        <div>{{t(item.label)}} <span class="submenu-arrow">▶</span></div>
-                    </div>
-                </template>
-                <div v-if="menuStack.length > 0" class="ods-list-item ods-nav-router-item back-btn" @click="goBack">
-                    ◀ {{ t('Back') }}
-                </div>
-            </div>
-        </Transition>
-    </nav>
+<Transition :name="transitionName" mode="out-in">
+  <div :key="menuKey">
+    <div id="mobile-menu">
+      <nav aria-label="Main" class="main-navigation main-navigation--mobile">
+
+        <ul>
+          <li v-if="menuStack.length > 0" style="border-bottom: none;" @click="goBack">
+            <a style="padding-top: 12px; padding-bottom: 12px;"><span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" class="icon icon--lg icon--ArrowLeft"><path d="M8.306 5.116 4.24 12.16l4.066 7.044.65-.375-3.633-6.294H20.51v-.75H5.323l3.633-6.294z"></path></svg> </span></a>
+          </li>
+          <li v-if="menuStack.length > 0" style="border-bottom: none;">
+            <h2 class="navy__title">{{ t(parentLabel ?? '') }}</h2>
+          </li>
+
+          <template v-for="item in currentMenu" :key="item.label">
+            <li v-if="item.to">
+              <NuxtLinkLocale
+                :to="item.to"
+                active-class="active"
+                :aria-label="t(item.label)"
+                @click.native="emitRequestClose"
+              >
+                <span>{{t(item.label)}}</span>
+              </NuxtLinkLocale><div/>
+            </li>
+            <li
+                v-else-if="(item.subMenu?.length ?? -1) > 0"
+              @click="drillDown(item)"
+              >
+              <a>{{t(item.label)}} <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" class="icon icon--lg icon--ArrowRight"><path d="m16.444 19.204 4.066-7.044-4.066-7.044-.65.375 3.633 6.294H4.24v.75h15.187l-3.633 6.294z"></path></svg></a>
+            </li>
+          </template>
+        </ul>
+      </nav>
+
+    </div>
+  </div>
+  </Transition>
 </template>
 
 <script setup lang="ts">
 import { ref, computed, defineProps, defineEmits } from 'vue'
-import { OdsNavTabItem } from './headers/model/ods-nav-tab-item';
+import type { OdsNavTabItem } from './headers/model/ods-nav-tab-item';
 import { useI18n } from 'vue-i18n';
-import { RouterLink, useRoute } from 'vue-router';
 
 const emit = defineEmits(['requestClose']);
 const { t } = useI18n();
@@ -41,14 +49,14 @@ const props = defineProps<{
     items: OdsNavTabItem[]
 }>()
 
-const route = useRoute();
-function isActive(item: OdsNavTabItem) {
-    return item.to === route.path;
-}
+
 
 function emitRequestClose() {
     emit('requestClose');
 }
+
+const parentLabel = ref<string | undefined>(undefined);
+
 
 const menuStack = ref<OdsNavTabItem[][]>([]);
 const menuKey = computed(() => menuStack.value.length);
@@ -62,6 +70,7 @@ function drillDown(item: OdsNavTabItem) {
     if (item.subMenu && item.subMenu.length > 0) {
         direction.value = 'forward';
         menuStack.value.push(item.subMenu);
+        parentLabel.value = item.label;
     }
 }
 function goBack() {
@@ -73,27 +82,48 @@ function goBack() {
 </script>
 
 <style scoped lang="scss">
-.ods-navigation-panel {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    background-color: var(--v-theme-surface);
-    padding: 16px;
-    overflow: hidden;
-    background-color: white;
+
+// list styles
+
+li {
+  border-bottom-width: 1px;
+  font-size: 0.875rem;
+  width: 100%;
+  cursor: pointer;
+  line-height: 24px;
+  height: 46px;
+  margin-top: 0 !important;
+
 }
-.ods-nav-router-item {
-    cursor: pointer;
+li:hover {
+    background-color: var(--color-secondary-50);
 }
-.ods-list-item {
-    padding: 8px;
-    border-bottom: 1px solid var(--v-theme-border);
-    border-left: 4px solid transparent;
+
+#mobile-menu {
+  width: 100vw;
 }
-.active-nav-item {
-    border-left: 4px solid var(--ods-color); /* Green border */
-    background: rgba(46, 204, 64, 0.05);
+
+ul {
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
+
+a {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  padding-left: 16px;
+  padding-right: 32px;
+  color: black;
+}
+
+
+
+//
+
 .submenu-arrow {
     float: right;
     font-size: 1.2em;

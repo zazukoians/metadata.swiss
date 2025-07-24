@@ -74,7 +74,7 @@ function closeMobileMenu() {
         <template v-for="(item, index) in props.navigationItems" :key="item.label">
         <!-- a normal tab -->
         <li v-if="!item.subMenu"  class="tab" @click="setCurrentItemToMenuItem(index)">
-          <NuxtLinkLocale active-class="active" :to="localePath(item.to as string)"><span> {{ t(item.label) }}</span></NuxtLinkLocale>
+          <NuxtLinkLocale active-class="active" :to="item.to"><span> {{ t(item.label) }}</span></NuxtLinkLocale>
         </li>
         <li  v-if="item.subMenu"  class="tab">
           <v-menu>
