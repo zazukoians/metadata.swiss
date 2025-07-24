@@ -11,6 +11,7 @@ export default defineNuxtConfig({
     '@nuxt/content',
     '@pinia/nuxt',
     '@nuxtjs/i18n',
+    '@nuxt/image',
       (_options, nuxt) => {
           nuxt.hooks.hook('vite:extendConfig', (config) => {
               config.plugins?.push(vuetify({ autoImport: true }))
@@ -25,6 +26,23 @@ export default defineNuxtConfig({
   },
   pages: {
     enabled: true,
+  },
+  content: {
+    build: {
+      markdown: {
+        toc: {
+          depth: 3,
+          searchDepth: 3,
+        }
+      }
+    }
+  },
+  components: {
+    global: true,
+    dirs: [
+      '~/components',
+      '~/components/content',
+    ]
   },
   routeRules: {
     '/datasets/**': { ssr: false },

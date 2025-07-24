@@ -1,4 +1,5 @@
 ---
+title: Dataset / Vorbereiten / Organisatorische Anforderungen prüfen
 permalink: vorbereiten/dataset/organisatorischer-check
 ---
 

@@ -1,3 +1,7 @@
+---
+title: Handbuch
+---
+
 # Willkommen!
 
 ## Schön, dass Sie Open Government Data publizieren möchten! Wir unterstützen Sie dabei.

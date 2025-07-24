@@ -1,0 +1,70 @@
+# Uncomment for local development
+# local_backend: true
+
+backend:
+  name: gitlab
+  repo: docker/lindas-next-piveau-js
+  auth_type: pkce
+  app_id: your-app-id # TODO: Application ID from your GitLab settings
+  api_root: https://gitlab.zazuko.com/api/v4
+  base_url: https://gitlab.zazuko.com
+  auth_endpoint: oauth/authorize
+
+# These lines should *not* be indented
+media_folder: "public/img" # Media files will be stored in the repo under static/images/uploads
+public_folder: "/img/" # The src attribute for uploaded media will begin with /images/uploads
+
+i18n:
+  structure: multiple_files
+  default_locale: de
+  locales: [de, fr, it, en]
+
+collections:
+  - name: handbook
+    label: "Handbuch"
+    folder: "content/handbook"
+    extension: md
+    widget: "list"
+    create: true
+    i18n: true
+    fields:
+      - label: Title
+        name: title
+        widget: string
+        required: true
+        i18n: duplicate
+      - label: Permalink
+        name: permalink
+        widget: string
+        i18n: duplicate
+      - name: body
+        label: Body
+        widget: markdown
+        i18n: true
+  - name: pages
+    label: "Pages"
+    folder: "content/pages"
+    extension: md
+    widget: "list"
+    create: false
+    i18n: true
+    fields:
+      - label: Title
+        name: title
+        widget: string
+        required: true
+        i18n: true
+      - label: Heading
+        name: heading
+        widget: string
+        i18n: true
+        required: false
+      - label: Description
+        name: description
+        widget: markdown
+        i18n: true
+      - name: body
+        label: Body
+        widget: markdown
+        i18n: true
+

@@ -3,11 +3,11 @@ href * due to file path complications when used as a plugin by other apps. * Whe
 file will be provided inline. */
 
 <template>
-  <img
-    src="@/assets/ods/logo/logo.png"
+  <NuxtImg
+    src="/img/logo.png"
     :alt="t('message.header.ods_logo')"
     :title="t('message.header.ods_logo')"
-    class="logo__freebrand">
+    class="logo__freebrand" />
 </template>
 
 <script lang="ts" setup>
