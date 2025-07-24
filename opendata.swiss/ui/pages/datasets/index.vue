@@ -4,6 +4,7 @@ import { computed, reactive, ref, toRefs } from 'vue'
 import { useDatasetsSearch } from '../../app/piveau/search.js'
 
 const { locale } = useI18n();
+const localePath = useLocalePath()
 
 // 👇 Query parameters
 
