@@ -1,6 +1,6 @@
 ---
 title: Nutzungsbedingungen
-description: >-
+subHeading: >-
   Massgeblich für die Ausgestaltung der Nutzungsbedingungen der Datensätze von
   Bundesbehörden auf opendata.swiss sind die bestehenden gesetzlichen
   Grundlagen. Falls eine gesetzliche Pflicht zur Quellenangabe besteht, ist dies

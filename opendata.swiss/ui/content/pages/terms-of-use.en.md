@@ -1,6 +1,6 @@
 ---
 title: Terms of Use
-description: >-
+subHeading: >-
   The terms of use for datasets of the federal authorities on opendata.swiss are
   determined by the existing legal framework. If there is a statutory
   requirement to cite the source, this is indicated by the appropriate symbol

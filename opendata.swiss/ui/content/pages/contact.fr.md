@@ -1,7 +1,7 @@
 ---
 title: Contact
 heading: Vous cherchez des données?
-description: "Vous êtes à la recherche de jeux de données qui ne sont pas présents dans notre catalogue ? Si c’est le cas, contactez-nous pour nous en demander la publication.
+subHeading: "Vous êtes à la recherche de jeux de données qui ne sont pas présents dans notre catalogue ? Si c’est le cas, contactez-nous pour nous en demander la publication.
 
   - Écrivez à opendata(at)bfs.admin.ch"
 ---

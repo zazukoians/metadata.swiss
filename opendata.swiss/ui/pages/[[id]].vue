@@ -23,7 +23,7 @@ useSeoMeta({
         <div class="hero__content">
           <h2 class="hero__title">{{ page.heading || page.title }}</h2>
           <div class="hero__description">
-            <MDC :value="page.description"></MDC>
+            <MDC v-if="page.subHeading" :value="page.subHeading"></MDC>
           </div>
         </div>
       </div>

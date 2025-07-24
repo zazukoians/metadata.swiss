@@ -1,6 +1,6 @@
 ---
 title: Conditions d’utilisation
-description: >-
+subHeading: >-
   Les conditions d’utilisation des données mises à disposition par les autorités
   fédérales sur opendata.swiss sont régies par la législation en vigueur.
   Lorsque la loi prévoit que la source doit être indiquée, le jeu de données en

@@ -1,7 +1,7 @@
 ---
 title: Rechtlicher Rahmen
 heading: Verwendung der Datensätze auf opendata.swiss
-description: Die für opendata.swiss geltenden Nutzungsbedingungen finden sie [hier](/terms-of-use).
+subHeading: Die für opendata.swiss geltenden Nutzungsbedingungen finden sie [hier](/terms-of-use).
 ---
 
 ## Haftungsbeschränkung
