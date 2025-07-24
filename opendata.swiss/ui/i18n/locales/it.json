@@ -37,28 +37,6 @@
                 "condition_3": "È obbligatoria l’indicazione della fonte (autore, titolo e link al set di dati)."
             }
         },
-        "contact": {
-            "ods_section_1": {
-                "ods_title": "Siete alla ricerca di dati?",
-                "ods_paragraph_1": "Siete alla ricerca di set di dati non presenti nel nostro catalogo? Se sì, contattateci per richiederne la pubblicazione.",
-                "ods_list_1": "Scriveteci a opendata(at)bfs.admin.ch"
-            },
-            "ods_section_2": {
-                "ods_title": "Avete creato un’applicazione?",
-                "ods_paragraph_1": "Avete creato un’applicazione utilizzando i dati di riferimento su opendata.swiss? Non esitate a contattarci affinché possiamo menzionarvi nel nostro catalogo di applicazioni.",
-                "ods_list_1": "Scriveteci a opendata(at)bfs.admin.ch"
-            },
-            "ods_section_3": {
-                "ods_title": "Desiderate fornirci dei dati?",
-                "ods_paragraph_1": "L’obiettivo del portale è raccogliere tutti i dati amministrativi aperti della Confederazione, dei Cantoni e dei Comuni in Svizzera. Anche le imprese statali e le persone che assumono incarichi della Confederazione, dei Cantoni o dei Comuni sono invitate a pubblicare i loro dati, a condizione che questi ultimi presentino un interesse pubblico, a prescindere che siano già disponibili su altri portali.",
-                "ods_paragraph_2": "Desiderate proporre su opendata.swiss «dati aperti» della vostra organizzazione?",
-                "ods_list_1": "Scriveteci a opendata(at)bfs.admin.ch",
-                "ods_list_2": {
-                    "ods_label": "Consultate le informazioni di base su come pubblicare OGD",
-                    "ods_href": "https://handbook.opendata.swiss/de/pages/index"
-                }
-            }
-        },
         "bottom_footer": {
             "ods_a_1": "Quadro giuridico",
             "ods_href_1": "https://opendata.swiss/it/legal-framework",

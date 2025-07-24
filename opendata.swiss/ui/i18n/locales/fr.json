@@ -37,28 +37,6 @@
                 "condition_3": "L’indication de la source (auteur, titre et lien vers le jeu de données) est obligatoire."
             }
         },
-        "contact": {
-            "ods_section_1": {
-                "ods_title": "Vous cherchez des données?",
-                "ods_paragraph_1": "Vous êtes à la recherche de jeux de données qui ne sont pas présents dans notre catalogue ? Si c’est le cas, contactez-nous pour nous en demander la publication.",
-                "ods_list_1": "Écrivez à opendata(at)bfs.admin.ch"
-            },
-            "ods_section_2": {
-                "ods_title": "Vous avez créé une application?",
-                "ods_paragraph_1": "Vous avez développé une application en réutilisant des données référencées sur opendata.swiss ? N’hésitez pas à nous contacter, afin que nous puissions vous publier dans notre catalogue d’applications.",
-                "ods_list_1": "Écrivez à opendata(at)bfs.admin.ch"
-            },
-            "ods_section_3": {
-                "ods_title": "Vous voulez fournir des données?",
-                "ods_paragraph_1": "L’objectif du portail est de référencer toutes les données administratives ouvertes de la Confédération, des cantons et des communes en Suisse. Des tiers – entreprises paraétatiques, personnes assumant des tâches de la Confédération, des cantons ou des communes – sont aussi invités à publier leurs données pour autant qu’elles présentent un intérêt public et même si elles sont déjà référencées sur d’autres portails.",
-                "ods_paragraph_2": "Vous souhaitez proposer des données de votre organisation en libre accès sur opendata.swiss?",
-                "ods_list_1": "Écrivez à opendata(at)bfs.admin.ch",
-                "ods_list_2": {
-                    "ods_label": "Consultez les premières informations sur comment publier des OGD",
-                    "ods_href": "https://handbook.opendata.swiss/fr/pages/index"
-                }
-            }
-        },
         "bottom_footer": {
             "ods_a_1": "Cadre juridique",
             "ods_href_1": "https://opendata.swiss/fr/legal-framework",
