@@ -29,6 +29,7 @@
 </template>
 
 <script setup lang="ts">
+import { onMounted, onBeforeUnmount } from 'vue'
 
 import OdsTopHeader from './components/headers/OdsTopHeader.vue'
 import OdsHeader from './components/headers/OdsHeader.vue';
@@ -50,6 +51,25 @@ function mobileMenuOpened(value: boolean) {
   isMobileMenuOpen.value = value;
 }
 
+function handleResize() {
+  // Close the mobile menu if the window is resized to a width greater than or equal to 1024px
+  if (window.innerWidth >= 1024) {
+    isMobileMenuOpen.value = false
+  }
+}
+
+onMounted(() => {
+  window.addEventListener('resize', handleResize)
+  handleResize()
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener('resize', handleResize)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('resize', handleResize)
+})
 
 </script>
 
