@@ -31,4 +31,4 @@ subHeading: >-
 ::ods-terms{:name="by_ask"}
 ::
 
-opendata.swiss met son modèle d’utilisation à la disposition des autorités et organisations investies d’un mandat étatique. Si vous avez des questions, n’hésitez pas à nous contacter. Pour de plus amples informations, veuillez cliquer [ici](http://handbook.opendata.swiss/).
+opendata.swiss met son modèle d’utilisation à la disposition des autorités et organisations investies d’un mandat étatique. Si vous avez des questions, n’hésitez pas à nous contacter. Pour de plus amples informations, veuillez cliquer [ici](/handbook).

@@ -31,4 +31,4 @@ subHeading: >-
 ::ods-terms{:name="by_ask"}
 ::
 
-opendata.swiss provides a usage model for other Swiss authorities and organisations with a mandate from the state. Please contact us if you have any questions. Further information can also be found [here](http://handbook.opendata.swiss/).
+opendata.swiss provides a usage model for other Swiss authorities and organisations with a mandate from the state. Please contact us if you have any questions. Further information can also be found [here](/handbook).

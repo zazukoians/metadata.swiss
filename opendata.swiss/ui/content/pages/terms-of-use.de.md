@@ -31,4 +31,4 @@ subHeading: >-
 ::ods-terms{:name="by_ask"}
 ::
 
-Opendata.swiss stellt sein Nutzungsmodell weiteren Schweizer Behörden und Organisationen mit einem staatlichen Auftrag zur Verfügung. Falls Sie Fragen haben, kontaktieren Sie uns, wenn Sie Interesse haben, das Nutzungsmodell zu verwenden. Weitere Informationen finden Sie zudem [hier](http://handbook.opendata.swiss/).
+Opendata.swiss stellt sein Nutzungsmodell weiteren Schweizer Behörden und Organisationen mit einem staatlichen Auftrag zur Verfügung. Falls Sie Fragen haben, kontaktieren Sie uns, wenn Sie Interesse haben, das Nutzungsmodell zu verwenden. Weitere Informationen finden Sie zudem [hier](/handbook).

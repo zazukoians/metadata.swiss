@@ -31,4 +31,4 @@ subHeading: >-
 ::ods-terms{:name="by_ask"}
 ::
 
-Il portale opendata.swiss mette a disposizione di altre autorità svizzere e organizzazioni che adempiono un mandato statale il suo modello per l’utilizzo dei dati aperti. Se avete domande contattateci. Maggiori informazioni sono disponibili a questo [link](http://handbook.opendata.swiss/).
+Il portale opendata.swiss mette a disposizione di altre autorità svizzere e organizzazioni che adempiono un mandato statale il suo modello per l’utilizzo dei dati aperti. Se avete domande contattateci. Maggiori informazioni sono disponibili a questo [link](/handbook).
