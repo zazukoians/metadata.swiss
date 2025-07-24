@@ -45,25 +45,21 @@
         },
         "terms_of_use": {
             "ods_open": {
-                "title": "Freie Nutzung",
                 "condition_1": "Sie dürfen diesen Datensatz für nicht kommerzielle Zwecke nutzen.",
                 "condition_2": "Sie dürfen diesen Datensatz für kommerzielle Zwecke nutzen.",
                 "condition_3": "Eine Quellenangabe wird empfohlen (Autor, Titel und Link zum Datensatz)."
             },
             "ods_by": {
-                "title": "Freie Nutzung. Quellenangabe ist Pflicht.",
                 "condition_1": "Sie dürfen diesen Datensatz für nicht kommerzielle Zwecke nutzen.",
                 "condition_2": "Sie dürfen diesen Datensatz für kommerzielle Zwecke nutzen.",
                 "condition_3": "Eine Quellenangabe ist Pflicht (Autor, Titel und Link zum Datensatz)."
             },
             "ods_ask": {
-                "title": "Freie Nutzung. Kommerzielle Nutzung nur mit Bewilligung des Datenlieferanten zulässig.",
                 "condition_1": "Sie dürfen diesen Datensatz für nicht kommerzielle Zwecke nutzen.",
                 "condition_2": "Sie dürfen diesen Datensatz für kommerzielle Zwecke nutzen, sofern Sie eine entsprechende Bewilligung beim Datenlieferanten eingeholt haben.",
                 "condition_3": "Eine Quellenangabe wird empfohlen (Autor, Titel und Link zum Datensatz)."
             },
             "ods_by_ask": {
-                "title": "Freie Nutzung. Quellenangabe ist Pflicht. Kommerzielle Nutzung nur mit Bewilligung des Datenlieferanten zulässig.",
                 "condition_1": "Sie dürfen diesen Datensatz für nicht kommerzielle Zwecke nutzen.",
                 "condition_2": "Sie dürfen diesen Datensatz für kommerzielle Zwecke nutzen, sofern Sie eine entsprechende Bewilligung beim Datenlieferanten eingeholt haben.",
                 "condition_3": "Eine Quellenangabe ist Pflicht (Autor, Titel und Link zum Datensatz)."

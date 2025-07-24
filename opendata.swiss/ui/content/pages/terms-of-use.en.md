@@ -11,14 +11,22 @@ subHeading: >-
   The symbols next to each dataset indicate what use is permitted. All data owners use the same symbols.
 ---
 
+## Open use
+
 ::ods-terms{:name="open"}
 ::
+
+## Open use. Must provide the source.
 
 ::ods-terms{:name="by"}
 ::
 
+## Open use. Use for commercial purposes requires permission of the data owner.
+
 ::ods-terms{:name="ask"}
 ::
+
+## Open use. Must provide the source. Use for commercial purposes requires permission of the data owner.
 
 ::ods-terms{:name="by_ask"}
 ::

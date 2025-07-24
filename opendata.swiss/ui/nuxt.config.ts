@@ -26,6 +26,16 @@ export default defineNuxtConfig({
   pages: {
     enabled: true,
   },
+  content: {
+    build: {
+      markdown: {
+        toc: {
+          depth: 3,
+          searchDepth: 3,
+        }
+      }
+    }
+  },
   components: {
     global: true,
     dirs: [

@@ -45,25 +45,21 @@
         },
         "terms_of_use": {
             "ods_open": {
-                "title": "Libero utilizzo",
                 "condition_1": "Questo set di dati può essere utilizzato a fini non commerciali.",
                 "condition_2": "Questo set di dati può essere utilizzato a fini commerciali.",
                 "condition_3": "È raccomandata l’indicazione della fonte (autore, titolo e link al set di dati)."
             },
             "ods_by": {
-                "title": "Libero utilizzo. Indicazione della fonte obbligatoria.",
                 "condition_1": "Questo set di dati può essere utilizzato a fini non commerciali.",
                 "condition_2": "Questo set di dati può essere utilizzato a fini commerciali.",
                 "condition_3": "È obbligatoria l’indicazione della fonte (autore, titolo e link al set di dati)."
             },
             "ods_ask": {
-                "title": "Libero utilizzo. Utilizzo a fini commerciali ammesso soltanto previo consenso del titolare dei dati.",
                 "condition_1": "Questo set di dati può essere utilizzato a fini non commerciali.",
                 "condition_2": "Questo set di dati può essere utilizzato a fini commerciali soltanto previo consenso del titolare dei dati.",
                 "condition_3": "È raccomandata l’indicazione della fonte (autore, titolo e link al set di dati)."
             },
             "ods_by_ask": {
-                "title": "Libero utilizzo. Indicazione della fonte obbligatoria. Utilizzo a fini commerciali ammesso soltanto previo consenso del titolare dei dati.",
                 "condition_1": "Questo set di dati può essere utilizzato a fini non commerciali.",
                 "condition_2": "Questo set di dati può essere utilizzato a fini commerciali soltanto previo consenso del titolare dei dati.",
                 "condition_3": "È obbligatoria l’indicazione della fonte (autore, titolo e link al set di dati)."

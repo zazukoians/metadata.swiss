@@ -11,14 +11,22 @@ subHeading: >-
   Les symboles accompagnant chaque jeu de données indiquent le type d’utilisation autorisé. Tous les services proposant des données emploient les mêmes symboles.
 ---
 
+## Utilisation libre
+
 ::ods-terms{:name="open"}
 ::
+
+## Utilisation libre. Obligation d’indiquer la source.
 
 ::ods-terms{:name="by"}
 ::
 
+## Utilisation libre. Utilisation à des fins commerciales uniquement avec l’autorisation du fournisseur des données.
+
 ::ods-terms{:name="ask"}
 ::
+
+## Utilisation libre. Obligation d’indiquer la source. Utilisation commerciale uniquement avec l’autorisation du fournisseur des données.
 
 ::ods-terms{:name="by_ask"}
 ::

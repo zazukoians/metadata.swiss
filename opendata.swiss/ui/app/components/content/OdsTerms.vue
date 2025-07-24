@@ -1,7 +1,4 @@
 <template>
-  <h2 class="h2">
-    {{ t(`message.terms_of_use.ods_${props.name}.title`) }}
-  </h2>
     <div class="ods-license">
       <img
         :src="imageSrc"

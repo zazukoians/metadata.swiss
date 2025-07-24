@@ -45,25 +45,21 @@
         },
         "terms_of_use": {
             "ods_open": {
-                "title": "Open use",
                 "condition_1": "You may use this dataset for non-commercial purposes.",
                 "condition_2": "You may use this dataset for commercial purposes.",
                 "condition_3": "You are recommended to provide the source (author, title and link to the dataset)."
             },
             "ods_by": {
-                "title": "Open use. Must provide the source.",
                 "condition_1": "You may use this dataset for non-commercial purposes.",
                 "condition_2": "You may use this dataset for commercial purposes.",
                 "condition_3": "You must provide the source (author, title and link to the dataset)."
             },
             "ods_ask": {
-                "title": "Open use. Use for commercial purposes requires permission of the data owner.",
                 "condition_1": "You may use this dataset for non-commercial purposes.",
                 "condition_2": "You may use this dataset for commercial purposes, but you must seek prior permission from the data owner.",
                 "condition_3": "You are recommended to provide the source (author, title and link to the dataset)."
             },
             "ods_by_ask": {
-                "title": "Open use. Must provide the source. Use for commercial purposes requires permission of the data owner.",
                 "condition_1": "You may use this dataset for non-commercial purposes.",
                 "condition_2": "You may use this dataset for commercial purposes, but you must seek prior permission from the data owner.",
                 "condition_3": "You must provide the source (author, title and link to the dataset)."

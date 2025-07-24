@@ -11,14 +11,22 @@ subHeading: >-
   Die Symbole bei jedem Datensatz erklären die erlaubte Nutzung. Alle Datenlieferanten verwenden die gleichen Symbole.
 ---
 
+## Freie Nutzung
+
 ::ods-terms{:name="open"}
 ::
+
+## Freie Nutzung. Quellenangabe ist Pflicht
 
 ::ods-terms{:name="by"}
 ::
 
+## Freie Nutzung. Kommerzielle Nutzung nur mit Bewilligung des Datenlieferanten zulässig
+
 ::ods-terms{:name="ask"}
 ::
+
+## Freie Nutzung. Quellenangabe ist Pflicht. Kommerzielle Nutzung nur mit Bewilligung des Datenlieferanten zulässig.
 
 ::ods-terms{:name="by_ask"}
 ::

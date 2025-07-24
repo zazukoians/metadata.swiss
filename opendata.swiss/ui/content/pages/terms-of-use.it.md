@@ -11,14 +11,22 @@ subHeading: >-
   I simboli riportati accanto a ogni set di dati ne spiegano l’utilizzo ammesso. Tutti i fornitori di dati sono tenuti a usare gli stessi simboli.
 ---
 
+## Libero utilizzo
+
 ::ods-terms{:name="open"}
 ::
+
+## Libero utilizzo. Indicazione della fonte obbligatoria.
 
 ::ods-terms{:name="by"}
 ::
 
+## Libero utilizzo. Utilizzo a fini commerciali ammesso soltanto previo consenso del titolare dei dati.
+
 ::ods-terms{:name="ask"}
 ::
+
+## Libero utilizzo. Indicazione della fonte obbligatoria. Utilizzo a fini commerciali ammesso soltanto previo consenso del titolare dei dati.
 
 ::ods-terms{:name="by_ask"}
 ::
