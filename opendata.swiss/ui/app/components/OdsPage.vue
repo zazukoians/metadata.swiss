@@ -12,7 +12,7 @@ const { page } = defineProps({
     <section class="hero hero--default">
       <div class="container container--grid gap--responsive">
         <div class="hero__content">
-          <h2 class="hero__title">{{ page.heading || page.title }}</h2>
+          <h1 class="hero__title">{{ page.heading || page.title }}</h1>
           <div class="hero__description">
             <MDC v-if="page.subHeading" :value="page.subHeading"/>
           </div>

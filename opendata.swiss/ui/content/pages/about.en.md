@@ -2,9 +2,6 @@
 title: About us
 heading: opendata.swiss
 subHeading: >-
-  # opendata.swiss
-
-
   opendata.swiss is the Swiss public administration’s central portal for open government data.
 
 
