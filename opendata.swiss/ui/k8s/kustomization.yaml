@@ -11,4 +11,5 @@ labels:
 resources:
   - deployment.yaml
   - service.yaml
+  - cert.yaml
   - ingress.yaml
