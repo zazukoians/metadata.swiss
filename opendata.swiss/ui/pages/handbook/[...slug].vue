@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import OdsBreadcrumbs from "../../app/components/OdsBreadcrumbs.vue";
+
 const { locale } = useI18n();
 
 const route = useRoute()
@@ -56,5 +58,9 @@ const navigation = ref([
 </script>
 
 <template>
-  <OdsPage v-if="data" :page="data" />
+  <OdsPage v-if="data" :page="data" >
+    <template #header>
+      <OdsBreadcrumbs :page="data" collection="pages" />
+    </template>
+  </OdsPage>
 </template>

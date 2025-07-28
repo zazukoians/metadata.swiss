@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import OdsBreadcrumbs from "../app/components/OdsBreadcrumbs.vue";
+
 const route = useRoute()
 const { locale } = useI18n()
 
@@ -17,5 +19,9 @@ useSeoMeta({
 </script>
 
 <template>
-  <OdsPage v-if="page" :page="page" />
+  <OdsPage v-if="page" :page="page">
+    <template #header>
+      <OdsBreadcrumbs :page="page" collection="pages" />
+    </template>
+  </OdsPage>
 </template>
