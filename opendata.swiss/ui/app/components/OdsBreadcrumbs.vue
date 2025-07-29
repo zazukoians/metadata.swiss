@@ -1,57 +1,10 @@
 <script setup>
-const props = defineProps({
-  page: {
-    type: Object,
-    required: true
-  },
-  collection: {
-    type: String,
+const { breadcrumbs } = defineProps({
+  breadcrumbs: {
+    type: Array,
     required: true
   }
 })
-
-const route = useRoute()
-const { locale } = useI18n()
-const slug = Array.isArray(route.params.slug) ? route.params.slug.join('/') : route.params.slug
-
-const { data: breadcrumbs } = await useAsyncData(`${route.path}_breadcrumbs`, async () => {
-  const breadcrumbs = []
-  const segments = route.path.split('/')
-    .filter(segment => segment)
-    .slice(1)
-
-  while(segments.length) {
-    const path = `/` + segments.join('/')
-    breadcrumbs.unshift(await loadPage({ path, slug }))
-    segments.pop()
-  }
-
-  breadcrumbs.unshift( {
-    ...await loadPage({ path: '/index' }),
-    path: '/'
-  })
-
-  return breadcrumbs.length > 1 ? breadcrumbs : []
-})
-
-async function loadPage({ path, slug }) {
-
-  let query = queryCollection(props.collection)
-
-  if(slug) {
-    query = query
-      .where('path', 'LIKE',`%.${locale.value}`)
-      .andWhere(q => q.where('permalink', '=', slug))
-  } else {
-    query = query
-      .where('path', 'LIKE', `%${path}.${locale.value}`)
-  }
-
-  const { id, title } = await query.first() || {}
-
-  return { id, title: title || path, path }
-}
-
 </script>
 
 <template>

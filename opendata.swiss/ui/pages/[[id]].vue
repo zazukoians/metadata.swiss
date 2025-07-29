@@ -1,8 +1,19 @@
 <script lang="ts" setup>
 import OdsBreadcrumbs from "../app/components/OdsBreadcrumbs.vue";
+import { useBreadcrumbs } from "../app/composables/breadcrumbs";
 
 const route = useRoute()
 const { locale } = useI18n()
+
+const breadcrumbs = await useBreadcrumbs({
+  route,
+  locale,
+  loadContent({ path }) {
+    return queryCollection('pages')
+      .where('path', 'LIKE', `%${path}.${locale.value}`)
+      .first()
+  }
+})
 
 const {data: page} = await useAsyncData(route.path, () => {
   const slug = route.params.id || 'index'
@@ -21,7 +32,7 @@ useSeoMeta({
 <template>
   <OdsPage v-if="page" :page="page">
     <template #header>
-      <OdsBreadcrumbs :page="page" collection="pages" />
+      <OdsBreadcrumbs :breadcrumbs="breadcrumbs" />
     </template>
   </OdsPage>
 </template>

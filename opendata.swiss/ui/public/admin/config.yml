@@ -22,17 +22,23 @@ i18n:
 collections:
   - name: handbook
     label: "Handbuch"
+    identifier_field: id
     folder: "content/handbook"
     extension: md
     widget: "list"
     create: true
     i18n: true
     fields:
+      - label: Id
+        name: id
+        widget: string
+        required: true
+        i18n: duplicate
       - label: Title
         name: title
         widget: string
         required: true
-        i18n: duplicate
+        i18n: true
       - label: Permalink
         name: permalink
         widget: string

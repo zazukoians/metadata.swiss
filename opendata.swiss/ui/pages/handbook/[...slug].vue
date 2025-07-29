@@ -1,9 +1,24 @@
 <script lang="ts" setup>
 import OdsBreadcrumbs from "../../app/components/OdsBreadcrumbs.vue";
 
-const { locale } = useI18n();
-
+const { locale, t } = useI18n();
 const route = useRoute()
+
+const breadcrumbs = await useBreadcrumbs({
+  route,
+  locale,
+  loadContent({ path }) {
+    return queryCollection('handbook')
+      .where('path', 'LIKE',`%.${locale.value}`)
+      .orWhere(q => q
+        .where('permalink', '=', path.replace(/^\/handbook\//, ''))
+        .where('path', '=',`${path}.${locale.value}`)
+        .where('path', '=',`${path}/index.${locale.value}`)
+      )
+      .first()
+  }
+})
+
 const { data } = await useAsyncData(route.path, () => {
   const slug = Array.isArray(route.params.slug) ? route.params.slug.join('/') : route.params.slug
 
@@ -19,6 +34,10 @@ const { data } = await useAsyncData(route.path, () => {
   }
 
   return query.first()
+})
+
+useSeoMeta({
+  title: `${data.value?.title} | ${t('message.header.navigation.handbook')} | opendata.swiss`,
 })
 
 // TODO: make sidebar navigation dynamic based on the handbook content
@@ -60,7 +79,7 @@ const navigation = ref([
 <template>
   <OdsPage v-if="data" :page="data" >
     <template #header>
-      <OdsBreadcrumbs :page="data" collection="pages" />
+      <OdsBreadcrumbs :breadcrumbs="breadcrumbs" />
     </template>
   </OdsPage>
 </template>
