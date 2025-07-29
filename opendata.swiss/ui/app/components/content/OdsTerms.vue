@@ -24,8 +24,7 @@ const props = defineProps({
   }
 })
 
-// TODO: I think this will not work in production
-const imageSrc = `/_nuxt/assets/ods/terms-of-use/terms_${props.name}.png`;
+const imageSrc = `/img/terms-of-use/terms_${props.name}.png`;
 </script>
 
 <style lang="scss" scoped>
