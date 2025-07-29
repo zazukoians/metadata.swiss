@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: piveau-ui
+spec:
+  template:
+    spec:
+      imagePullSecrets:
+        - name: piveau-ui-pull-secret
+      containers:
+        - name: piveau-ui
+          image: registry.zazuko.com/docker/lindas-next-piveau-js
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 80
+          resources:
+            limits:
+              memory: 2Gi
+            requests:
+              memory: 1Gi
