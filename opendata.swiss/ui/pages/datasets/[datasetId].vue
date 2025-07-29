@@ -3,7 +3,10 @@ import { definePropertyNode, PropertyTable, PropertyTableNode } from '@piveau/sd
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { useDatasetsSearch } from '../../app/piveau/search.js'
+import { homePageBreadcrumb } from "../../app/composables/breadcrumbs";
+import OdsBreadcrumbs from "../../app/components/OdsBreadcrumbs.vue";
 
+const { locale, t } = useI18n();
 const route = useRoute()
 const datasetId = computed(() => route.params.datasetId as string)
 
@@ -11,9 +14,24 @@ const { useResource } = useDatasetsSearch()
 const { isSuccess, resultEnhanced } = useResource(datasetId)
 
 const node = computed(() => definePropertyNode({ id: 'root', data: resultEnhanced.value?.getPropertyTable }, { compact: true, maxDepth: 2 }))
+
+const breadcrumbs = [
+  await homePageBreadcrumb(locale),
+  {
+    title: t('message.header.navigation.datasets'),
+    path: '/datasets',
+  },
+  {
+    title: resultEnhanced.value?.getTitle,
+    path: route.path,
+  }
+]
 </script>
 
 <template>
+  <header id="main-header">
+    <OdsBreadcrumbs :breadcrumbs="breadcrumbs" />
+  </header>
   <div class="dataset-details-page">
     <div v-if="isSuccess">
       <h1>{{ resultEnhanced?.getTitle }}</h1>

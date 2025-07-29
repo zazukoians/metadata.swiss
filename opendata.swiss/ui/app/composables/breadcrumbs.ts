@@ -19,13 +19,18 @@ export async function useBreadcrumbs({route, locale, loadContent}: Options) {
     segments.pop()
   }
 
+  breadcrumbs.unshift(await homePageBreadcrumb(locale))
+
+  return breadcrumbs.length > 1 ? breadcrumbs : []
+}
+
+export async function homePageBreadcrumb(locale: ReturnType<typeof useI18n>['locale']) {
   const index = await queryCollection('pages')
     .where('path', 'LIKE', `%/index.${locale.value}`)
     .first()
-  breadcrumbs.unshift({
+
+  return {
     ...index,
     path: '/'
-  })
-
-  return breadcrumbs.length > 1 ? breadcrumbs : []
+  }
 }
