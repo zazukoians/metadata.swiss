@@ -89,7 +89,7 @@ deploy-preview:
   artifacts:
     paths:
       - k8s
-    expire_in: 3 weeks
+    expire_in: 4 weeks
   only:
     - branches
   except:
