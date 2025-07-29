@@ -72,7 +72,7 @@ deploy-preview:
         tls:
           - secretName: ${CI_ENVIRONMENT_SLUG}-prev-tls
             hosts:
-              - ${CI_ENVIRONMENT_SLUG}.piveau-ln-preview.zazukoians.org"
+              - ${CI_ENVIRONMENT_SLUG}.piveau-ln-preview.zazukoians.org
       EOF
       )"
     - kustomize edit set image "${CI_REGISTRY_IMAGE}:git-${CI_COMMIT_SHORT_SHA}"
@@ -89,6 +89,7 @@ deploy-preview:
   artifacts:
     paths:
       - k8s
+    expire_in: 3 weeks
   only:
     - branches
   except:
