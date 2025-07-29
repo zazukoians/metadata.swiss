@@ -93,7 +93,7 @@ deploy-preview:
 remove-preview:
   stage: deploy
   variables:
-    GIT_CHECKOUT "false"
+    GIT_CHECKOUT: "false"
   script:
     - *configure-kubectl
     - git checkout -B main origin/main
