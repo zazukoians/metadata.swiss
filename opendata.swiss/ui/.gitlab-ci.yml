@@ -92,6 +92,8 @@ deploy-preview:
 # Remove the preview deployment
 remove-preview:
   stage: deploy
+  variables:
+    GIT_STRATEGY: none
   script:
     - *configure-kubectl
     - cd k8s/
