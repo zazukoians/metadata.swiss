@@ -96,6 +96,8 @@ remove-preview:
     GIT_STRATEGY: none
   script:
     - *configure-kubectl
+    - git fetch origin main
+    - git checkout main
     - cd k8s/
     - kustomize edit set nameprefix "${CI_ENVIRONMENT_SLUG}-"
     - |
