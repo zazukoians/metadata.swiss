@@ -84,6 +84,9 @@ deploy-preview:
     auto_stop_in: 3 weeks
     kubernetes:
       namespace: piveau-previews
+  artifacts:
+    paths:
+      - k8s
   only:
     - branches
   except:
@@ -93,10 +96,12 @@ deploy-preview:
 remove-preview:
   stage: deploy
   variables:
-    GIT_CHECKOUT: "false"
+    GIT_CHECKOUT: none
+  needs:
+    - job: deploy-preview
+      artifacts: true
   script:
     - *configure-kubectl
-    - git checkout -B main origin/main
     - cd k8s/
     - kustomize edit set nameprefix "${CI_ENVIRONMENT_SLUG}-"
     - |
