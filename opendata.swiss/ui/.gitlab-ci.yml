@@ -96,7 +96,7 @@ deploy-preview:
 remove-preview:
   stage: deploy
   variables:
-    GIT_CHECKOUT: none
+    GIT_STRATEGY: none
   needs:
     - job: deploy-preview
       artifacts: true
