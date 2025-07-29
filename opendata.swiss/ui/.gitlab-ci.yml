@@ -70,7 +70,9 @@ deploy-preview:
         name: piveau-ui
       spec:
         tls:
-          - secretName: ${CI_ENVIRONMENT_SLUG}-piveau-ln-preview-zazukoians-org-tls
+          - secretName: ${CI_ENVIRONMENT_SLUG}-prev-tls
+            hosts:
+              - ${CI_ENVIRONMENT_SLUG}.piveau-ln-preview.zazukoians.org
       EOF
       )"
     - kustomize edit set image "${CI_REGISTRY_IMAGE}:git-${CI_COMMIT_SHORT_SHA}"
@@ -87,6 +89,7 @@ deploy-preview:
   artifacts:
     paths:
       - k8s
+    expire_in: 4 weeks
   only:
     - branches
   except:
@@ -104,17 +107,6 @@ remove-preview:
     - *configure-kubectl
     - cd k8s/
     - kustomize edit set nameprefix "${CI_ENVIRONMENT_SLUG}-"
-    - |
-      kustomize edit add patch --patch "$(cat <<EOF
-      apiVersion: networking.k8s.io/v1
-      kind: Ingress
-      metadata:
-        name: piveau-ui
-      spec:
-        tls:
-          - secretName: ${CI_ENVIRONMENT_SLUG}-piveau-ln-preview-zazukoians-org-tls
-      EOF
-      )"
     - kustomize edit set label "app.kubernetes.io/instance:${CI_ENVIRONMENT_SLUG}"
     - kustomize build | tee manifest.yaml
     - kubectl delete -f manifest.yaml
