@@ -93,11 +93,10 @@ deploy-preview:
 remove-preview:
   stage: deploy
   variables:
-    GIT_STRATEGY: none
+    GIT_CHECKOUT: "false"
   script:
     - *configure-kubectl
-    - git fetch origin main
-    - git checkout main
+    - git checkout -B main origin/main
     - cd k8s/
     - kustomize edit set nameprefix "${CI_ENVIRONMENT_SLUG}-"
     - |
