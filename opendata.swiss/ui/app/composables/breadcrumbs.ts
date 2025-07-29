@@ -1,12 +1,10 @@
 interface Options {
   route: ReturnType<typeof useRoute>;
   locale: ReturnType<typeof useI18n>['locale'];
-  loadContent: (arg: { route: typeof route }) => object
+  loadContent: (arg: { path: string }) => ReturnType<typeof queryCollection>
 }
 
 export async function useBreadcrumbs({route, locale, loadContent}: Options) {
-  // const slug = Array.isArray(route.params.slug) ? route.params.slug.join('/') : route.params.slug
-
   const breadcrumbs = []
   const segments = route.path.split('/')
     .filter(segment => segment)
@@ -14,9 +12,9 @@ export async function useBreadcrumbs({route, locale, loadContent}: Options) {
 
   while (segments.length) {
     const path = `/` + segments.join('/')
-    const { id, title } = await loadContent({ path }) || {}
+    const { id, breadcrumb_title, title } = await loadContent({ path }).first() || {}
     breadcrumbs.unshift({
-      id, title: title || path, path
+      id, title: breadcrumb_title || title || path, path
     })
     segments.pop()
   }

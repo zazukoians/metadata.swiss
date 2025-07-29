@@ -1,5 +1,5 @@
 <script setup>
-const { page, hero } = defineProps({
+const { page } = defineProps({
   page: {
     type: Object,
     required: true,

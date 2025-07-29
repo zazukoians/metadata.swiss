@@ -9,13 +9,13 @@ const breadcrumbs = await useBreadcrumbs({
   locale,
   loadContent({ path }) {
     return queryCollection('handbook')
+      .select('id', 'title', 'breadcrumb_title')
       .where('path', 'LIKE',`%.${locale.value}`)
       .orWhere(q => q
         .where('permalink', '=', path.replace(/^\/handbook\//, ''))
         .where('path', '=',`${path}.${locale.value}`)
         .where('path', '=',`${path}/index.${locale.value}`)
       )
-      .first()
   }
 })
 

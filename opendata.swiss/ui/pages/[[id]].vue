@@ -10,8 +10,8 @@ const breadcrumbs = await useBreadcrumbs({
   locale,
   loadContent({ path }) {
     return queryCollection('pages')
+      .select('id', 'title')
       .where('path', 'LIKE', `%${path}.${locale.value}`)
-      .first()
   }
 })
 
