@@ -16,6 +16,8 @@ export default defineContentConfig({
       source: 'handbook/**/*.md',
       type: 'page',
       schema: z.object({
+        title: z.string(),
+        breadcrumb_title: z.string(),
         permalink: z.string(),
       })
     }),

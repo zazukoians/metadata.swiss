@@ -8,6 +8,9 @@ const { page } = defineProps({
 </script>
 
 <template>
+  <header id="main-header">
+    <slot name="header" />
+  </header>
   <div id="main-content">
     <section class="hero hero--default">
       <div class="container container--grid gap--responsive">

@@ -14,6 +14,10 @@ export const APP_NAVIGATION_ITEMS: OdsNavTabItem[] = [
     to: '/blog'
   },
   {
+    label: 'message.header.navigation.handbook',
+    to: '/handbook'
+  },
+  {
     label: 'message.header.navigation.about',
     subMenu: [
       { label: 'message.header.navigation.what_is_ods', to: '/about' },

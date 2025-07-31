@@ -2,8 +2,10 @@
 import type { SearchParamsBase } from '@piveau/sdk-core'
 import { computed, reactive, ref, toRefs } from 'vue'
 import { useDatasetsSearch } from '../../app/piveau/search.js'
+import OdsBreadcrumbs from "../../app/components/OdsBreadcrumbs.vue";
+import {homePageBreadcrumb} from "../../app/composables/breadcrumbs";
 
-const { locale } = useI18n();
+const { locale, t } = useI18n();
 const localePath = useLocalePath()
 
 // 👇 Query parameters
@@ -45,10 +47,21 @@ const availablePublisher = computed(() =>
 
 const searchInput = ref('')
 const onSearch = () => queryParams.q = searchInput.value
+
+const breadcrumbs = [
+  await homePageBreadcrumb(locale),
+  {
+    title: t('message.header.navigation.datasets'),
+    path: '/datasets',
+  }
+]
 </script>
 
 <template>
 
+  <header id="main-header">
+    <OdsBreadcrumbs :breadcrumbs="breadcrumbs" />
+  </header>
  <main id="main-content">
   <!-- search panel -->
    <section class="section section--default bg--secondary-50">
