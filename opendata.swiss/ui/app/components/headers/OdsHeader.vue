@@ -10,6 +10,9 @@ import OdsNavigationPanel from '@/components/OdsNavigationPanel.vue';
 import { NuxtLinkLocale } from '#components';
 const localePath = useLocalePath()
 
+const { locale } = useI18n()
+const route = useRoute();
+
 interface Props {
   enableAuthentication?: boolean;
   authenticated?: boolean;
@@ -46,6 +49,14 @@ function closeMobileMenu() {
   menuOpen.value = false;
   emit('mobileMenuStateChange', false);
 }
+
+function isChildPage({ to }: OdsNavTabItem) {
+  if(to === '/') {
+    return route.path === `/${locale.value}`
+  }
+
+  return to && route.path.startsWith(`/${locale.value}${to}`)
+}
 </script>
 
 <template>
@@ -74,7 +85,7 @@ function closeMobileMenu() {
         <template v-for="(item, index) in props.navigationItems" :key="item.label">
         <!-- a normal tab -->
         <li v-if="!item.subMenu"  class="tab" @click="setCurrentItemToMenuItem(index)">
-          <NuxtLinkLocale active-class="active" :to="item.to"><span> {{ t(item.label) }}</span></NuxtLinkLocale>
+          <NuxtLinkLocale :class="{ active: isChildPage(item) }" :to="item.to"><span> {{ t(item.label) }}</span></NuxtLinkLocale>
         </li>
         <li  v-if="item.subMenu"  class="tab">
           <v-menu>
