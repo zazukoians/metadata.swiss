@@ -48,6 +48,7 @@ collections:
         name: permalink
         widget: string
         i18n: duplicate
+        pattern: "^[a-z0-9]+(?:-[a-z0-9]+)*$"
       - name: body
         label: Body
         widget: markdown
@@ -78,4 +79,32 @@ collections:
         label: Body
         widget: markdown
         i18n: true
-
+  - name: blog
+    label: Blog
+    label_singular: Blog Post
+    folder: "content/blog"
+    extension: md
+    widget: "list"
+    create: true
+    i18n: true
+    fields:
+      - label: Title
+        name: title
+        widget: string
+        required: true
+        i18n: true
+      - label: Slug
+        name: slug
+        widget: string
+        i18n: false
+        required: false
+        pattern: "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+      - label: Date
+        name: date
+        widget: datetime
+        i18n: duplicate
+        default: "{{now}}"
+      - name: body
+        label: Body
+        widget: markdown
+        i18n: true
