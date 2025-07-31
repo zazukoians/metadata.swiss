@@ -9,6 +9,7 @@
             "navigation": {
                 "home": "Home",
                 "datasets": "Set di dati",
+                "blog": "Blog",
                 "about": "Chi siamo",
                 "contact": "Contatto",
                 "what_is_ods": "Cos'è opendata.swiss?",

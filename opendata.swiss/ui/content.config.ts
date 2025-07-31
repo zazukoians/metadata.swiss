@@ -18,6 +18,15 @@ export default defineContentConfig({
       schema: z.object({
         permalink: z.string(),
       })
+    }),
+    blog: defineCollection({
+      source: 'blog/*.md',
+      type: 'page',
+      schema: z.object({
+        title: z.string(),
+        slug: z.string().optional(),
+        date: z.date().optional(),
+      })
     })
   }
 })

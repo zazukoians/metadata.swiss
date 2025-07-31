@@ -1,0 +1,32 @@
+<script setup>
+import OdsPage from "../../../app/components/OdsPage.vue";
+
+const route = useRoute()
+const { locale, t } = useI18n()
+
+const { data: post } = await useAsyncData(route.path, () => {
+  const { year, month, slug } = route.params
+
+  return queryCollection('blog')
+    .where('path', 'LIKE', `%${slug}.${locale.value}`)
+    .where('date', '>', `${year}-${month.padStart(2, '0')}-01`)
+    .where('date', '<', `${year}-${month.padStart(2, '0')}-32`)
+      .orWhere(q =>
+       q.where('slug', '=', slug)
+        .where('path', 'LIKE', `%${slug}.${locale.value}`)
+     )
+    .first()
+})
+
+useSeoMeta({
+  title: `${post.value?.title} | ${t('message.header.navigation.blog')} | opendata.swiss`,
+})
+</script>
+
+<template>
+  <OdsPage v-if="post" :page="post" >
+    <template #header>
+      TODO: breadcrumbs
+    </template>
+  </OdsPage>
+</template>
