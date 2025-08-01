@@ -28,6 +28,7 @@ export default defineContentConfig({
         title: z.string(),
         slug: z.string().optional(),
         date: z.date().optional(),
+        subHeading: z.string().optional(),
       })
     })
   }

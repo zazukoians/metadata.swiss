@@ -1,5 +1,5 @@
 # Uncomment for local development
-# local_backend: true
+local_backend: true
 
 backend:
   name: gitlab
@@ -104,6 +104,10 @@ collections:
         widget: datetime
         i18n: duplicate
         default: "{{now}}"
+      - name: subHeading
+        label: Subheading
+        widget: markdown
+        i18n: true
       - name: body
         label: Body
         widget: markdown
