@@ -22,7 +22,6 @@
     "better-sqlite3": "^12.2.0",
     "eslint": "^9.31.0",
     "nuxt": "^4.0.0",
-    "nuxt-time": "^1.0.3",
     "pinia": "^3.0.3",
     "sass-embedded": "^1.89.2",
     "sharp": "^0.34.3",
