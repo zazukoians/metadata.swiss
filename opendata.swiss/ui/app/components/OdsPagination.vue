@@ -70,7 +70,7 @@ const props = defineProps({
     default: () => [],
   },
 })
-console.log(props)
+
 const computedClasses = computed(() => {
   let base = 'input input--base '
   if (props.type) base += `input--${props.type} `
