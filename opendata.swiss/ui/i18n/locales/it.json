@@ -50,6 +50,12 @@
             "ods_href_2": "https://www.bfs.admin.ch/bfs/de/home/bfs/bundesamt-statistik/rechtliche-hinweise.html",
             "ods_aria_label_2": "Impressum di opendata.swiss"
         },
+        "ods-pagination": {
+            "previous": "Pagina precedente",
+            "next": "Pagina successiva",
+            "page": "Pagina",
+            "of": "di {pageCount}"
+        },
         "ods-footer": {
             "block_1": {
                 "title": "Chi siamo",

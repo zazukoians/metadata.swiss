@@ -4,13 +4,24 @@ import {homePageBreadcrumb} from "../../app/composables/breadcrumbs.js";
 
 const route = useRoute()
 const {locale, t} = useI18n()
+const localePath = useLocalePath()
+
+const PAGE_SIZE = 1 // Number of posts per page
+const page = parseInt(route.params.page) || 1
 
 const {data} = await useAsyncData(route.path, () => {
   return queryCollection('blog')
     .where('path', 'LIKE', `%.${locale.value}`)
     .order('date', 'DESC')
-    .limit(10)
+    .skip((page - 1) * PAGE_SIZE)
+    .limit(PAGE_SIZE)
     .all()
+})
+const {data: pageCount} = await useAsyncData(route.path + '_pageCount', () => {
+  return queryCollection('blog')
+    .where('path', 'LIKE', `%.${locale.value}`)
+    .order('date', 'DESC')
+    .count()
 })
 
 useSeoMeta({
@@ -69,6 +80,27 @@ const breadcrumbs = [
             </li>
           </ul>
         </div>
+      </div>
+      <div class="container">
+        <OdsPagination
+          :current-page="page"
+          :page-label="t('message.ods-pagination.page')"
+          :total-pages="parseInt(pageCount)"
+          :total-pages-label="t('message.ods-pagination.of', { pageCount })"
+          :pagination-items="[
+            {
+              icon: 'ChevronLeft',
+              label: t('message.ods-pagination.previous'),
+              link: `/blog/${page > 1 ? parseInt(page) - 1 : 1}`,
+            },
+            {
+              icon: 'ChevronRight',
+              label: t('message.ods-pagination.next'),
+              link: `/blog/${page < pageCount ? parseInt(page) + 1 : pageCount}`
+            }
+          ]"
+          @page-change="navigateTo(localePath({ name: 'blog-page', params: { page: $event } }))"
+        />
       </div>
     </section>
   </OdsPage>
