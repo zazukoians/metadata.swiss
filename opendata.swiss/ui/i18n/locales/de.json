@@ -9,10 +9,12 @@
             "navigation": {
                 "home": "Startseite",
                 "datasets": "Datensätze",
+                "blog": "Blog",
                 "about": "Über uns",
                 "contact": "Kontakt",
                 "what_is_ods": "Was ist opendata.swiss?",
-                "terms_of_use": "Nutzungsbedingungen"
+                "terms_of_use": "Nutzungsbedingungen",
+                "handbook": "Handbuch"
             }
         },
         "ods_toc": {
@@ -56,6 +58,12 @@
             "ods_a_2": "Impressum",
             "ods_href_2": "https://www.bfs.admin.ch/bfs/de/home/bfs/bundesamt-statistik/rechtliche-hinweise.html",
             "ods_aria_label_2": "Impressum von opendata.swiss"
+        },
+        "ods-pagination": {
+            "previous": "Vorherige Seite",
+            "next": "Nächste Seite",
+            "page": "Seite",
+            "of": "von {pageCount}"
         },
         "ods-footer": {
             "block_1": {
