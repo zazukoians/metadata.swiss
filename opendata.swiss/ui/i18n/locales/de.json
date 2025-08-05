@@ -18,6 +18,15 @@
         "ods_toc": {
             "contents": "Inhaltverzeichnis"
         },
+        "dataset_search": {
+            "search_placeholder": "Nach Datensätzen suchen",
+            "search_button": "Suchen",
+            "search_results": "Suchergebnisse",
+            "show_filters": "Filter anzeigen",
+            "sort": "Sortieren",
+            "pages": "Seiten",
+            "from": "von"
+        },
         "terms_of_use": {
             "ods_open": {
                 "condition_1": "Sie dürfen diesen Datensatz für nicht kommerzielle Zwecke nutzen.",
