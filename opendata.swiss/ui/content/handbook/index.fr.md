@@ -1,5 +1,6 @@
 ---
-title: Handbuch
+id: Handbuch
+title: Manuel
 ---
 
 # Bienvenue

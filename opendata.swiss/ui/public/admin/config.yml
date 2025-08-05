@@ -1,5 +1,5 @@
 # Uncomment for local development
-# local_backend: true
+local_backend: true
 
 backend:
   name: gitlab
@@ -22,21 +22,33 @@ i18n:
 collections:
   - name: handbook
     label: "Handbuch"
+    identifier_field: id
     folder: "content/handbook"
     extension: md
     widget: "list"
     create: true
     i18n: true
     fields:
+      - label: Id
+        name: id
+        widget: string
+        required: true
+        i18n: duplicate
       - label: Title
         name: title
         widget: string
         required: true
-        i18n: duplicate
+        i18n: true
+      - label: Breadcrumb title
+        name: breadcrumb_title
+        widget: string
+        required: false
+        i18n: true
       - label: Permalink
         name: permalink
         widget: string
         i18n: duplicate
+        pattern: ["^[a-z0-9]+(?:-[a-z0-9]+)*$", "Permalink must be lowercase and can only contain letters, numbers, and hyphens."]
       - name: body
         label: Body
         widget: markdown
@@ -67,4 +79,36 @@ collections:
         label: Body
         widget: markdown
         i18n: true
-
+  - name: blog
+    label: Blog
+    label_singular: Blog Post
+    folder: "content/blog"
+    extension: md
+    widget: "list"
+    create: true
+    i18n: true
+    fields:
+      - label: Title
+        name: title
+        widget: string
+        required: true
+        i18n: true
+      - label: Slug
+        name: slug
+        widget: string
+        i18n: false
+        required: false
+        pattern: ["^[a-z0-9]+(?:-[a-z0-9]+)*$", "Slug must be lowercase and can only contain letters, numbers, and hyphens."]
+      - label: Date
+        name: date
+        widget: datetime
+        i18n: duplicate
+        default: "{{now}}"
+      - name: subHeading
+        label: Subheading
+        widget: markdown
+        i18n: true
+      - name: body
+        label: Body
+        widget: markdown
+        i18n: true

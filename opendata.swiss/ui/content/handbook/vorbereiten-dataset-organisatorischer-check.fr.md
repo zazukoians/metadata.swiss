@@ -1,9 +1,8 @@
 ---
-title: Dataset / Vorbereiten / Organisatorische Anforderungen prüfen
+id: Vorbereiten / Dataset / Organisatorische Anforderungen prüfen
+title: Vérifier les exigences organisationnelles
 permalink: vorbereiten/dataset/organisatorischer-check
 ---
-
-# Organisatorische Anforderungen prüfen in French
 
 ## Welche organisatorischen Aspekte sollte ich bei der Publikation von OGD beachten?
 
