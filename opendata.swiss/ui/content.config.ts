@@ -20,6 +20,16 @@ export default defineContentConfig({
         breadcrumb_title: z.string(),
         permalink: z.string(),
       })
+    }),
+    blog: defineCollection({
+      source: 'blog/*.md',
+      type: 'page',
+      schema: z.object({
+        title: z.string(),
+        slug: z.string().optional(),
+        date: z.date().optional(),
+        subHeading: z.string().optional(),
+      })
     })
   }
 })

@@ -9,6 +9,7 @@
             "navigation": {
                 "home": "Accueil",
                 "datasets": "Jeux de données",
+                "blog": "Blog",
                 "about": "À propos de nous",
                 "contact": "Contact",
                 "what_is_ods": "Qu'est-ce qu'opendata.swiss?",
@@ -48,6 +49,12 @@
             "ods_a_2": "Impressum",
             "ods_href_2": "https://www.bfs.admin.ch/bfs/de/home/bfs/bundesamt-statistik/rechtliche-hinweise.html",
             "ods_aria_label_2": "Mentions légales d’opendata.swiss"
+        },
+        "ods-pagination": {
+            "previous": "Page précédente",
+            "next": "Page suivante",
+            "page": "Page",
+            "of": "de {pageCount}"
         },
         "ods-footer": {
             "block_1": {
