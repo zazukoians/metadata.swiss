@@ -20,6 +20,15 @@
         "ods_toc": {
             "contents": "Table des matières"
         },
+        "dataset_search": {
+            "search_placeholder": "Rechercher des jeux de données",
+            "search_button": "Rechercher",
+            "search_results": "Résultats de recherche",
+            "show_filters": "Afficher les filtres",
+            "sort": "Trier par",
+            "pages": "Pages",
+            "from": "de"
+        },
         "terms_of_use": {
             "ods_open": {
                 "condition_1": "Vous pouvez utiliser ce jeu de données à des fins non commerciales.",

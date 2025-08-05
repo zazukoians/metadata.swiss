@@ -20,6 +20,15 @@
         "ods_toc": {
             "contents": "Table of contents"
         },
+        "dataset_search": {
+            "search_placeholder": "Search datasets",
+            "search_button": "Search",
+            "search_results": "Search results",
+            "show_filters": "Show filters",
+            "sort": "Sort by",
+            "pages": "Pages",
+            "from": "of"
+        },
         "terms_of_use": {
             "ods_open": {
                 "condition_1": "You may use this dataset for non-commercial purposes.",

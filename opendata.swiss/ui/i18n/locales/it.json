@@ -20,6 +20,15 @@
         "ods_toc": {
             "contents": "Contenuti"
         },
+        "dataset_search": {
+            "search_placeholder": "Cerca set di dati",
+            "search_button": "Cerca",
+            "search_results": "Risultati della ricerca",
+            "show_filters": "Mostra filtri",
+            "sort": "Ordina per",
+            "pages": "Pagine",
+            "from": "di"
+        },
         "terms_of_use": {
             "ods_open": {
                 "condition_1": "Questo set di dati può essere utilizzato a fini non commerciali.",

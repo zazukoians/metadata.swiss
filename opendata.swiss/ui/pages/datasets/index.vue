@@ -5,7 +5,7 @@ import { useDatasetsSearch } from '../../app/piveau/search.js'
 import OdsBreadcrumbs from "../../app/components/OdsBreadcrumbs.vue";
 import {homePageBreadcrumb} from "../../app/composables/breadcrumbs";
 
-const { locale, t } = useI18n();
+const { locale, t} = useI18n();
 const localePath = useLocalePath()
 
 // 👇 Query parameters
@@ -66,15 +66,15 @@ const breadcrumbs = [
   <!-- search panel -->
    <section class="section section--default bg--secondary-50">
       <div class="container">
-         <h1 class="h1">Search Results</h1>
+         <h1 class="h1">{{ t('message.dataset_search.search_results') }}</h1>
          <div class="search search--large search--page-result">
             <div class="search__group">
-               <input id="search-input"  v-model="searchInput" class="search" placeholder="Search datasets" @keyup.enter="onSearch" type="search" label="Ämter filtern" autocomplete="off" >
-               <button href="false" type="button" class="btn btn--bare btn--lg btn--icon-only" aria-label="Search datasets" @click="onSearch">
+               <input id="search-input"  v-model="searchInput" class="search" :placeholder="t('message.dataset_search.search_placeholder')" @keyup.enter="onSearch" type="search" label="Ämter filtern" autocomplete="off" >
+               <button href="false" type="button" class="btn btn--bare btn--lg btn--icon-only" :aria-label="t('message.dataset_search.search_button')" @click="onSearch">
                   <svg viewBox="0 0 24 24" enable-background="new 0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="icon icon--base icon--Search btn__icon">
                      <path xmlns="http://www.w3.org/2000/svg" d="m13.3 12.8c1.9-2.2 1.7-5.6-.5-7.5s-5.6-1.7-7.5.5-1.7 5.6.5 7.5c2 1.7 4.9 1.7 6.9 0l6 6 .5-.5zm-4 1c-2.5 0-4.5-2-4.5-4.5s2-4.5 4.5-4.5 4.5 2 4.5 4.5-2 4.5-4.5 4.5z"></path>
                   </svg>
-                  <span class="btn__text">Ämter filtern</span>
+                  <span class="btn__text">{{ t('message.dataset_search.search_button') }}</span>
                </button>
             </div>
          </div>
@@ -83,11 +83,11 @@ const breadcrumbs = [
                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="icon icon--base icon--ChevronDown btn__icon">
                   <path xmlns="http://www.w3.org/2000/svg" d="m5.706 10.015 6.669 3.85 6.669-3.85.375.649-7.044 4.067-7.044-4.067z"></path>
                </svg>
-               <span class="btn__text">Filter anzeigen</span>
+               <span class="btn__text">{{ t('message.dataset_search.show_filters') }}</span>
             </button>
             <!---->
          </div>
-         <div class="filters__active"></div>
+         <div class="filters__active" />
       </div>
    </section>
    <!-- results -->
@@ -96,13 +96,13 @@ const breadcrumbs = [
       <div class="container gap--responsive">
          <div class="search-results search-results--grid" aria-live="polite" aria-busy="false">
             <div class="search-results__header">
-               <div class="search-results__header__left"><strong>{{ getSearchResultsCount }}</strong>Suchergebnisse </div>
+               <div class="search-results__header__left"><strong>{{ getSearchResultsCount }}</strong>{{ t('message.dataset_search.search_results') }} </div>
                <div class="search-results__header__right">
                   <div class="form__group__select">
                      <!---->
                      <div class="select select--bare">
                         <select id="select-6" class="input--outline input--sm" name="select-name">
-                           <option disabled="" selected="">Sortieren</option>
+                           <option disabled="" selected="">{{ t('message.dataset_search.sort') }}</option>
                            <option>nach Relevanz</option>
                            <option>by date (increasing)</option>
                            <option>by date (decreasing)</option>
@@ -116,7 +116,7 @@ const breadcrumbs = [
                      </div>
                      <!---->
                   </div>
-                  <div class="separator separator--vertical"></div>
+                  <div class="separator separator--vertical" />
                   <button href="false" type="button" class="btn btn--bare btn--sm btn--icon-only" aria-label="Display as list">
                      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="icon icon--base icon--List btn__icon">
                         <circle xmlns="http://www.w3.org/2000/svg" cx="5.20794" cy="7.78174" r=".875"></circle>
@@ -188,7 +188,7 @@ const breadcrumbs = [
             <!----><!---->
             <div class="pagination pagination--right">
                <input class="pagination__input input input--base input--outline" aria-label="pagination input" :value="queryParams.page ? queryParams.page + 1 : 1">
-               <div class="pagination__text">von {{ getSearchResultsPagesCount }} Seiten</div>
+               <div class="pagination__text">{{ t('message.dataset_search.from') }} {{ getSearchResultsPagesCount }} {{ t('message.dataset_search.pages') }}</div>
                <ul class="pagination_items">
                   <li>
                      <button type="button" class="btn btn--outline btn--icon-only" aria-label="Previous Page" :disabled="queryParams.page === 0" @click="previousPage">
