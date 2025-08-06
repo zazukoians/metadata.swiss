@@ -32,6 +32,7 @@
 <script setup lang="ts">
 import PaginationItem from './OdsPaginationItem.vue'
 import { computed } from 'vue'
+import type { RouteLocationNamedI18n } from 'vue-router'
 
 const currentPage = defineModel('currentPage', {
   type: Number,
@@ -66,7 +67,7 @@ const props = defineProps({
     default: () => '',
   },
   paginationItems: {
-    type: Array<{ icon?: string; label?: string; link?: any }>,
+    type: Array<{ icon?: string; label?: string; link: RouteLocationNamedI18n<string | number | symbol> }>,
     default: () => [],
   },
 })
