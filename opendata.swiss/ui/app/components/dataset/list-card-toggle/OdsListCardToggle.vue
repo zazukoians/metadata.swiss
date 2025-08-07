@@ -5,11 +5,12 @@
 
 <script setup lang="ts">
 import { ref, watch } from 'vue'
-import OdsListButton from './ListButton.vue'
-import OdsCardButton from './CardButton.vue'
+import OdsListButton from './OdsListButton.vue'
+import OdsCardButton from './OdsCardButton.vue'
 
-// Props & Emits
+
 const props = defineProps<{ modelValue: 'card' | 'list' }>()
+
 const emit = defineEmits<{
   (e: 'update:modelValue', value: 'card' | 'list'): void
 }>()

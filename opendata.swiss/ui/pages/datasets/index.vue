@@ -4,9 +4,9 @@ import { computed, reactive, ref, toRefs, watch } from 'vue'
 import { useDatasetsSearch } from '../../app/piveau/search'
 import OdsBreadcrumbs from "../../app/components/OdsBreadcrumbs.vue";
 import OdsPagination from "../../app/components/OdsPagination.vue";
-import OdsDatasetList from "../../app/components/dataset/DatasetList.vue";
-import OdsFilterButton from "../../app/components/dataset/FilterButton.vue";
-import OdsListCardToggle from "../../app/components/dataset/list-card-toggle/ListCardToggle.vue";
+import OdsDatasetList from "../../app/components/dataset/OdsDatasetList.vue";
+import OdsFilterButton from "../../app/components/dataset/OdsFilterButton.vue";
+import OdsListCardToggle from "../../app/components/dataset/list-card-toggle/OdsListCardToggle.vue";
 import OdsSearchIconButton from "../../app/components/OdsSearchIconButton.vue"
 import {homePageBreadcrumb} from "../../app/composables/breadcrumbs";
 import { useRoute } from 'vue-router'

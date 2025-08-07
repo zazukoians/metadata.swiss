@@ -3,7 +3,8 @@
   href="false"
   type="button"
   class="btn btn--bare btn--sm btn--icon-only"
-  aria-label="Display as grid"
+  :aria-label="t('message.ods-list-card-toggle.card_view')"
+  :title="t('message.ods-list-card-toggle.card_view')"
   @click="listType('select', 'card')"
   >
     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="icon icon--base icon--Apps btn__icon">
@@ -17,7 +18,7 @@
       <path xmlns="http://www.w3.org/2000/svg" d="m12.375 19.90056a2.29188 2.29188 0 1 1 2.292-2.29175 2.29456 2.29456 0 0 1 -2.292 2.29175zm0-3.83375a1.54188 1.54188 0 1 0 1.542 1.542 1.54379 1.54379 0 0 0 -1.542-1.542z" />
       <path xmlns="http://www.w3.org/2000/svg" d="m17.60889 19.90056a2.29188 2.29188 0 1 1 2.2915-2.29175 2.29456 2.29456 0 0 1 -2.2915 2.29175zm0-3.83375a1.54188 1.54188 0 1 0 1.5415 1.542 1.5438 1.5438 0 0 0 -1.5415-1.542z" />
     </svg>
-    <span class="btn__text">Display as grid</span>
+    <span class="btn__text">{{ t('message.ods-list-card-toggle.card_view') }}</span>
   </button>
 </template>
 
@@ -25,6 +26,7 @@
 import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()
+
 const listType = defineEmits<{
   (e: 'select', value: 'card'): void
 }>()
