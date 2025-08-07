@@ -1,4 +1,4 @@
 ---
-id: Vorbereiten
+section: Vorbereiten
 permalink: vorbereiten
 ---

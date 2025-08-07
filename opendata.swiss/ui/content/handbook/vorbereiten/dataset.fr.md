@@ -1,8 +1,8 @@
 ---
-id: Vorbereiten / Dataset
+section: Vorbereiten
 title: Pour chaque jeu de données
 breadcrumb_title: jeu de données
-permalink: vorbereiten/dataset
+permalink: dataset
 ---
 
 ## Étapes nécessaires avant la publication d’un jeu de données

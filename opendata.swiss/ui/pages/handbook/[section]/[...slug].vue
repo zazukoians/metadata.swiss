@@ -1,39 +1,27 @@
 <script lang="ts" setup>
-import OdsBreadcrumbs from "../../app/components/OdsBreadcrumbs.vue";
+import OdsBreadcrumbs from "~/components/OdsBreadcrumbs.vue";
+import toProperCase from "~/lib/toProperCase.js";
+import { loadHandbookBreadcrumb } from "~/lib/breadcrumbs";
 
 const { locale, t } = useI18n();
 const route = useRoute()
 
+const section = toProperCase(route.params.section)
+
 const breadcrumbs = await useBreadcrumbs({
   route,
   locale,
-  loadContent({ path }) {
-    return queryCollection('handbook')
-      .select('id', 'title', 'breadcrumb_title')
-      .where('path', 'LIKE',`%.${locale.value}`)
-      .orWhere(q => q
-        .where('permalink', '=', path.replace(/^\/handbook\//, ''))
-        .where('path', '=',`${path}.${locale.value}`)
-        .where('path', '=',`${path}/index.${locale.value}`)
-      )
-  }
+  loadContent: loadHandbookBreadcrumb(section, locale)
 })
 
 const { data } = await useAsyncData(route.path, () => {
-  const slug = Array.isArray(route.params.slug) ? route.params.slug.join('/') : route.params.slug
+  const slug = route.params.slug.join('/')
 
-  let query = queryCollection('handbook')
-
-  if(slug) {
-    query = query
-      .where('path', 'LIKE',`%.${locale.value}`)
-      .andWhere(q => q.where('permalink', '=', slug))
-  } else {
-    query = query
-      .where('path', 'LIKE',`%index.${locale.value}`)
-  }
-
-  return query.first()
+  return queryCollection('handbook')
+    .where('path', 'LIKE',`%.${locale.value}`)
+    .where('section', '=', section)
+    .andWhere(q => q.where('permalink', '=', slug))
+    .first()
 })
 
 useSeoMeta({

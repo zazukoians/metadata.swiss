@@ -1,7 +1,13 @@
+import type { CollectionQueryBuilder } from "@nuxt/content";
+
+export interface LoadBreadcrumbContent {
+  (arg: { path: string }, index: number): CollectionQueryBuilder<any>
+}
+
 interface Options {
   route: ReturnType<typeof useRoute>;
   locale: ReturnType<typeof useI18n>['locale'];
-  loadContent: (arg: { path: string }) => ReturnType<typeof queryCollection>
+  loadContent: LoadBreadcrumbContent
 }
 
 export async function useBreadcrumbs({route, locale, loadContent}: Options) {
@@ -12,7 +18,7 @@ export async function useBreadcrumbs({route, locale, loadContent}: Options) {
 
   while (segments.length) {
     const path = `/` + segments.join('/')
-    const { id, breadcrumb_title, title } = await loadContent({ path }).first() || {}
+    const { id, breadcrumb_title, title } = await loadContent({ path }, segments.length - 1).first() || {}
     breadcrumbs.unshift({
       id, title: breadcrumb_title || title || path, path
     })
