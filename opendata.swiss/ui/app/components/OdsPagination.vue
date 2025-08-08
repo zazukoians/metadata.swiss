@@ -84,7 +84,7 @@ const computedClasses = computed(() => {
   return base
 })
 
-function checkBoundriesAndEmit(event: Event) {
+function checkBoundariesAndEmit(event: Event) {
   const input = event.target as HTMLInputElement
   let page = parseInt(input.value, 10)
 
