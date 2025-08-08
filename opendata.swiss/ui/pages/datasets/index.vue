@@ -7,7 +7,6 @@ import OdsPagination from "../../app/components/OdsPagination.vue";
 import OdsDatasetList from "../../app/components/dataset/OdsDatasetList.vue";
 import OdsFilterButton from "../../app/components/dataset/OdsFilterButton.vue";
 import OdsListCardToggle from "../../app/components/dataset/list-card-toggle/OdsListCardToggle.vue";
-import OdsSearchIconButton from "../../app/components/OdsSearchIconButton.vue"
 import {homePageBreadcrumb} from "../../app/composables/breadcrumbs";
 import { useRoute } from 'vue-router'
 import { useI18n } from 'vue-i18n'
@@ -115,7 +114,15 @@ watch(
                 class="search"
                 @keyup.enter="onSearch"
               >
-              <OdsSearchIconButton @click="onSearch" />
+              <OdsButton
+                variant="bare"
+                :title="t('message.dataset_search.search_button')"
+                size="lg"
+                icon-only
+                @click="onSearch"
+              >
+                <SvgIcon icon="Search" role="btn" />
+              </OdsButton>
             </div>
          </div>
          <div class="search__filters">
