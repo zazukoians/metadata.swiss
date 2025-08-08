@@ -1,10 +1,13 @@
 <template>
     <div class="ods-license">
+      <h2 class="download-item__title">{{ t(`message.terms_of_use.ods_${termsName}.title`) }}</h2>
+
       <img
         :src="imageSrc"
         :alt="t(`message.terms_of_use.ods_${termsName}.title`)"
         :title="t(`message.terms_of_use.ods_${termsName}.title`)">
     </div>
+
   <ul>
     <li>{{ t(`message.terms_of_use.ods_${termsName}.condition_1`) }}</li>
     <li>{{ t(`message.terms_of_use.ods_${termsName}.condition_2`) }}</li>
@@ -27,7 +30,6 @@ const props = defineProps({
 
 const termsName = computed(() => {
   const name = props.name;
-  console.log(name);
   switch (name) {
     case 'http://dcat-ap.ch/vocabulary/licenses/terms_by':
       return 'by';
@@ -48,11 +50,26 @@ const imageSrc = computed(() => `/img/terms-of-use/terms_${termsName.value}.png`
 
 <style lang="scss" scoped>
 .ods-license {
-   height: 62px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+
 }
 img {
     height: 100%;
-    width: auto;
-    margin: 0 auto;
+
+}
+
+ul {
+  margin-top: 24px;
+  margin-left: 0;
+  padding: 0 !important;
+}
+
+li {
+  list-style-type: none;
+  margin-bottom: 0;
+  margin-top: 44px !important;
 }
 </style>
