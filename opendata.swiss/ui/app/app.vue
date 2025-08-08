@@ -12,13 +12,11 @@
           </Transition>
           <OdsHeader :navigation-items="navigationItems" @mobile-menu-state-change="mobileMenuOpened" />
           <v-main>
-            <v-container :style="'min-height: calc(100vh - 64px);'">
               <Transition name="fade-content">
-                <div v-if="!isMobileMenuOpen">
+                <div v-if="!isMobileMenuOpen" style="min-height: calc(100vh - 128px);">
                   <NuxtPage  :page-key="route => route.fullPath" />
                 </div>
               </Transition>
-            </v-container>
           </v-main>
           <OdsFooter />
           <OdsBottomFooter />

@@ -25,9 +25,7 @@
             "search_button": "Rechercher",
             "search_results": "Résultats de recherche",
             "show_filters": "Afficher les filtres",
-            "sort": "Trier par",
-            "pages": "Pages",
-            "from": "de"
+            "sort": "Trier par"
         },
         "terms_of_use": {
             "ods_open": {
@@ -67,7 +65,12 @@
             "previous": "Page précédente",
             "next": "Page suivante",
             "page": "Page",
-            "of": "de {pageCount}"
+            "of": "de {pageCount}",
+            "input_label": "Saisie de la page"
+        },
+        "ods-list-card-toggle": {
+            "list_view": "Afficher en liste",
+            "card_view": "Afficher en grille"
         },
         "ods-footer": {
             "block_1": {
