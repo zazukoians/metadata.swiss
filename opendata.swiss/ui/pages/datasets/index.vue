@@ -89,6 +89,16 @@ const breadcrumbs = [
   }
 ]
 
+const notFirstPage = route.query.page && Number(route.query.page) > 1
+const hasOtherQueryParams = Object.keys(route.query).length > 1 || (route.query.q && route.query.q !== '')
+if (notFirstPage || hasOtherQueryParams) {
+  breadcrumbs.push(
+    {
+      title: t('message.dataset_search.search_results'),
+      route
+    }
+  )
+}
 
 watch(
   () => route.query.page,
@@ -98,11 +108,11 @@ watch(
 
 <template>
   <div>
-<!--
+
   <header id="main-header">
     <OdsBreadcrumbs :breadcrumbs="breadcrumbs" />
   </header>
--->
+
  <main id="main-content">
 
   <!-- search panel -->
@@ -165,7 +175,7 @@ watch(
             <div v-if="isFetching" class="is-fetching">
               Fetching...
             </div>
-            <OdsDatasetList v-else :items="getSearchResultsEnhanced" :list-type="listType" />
+            <OdsDatasetList v-else :items="getSearchResultsEnhanced" :list-type="listType" :search-params="route.query" />
             <div class="pagination pagination--right">
               <OdsPagination
                 :current-page="(queryParams.page ?? 0) + 1"

@@ -25,12 +25,12 @@
                       <span class="meta-info__item">Topic one</span><span class="meta-info__item">Topic two</span>
                     </template>
                     <template #footer-action>
-                      <NuxtLink :to="localePath({ name: 'datasets-datasetId', params: { datasetId: props.item.getId } })" type="false" class="btn btn--outline btn--icon-only" aria-label="false">
+                      <NuxtLinkLocale :to="{ name: 'datasets-datasetId', params: { datasetId: props.item.getId }, query: searchParams }" type="false" class="btn btn--outline btn--icon-only" aria-label="false">
                         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="icon icon--base icon--ArrowRight btn__icon">
                           <path xmlns="http://www.w3.org/2000/svg" d="m16.444 19.204 4.066-7.044-4.066-7.044-.65.375 3.633 6.294h-15.187v.75h15.187l-3.633 6.294z" />
                         </svg>
                         <span class="btn__text">Weiterlesen</span>
-                      </NuxtLink>
+                      </NuxtLinkLocale>
                     </template>
                   </OdsCard>
 
@@ -39,13 +39,9 @@
 <script setup lang="ts">
 import type { Dataset } from '~/model/dataset';
 
-const localePath = useLocalePath()
-
-
 interface Props {
   item: Dataset
+  searchParams?: Record<string, string>
 }
 const props = defineProps<Props>()
-
-
 </script>

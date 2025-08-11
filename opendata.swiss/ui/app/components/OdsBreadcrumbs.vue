@@ -12,7 +12,7 @@ const { breadcrumbs } = defineProps({
     <nav class="breadcrumb-navigation">
       <ul>
         <li v-for="(item, index) in breadcrumbs" :key="item.id">
-          <NuxtLinkLocale :to="item.path">
+          <NuxtLinkLocale :to="item.route || item.path">
             <SvgIcon
               v-if="index > 0"
               icon="ChevronRight"

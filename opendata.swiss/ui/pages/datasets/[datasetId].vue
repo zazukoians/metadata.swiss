@@ -21,11 +21,22 @@ const breadcrumbs = [
     title: t('message.header.navigation.datasets'),
     path: '/datasets',
   },
-  {
-    title: resultEnhanced.value?.getTitle,
-    path: route.path,
-  }
 ]
+
+if(route.query.search || typeof route.query.search === 'string') {
+  breadcrumbs.push({
+    title: t('message.dataset_search.search_results'),
+    route: {
+      path: '/datasets',
+      query: Object.fromEntries(new URLSearchParams(decodeURIComponent(route.query.search)))
+    }
+  })
+}
+
+breadcrumbs.push({
+  title: resultEnhanced.value?.getTitle,
+  path: route.path,
+})
 </script>
 
 <template>
