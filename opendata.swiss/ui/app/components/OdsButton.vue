@@ -10,19 +10,17 @@
 </template>
 
 <script setup lang="ts">
-const { title, ...props } = withDefaults(defineProps<{
+const { title, iconOnly = false, ...props } = defineProps<{
   title: string
   variant?: 'outline' | 'bare' | 'filled' | 'outline-negative' | 'bare-negative' | 'link' | 'link-negative'
   size?: 'sm' | 'md' | 'lg'
   iconOnly?: boolean
-}>(), {
-  iconOnly: false
-})
+}>()
 
 const classes = computed(() => {
   const classes = []
 
-  if(props.iconOnly) {
+  if(iconOnly) {
     classes.push('btn--icon-only')
   }
 
