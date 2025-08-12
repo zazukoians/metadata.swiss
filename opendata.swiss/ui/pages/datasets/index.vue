@@ -16,7 +16,6 @@ const router = useRouter()
 const route = useRoute()
 
 const { locale, t} = useI18n();
-const localePath = useLocalePath()
 
 // 👇 Query parameters
 
