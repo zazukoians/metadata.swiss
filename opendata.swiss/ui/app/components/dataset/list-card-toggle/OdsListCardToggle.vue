@@ -1,13 +1,28 @@
 <template>
-  <OdsListButton @select="updateListType('list')" />
-  <OdsCardButton @select="updateListType('card')" />
+  <OdsButton
+    variant="bare"
+    :title="t('message.ods-list-card-toggle.card_view')"
+    size="sm"
+    icon-only
+    @click="updateListType('list')"
+  >
+    <SvgIcon icon="List" role="btn" />
+  </OdsButton>
+  <OdsButton
+    variant="bare"
+    :title="t('message.ods-list-card-toggle.card_view')"
+    size="sm"
+    icon-only
+    @click="updateListType('card')"
+  >
+    <SvgIcon icon="Apps" role="btn" />
+  </OdsButton>
 </template>
 
 <script setup lang="ts">
 import { ref, watch } from 'vue'
-import OdsListButton from './OdsListButton.vue'
-import OdsCardButton from './OdsCardButton.vue'
 
+const { t } = useI18n()
 
 const props = defineProps<{ modelValue: 'card' | 'list' }>()
 
