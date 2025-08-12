@@ -2,10 +2,7 @@
   <ul v-if="props.dataset && props.dataset.getDistributions" class="download-items">
     <li v-for="distribution in props.dataset.getDistributions" :key="distribution.id" >
       <a v-for="link in distribution.downloadUrls" :key="link" :href="link"  class="download-item"  target="_blank">
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="icon icon--xl icon--Download download-item__icon">
-            <path xmlns="http://www.w3.org/2000/svg" d="m19.419 13.698-.375-.649-6.294 3.634v-12.228h-.75v12.228l-6.294-3.634-.375.649 7.044 4.067z" />
-            <path xmlns="http://www.w3.org/2000/svg" d="m6.00576 19.91649h12.76855v.75h-12.76855z"/>
-          </svg>
+          <SvgIcon icon="Download" size="xl" role="download-item" />
           <div>
             <h2 class="download-item__title">{{ distribution.title }}</h2>
             <!---->

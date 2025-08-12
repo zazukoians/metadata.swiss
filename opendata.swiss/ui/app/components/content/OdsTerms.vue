@@ -27,7 +27,6 @@ const props = defineProps({
 
 const termsName = computed(() => {
   const name = props.name;
-  console.log(name);
   switch (name) {
     case 'http://dcat-ap.ch/vocabulary/licenses/terms_by':
       return 'by';
