@@ -35,7 +35,10 @@ if(route.query.search || typeof route.query.search === 'string') {
 
 breadcrumbs.push({
   title: resultEnhanced.value?.getTitle,
-  path: route.path,
+  path: {
+    name: 'datasets-datasetId',
+    params: { datasetId: datasetId.value },
+  },
 })
 </script>
 
