@@ -99,11 +99,6 @@ if (notFirstPage || hasOtherQueryParams) {
     }
   )
 }
-
-watch(
-  () => route.query.page,
-  (newPage) => goToPage(newPage)
-)
 </script>
 
 <template>
