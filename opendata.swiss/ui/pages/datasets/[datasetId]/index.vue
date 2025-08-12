@@ -21,30 +21,35 @@ const { isSuccess, resultEnhanced } = useResource(datasetId)
 
 const node = computed(() => definePropertyNode({ id: 'root', data: resultEnhanced.value?.getPropertyTable }, { compact: true, maxDepth: 2 }))
 
-const breadcrumbs = [
-  await homePageBreadcrumb(locale),
-  {
-    title: t('message.header.navigation.datasets'),
-    path: '/datasets',
-  },
-]
-
-if(route.query.search || typeof route.query.search === 'string') {
-  breadcrumbs.push({
-    title: t('message.dataset_search.search_results'),
-    route: {
+const homePage = await homePageBreadcrumb(locale)
+const breadcrumbs = computed(() => {
+  const result = [
+    homePage,
+    {
+      title: t('message.header.navigation.datasets'),
       path: '/datasets',
-      query: Object.fromEntries(new URLSearchParams(decodeURIComponent(route.query.search)))
-    }
-  })
-}
+    },
+  ]
 
-breadcrumbs.push({
-  title: resultEnhanced.value?.getTitle,
-  path: {
-    name: 'datasets-datasetId',
-    params: { datasetId: datasetId.value },
-  },
+  if(route.query.search || typeof route.query.search === 'string') {
+    result.push({
+      title: t('message.dataset_search.search_results'),
+      route: {
+        path: '/datasets',
+        query: Object.fromEntries(new URLSearchParams(decodeURIComponent(route.query.search)))
+      }
+    })
+  }
+
+  result.push({
+    title: resultEnhanced.value?.getTitle,
+    path: {
+      name: 'datasets-datasetId',
+      params: { datasetId: datasetId.value },
+    },
+  })
+
+  return result
 })
 </script>
 
