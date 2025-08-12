@@ -1,15 +1,18 @@
 <script setup lang="ts">
 import { definePropertyNode, PropertyTable, PropertyTableNode } from '@piveau/sdk-vue'
 import { computed } from 'vue'
-import { useRoute } from 'vue-router'
-import { useDatasetsSearch } from '../../app/piveau/search.js'
-import { homePageBreadcrumb } from "../../app/composables/breadcrumbs";
-import OdsBreadcrumbs from "../../app/components/OdsBreadcrumbs.vue";
-import OdsDetailTermsOfUse from '../../app/components/dataset-detail/OdsDetailTermsOfUse.vue'
-import OdsDetailsTable from '../../app/components/dataset-detail/OdsDetailsTable.vue'
-import OdsTagList from '../../app/components/dataset-detail/OdsTagList.vue'
+import { useRoute, useRouter } from 'vue-router'
+import { useDatasetsSearch } from '../../../app/piveau/search'
+import { homePageBreadcrumb } from "../../../app/composables/breadcrumbs";
+import OdsBreadcrumbs from "../../../app/components/OdsBreadcrumbs.vue";
+import OdsDetailTermsOfUse from '../../../app/components/dataset-detail/OdsDetailTermsOfUse.vue'
+import OdsDetailsTable from '../../../app/components/dataset-detail/OdsDetailsTable.vue'
+import OdsTagList from '../../../app/components/dataset-detail/OdsTagList.vue'
+import OdsDownloadsList from '../../../app/components/dataset-detail/OdsDownloadsList.vue'
+
 const { locale, t } = useI18n();
 const route = useRoute()
+const router = useRouter()
 const datasetId = computed(() => route.params.datasetId as string)
 
 const { useResource } = useDatasetsSearch()
@@ -61,108 +64,27 @@ const breadcrumbs = [
             <div class="container__mobile">
                <div class="box">
                   <h2 class="h5">Download</h2>
-                  <ul class="download-items">
-                     <li>
-                        <a class="download-item" href="/documents/dummy.pdf" download="dummy.pdf">
-                           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="icon icon--xl icon--Download download-item__icon">
-                              <path xmlns="http://www.w3.org/2000/svg" d="m19.419 13.698-.375-.649-6.294 3.634v-12.228h-.75v12.228l-6.294-3.634-.375.649 7.044 4.067z"></path>
-                              <path xmlns="http://www.w3.org/2000/svg" d="m6.00576 19.91649h12.76855v.75h-12.76855z"></path>
-                           </svg>
-                           <div>
-                              <h2 class="download-item__title">Deutsch</h2>
-                              <!---->
-                              <p class="meta-info download-item__meta-info"><span class="meta-info__item">PDF</span><span class="meta-info__item">524 kB</span></p>
-                           </div>
-                        </a>
-                     </li>
-                     <li>
-                        <a class="download-item" href="/documents/dummy.pdf" download="dummy.pdf">
-                           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="icon icon--xl icon--Download download-item__icon">
-                              <path xmlns="http://www.w3.org/2000/svg" d="m19.419 13.698-.375-.649-6.294 3.634v-12.228h-.75v12.228l-6.294-3.634-.375.649 7.044 4.067z"></path>
-                              <path xmlns="http://www.w3.org/2000/svg" d="m6.00576 19.91649h12.76855v.75h-12.76855z"></path>
-                           </svg>
-                           <div>
-                              <h2 class="download-item__title">Französisch</h2>
-                              <!---->
-                              <p class="meta-info download-item__meta-info"><span class="meta-info__item">PDF</span><span class="meta-info__item">524 kB</span></p>
-                           </div>
-                        </a>
-                     </li>
-                     <li>
-                        <a class="download-item pb-0 border-b-0" href="/documents/dummy.pdf" download="dummy.pdf">
-                           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="icon icon--xl icon--Download download-item__icon">
-                              <path xmlns="http://www.w3.org/2000/svg" d="m19.419 13.698-.375-.649-6.294 3.634v-12.228h-.75v12.228l-6.294-3.634-.375.649 7.044 4.067z"></path>
-                              <path xmlns="http://www.w3.org/2000/svg" d="m6.00576 19.91649h12.76855v.75h-12.76855z"></path>
-                           </svg>
-                           <div>
-                              <h2 class="download-item__title">English</h2>
-                              <!---->
-                              <p class="meta-info download-item__meta-info"><span class="meta-info__item">PDF</span><span class="meta-info__item">524 kB</span></p>
-                           </div>
-                        </a>
-                     </li>
-                  </ul>
+                  <OdsDownloadsList :dataset="resultEnhanced" />
                </div>
                <div class="box">
                   <h2 class="h5">{{ t(`message.header.navigation.terms_of_use`) }}</h2>
                   <OdsDetailTermsOfUse v-for="value in resultEnhanced?.getLicenses" :key="value" :name="value" />
                </div>
             </div>
-            <h2 class="h2">Details</h2>
-            <OdsDetailsTable />
+            <h2 class="h2">{{ t('message.dataset_detail.additional_information') }}</h2>
+            <OdsDetailsTable :root-node="node"/>
             <div>
-               <h2 class="h2">Categories</h2>
+               <h2 class="h2">{{ t('message.dataset_detail.categories') }}</h2>
                <div>
                   <OdsTagList :tags="resultEnhanced?.getCategories ?? []" />
-
                </div>
             </div>
          </div>
          <div class="hidden container__aside md:block">
             <div id="aside-content" class="sticky sticky--top">
                <div class="box">
-                  <h2 class="h5">Download</h2>
-                  <ul class="download-items">
-                     <li>
-                        <a class="download-item" href="/documents/dummy.pdf" download="dummy.pdf">
-                           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="icon icon--xl icon--Download download-item__icon">
-                              <path xmlns="http://www.w3.org/2000/svg" d="m19.419 13.698-.375-.649-6.294 3.634v-12.228h-.75v12.228l-6.294-3.634-.375.649 7.044 4.067z"></path>
-                              <path xmlns="http://www.w3.org/2000/svg" d="m6.00576 19.91649h12.76855v.75h-12.76855z"></path>
-                           </svg>
-                           <div>
-                              <h2 class="download-item__title">Deutsch</h2>
-                              <!---->
-                              <p class="meta-info download-item__meta-info"><span class="meta-info__item">PDF</span><span class="meta-info__item">524 kB</span></p>
-                           </div>
-                        </a>
-                     </li>
-                     <li>
-                        <a class="download-item" href="/documents/dummy.pdf" download="dummy.pdf">
-                           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="icon icon--xl icon--Download download-item__icon">
-                              <path xmlns="http://www.w3.org/2000/svg" d="m19.419 13.698-.375-.649-6.294 3.634v-12.228h-.75v12.228l-6.294-3.634-.375.649 7.044 4.067z"></path>
-                              <path xmlns="http://www.w3.org/2000/svg" d="m6.00576 19.91649h12.76855v.75h-12.76855z"></path>
-                           </svg>
-                           <div>
-                              <h2 class="download-item__title">Französisch</h2>
-                              <!---->
-                              <p class="meta-info download-item__meta-info"><span class="meta-info__item">PDF</span><span class="meta-info__item">524 kB</span></p>
-                           </div>
-                        </a>
-                     </li>
-                     <li>
-                        <a class="download-item pb-0 border-b-0" href="/documents/dummy.pdf" download="dummy.pdf">
-                           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="icon icon--xl icon--Download download-item__icon">
-                              <path xmlns="http://www.w3.org/2000/svg" d="m19.419 13.698-.375-.649-6.294 3.634v-12.228h-.75v12.228l-6.294-3.634-.375.649 7.044 4.067z"></path>
-                              <path xmlns="http://www.w3.org/2000/svg" d="m6.00576 19.91649h12.76855v.75h-12.76855z"></path>
-                           </svg>
-                           <div>
-                              <h2 class="download-item__title">English</h2>
-                              <!---->
-                              <p class="meta-info download-item__meta-info"><span class="meta-info__item">PDF</span><span class="meta-info__item">524 kB</span></p>
-                           </div>
-                        </a>
-                     </li>
-                  </ul>
+                  <h2 class="h5">{{ t('message.dataset_detail.go_to_resource') }}</h2>
+                  <OdsDownloadsList :dataset="resultEnhanced"/>
                </div>
                <div class="box">
                   <h2 class="h5">{{ t(`message.header.navigation.terms_of_use`) }}</h2>
@@ -226,12 +148,12 @@ const breadcrumbs = [
                   <div class="card__footer card__footer--icon-only">
                      <!---->
                      <div class="card__footer__action">
-                        <a href="#" type="false" class="btn btn--outline btn--icon-only" aria-label="false">
+                        <a class="btn btn--outline btn--icon-only" aria-label="false" @click="router.back()" >
                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="icon icon--base icon--ArrowRight btn__icon">
-                              <path xmlns="http://www.w3.org/2000/svg" d="m16.444 19.204 4.066-7.044-4.066-7.044-.65.375 3.633 6.294h-15.187v.75h15.187l-3.633 6.294z"></path>
+                              <path xmlns="http://www.w3.org/2000/svg" d="m16.444 19.204 4.066-7.044-4.066-7.044-.65.375 3.633 6.294h-15.187v.75h15.187l-3.633 6.294z" />
                            </svg>
                            <span class="btn__text">Weiterlesen</span>
-                        </a>
+                          </a>
                      </div>
                   </div>
                </div>

@@ -29,10 +29,13 @@
         },
         "dataset_detail": {
             "dataset": "Datensatz",
+            "distribution": "Verteilung",
+            "additional_information": "Zusätzliche Informationen",
             "published_on": "publiziert am",
             "modified_on": "zuletzt aktualisiert am",
-            "publisher": "Herausgeber",
-            "contact_points": "Kontaktstellen"
+            "categories": "Kategorien",
+            "download": "Download",
+            "go_to_resource": "Gehe zur Ressource"
         },
         "terms_of_use": {
             "ods_open": {

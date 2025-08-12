@@ -19,14 +19,11 @@
 
 <script setup lang="ts">
 
-import type { PropertyTableEntry } from '@piveau/sdk-vue';
+import type { PropertyTableEntry, PropertyTableEntryNode } from '@piveau/sdk-vue';
 import OdsExternalLink from '@/components/ExternalLink.vue'
-import { definePropertyNode } from '@piveau/sdk-vue'
 import { computed } from 'vue'
-import { useRoute } from 'vue-router'
 
 
-import { useDatasetsSearch } from '../../piveau/search'
 
 interface TableEntry {
   id: string;
@@ -36,17 +33,19 @@ interface TableEntry {
   type: 'value' | 'href';
 }
 
-const route = useRoute()
-const datasetId = computed(() => route.params.datasetId as string)
+interface Props {
+  rootNode: PropertyTableEntryNode
+}
 
-const { useResource } = useDatasetsSearch()
-const { resultEnhanced } = useResource(datasetId)
+const props = defineProps<Props>()
+
+
 
 
 
 const tableEntries = computed(() => {
-  const nodeTree = definePropertyNode({ id: 'root', data: resultEnhanced.value?.getPropertyTable }, { compact: true, maxDepth: 5 })
-  const flattenedNodes = flattenNode(nodeTree);
+//  const nodeTree = definePropertyNode({ id: 'root', data: resultEnhanced.value?.getPropertyTable }, { compact: true, maxDepth: 5 })
+  const flattenedNodes = flattenNode(props.rootNode);
   return flattenedNodes;
 })
 

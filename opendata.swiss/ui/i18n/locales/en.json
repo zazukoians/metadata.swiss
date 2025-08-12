@@ -27,6 +27,16 @@
             "show_filters": "Show filters",
             "sort": "Sort by"
         },
+        "dataset_detail": {
+            "dataset": "Dataset",
+            "distribution": "Distribution",
+            "additional_information": "Additional information",
+            "published_on": "Published on",
+            "modified_on": "Last updated on",
+            "categories": "Categories",
+            "download": "Download",
+            "go_to_resource": "Go to resource"
+        },
         "terms_of_use": {
             "ods_open": {
                 "title": "Open use",

@@ -27,6 +27,16 @@
             "show_filters": "Afficher les filtres",
             "sort": "Trier par"
         },
+        "dataset_detail": {
+            "dataset": "Jeu de données",
+            "distribution": "Distribution",
+            "additional_information": "Informations supplémentaires",
+            "published_on": "Publié le",
+            "modified_on": "Dernière mise à jour le",
+            "categories": "Catégories",
+            "download": "Télécharger",
+            "go_to_resource": "Aller à la ressource"
+        },
         "terms_of_use": {
             "ods_open": {
                 "title": "Utilisation libre",
