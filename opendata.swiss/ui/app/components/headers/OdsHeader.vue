@@ -60,6 +60,7 @@ function isChildPage({ to }: OdsNavTabItem) {
 </script>
 
 <template>
+  <NuxtLoadingIndicator color="red" />
   <div id="top-header-id" class="top-header">
     <div class="container container--flex">
       <div class="logo" to="/" aria-label="Home">

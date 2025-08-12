@@ -9,7 +9,7 @@ export function useDatasetsSearch() {
     baseUrl: 'https://piveau-hub-search-ln.zazukoians.org/',
     index: 'dataset',
     indexDetails: 'datasets',
-    facets: ['categories', 'publisher', 'catalog', 'format', 'license'],
+    facets: ['categories', 'publisher', 'catalog', 'format', 'license', 'keywords'],
     schema: schemaDataset,
   }, dcatApDataset().setup)
 }
