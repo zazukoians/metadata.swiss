@@ -27,23 +27,37 @@
             "show_filters": "Afficher les filtres",
             "sort": "Trier par"
         },
+        "dataset_detail": {
+            "dataset": "Jeu de données",
+            "distribution": "Distribution",
+            "additional_information": "Informations supplémentaires",
+            "published_on": "Publié le",
+            "modified_on": "Dernière mise à jour le",
+            "categories": "Catégories",
+            "download": "Télécharger",
+            "go_to_resource": "Aller à la ressource"
+        },
         "terms_of_use": {
             "ods_open": {
+                "title": "Utilisation libre",
                 "condition_1": "Vous pouvez utiliser ce jeu de données à des fins non commerciales.",
                 "condition_2": "Vous pouvez utiliser ce jeu de données à des fins commerciales.",
                 "condition_3": "Nous vous recommandons d’indiquer la source (auteur, titre et lien vers le jeu de données)."
             },
             "ods_by": {
+                "title": "Utilisation libre. Obligation d’indiquer la source.",
                 "condition_1": "Vous pouvez utiliser ce jeu de données à des fins non commerciales.",
                 "condition_2": "Vous pouvez utiliser ce jeu de données à des fins commerciales.",
                 "condition_3": "L’indication de la source (auteur, titre et lien vers le jeu de données) est obligatoire."
             },
             "ods_ask": {
+                "title": "Utilisation libre. Utilisation à des fins commerciales uniquement avec l’autorisation du fournisseur des données.",
                 "condition_1": "Vous pouvez utiliser ce jeu de données à des fins non commerciales.",
                 "condition_2": "Vous pouvez utiliser ce jeu de données à des fins commerciales, sous réserve de l’autorisation du fournisseur des données.",
                 "condition_3": "Nous vous recommandons d’indiquer la source (auteur, titre et lien vers le jeu de données)."
             },
             "ods_by_ask": {
+                "title": "Utilisation libre. Obligation d’indiquer la source. Utilisation commerciale uniquement avec l’autorisation du fournisseur des données.",
                 "condition_1": "Vous pouvez utiliser ce jeu de données à des fins non commerciales.",
                 "condition_2": "Vous pouvez utiliser ce jeu de données à des fins commerciales, sous réserve que vous ayez reçu l’autorisation du fournisseur des données.",
                 "condition_3": "L’indication de la source (auteur, titre et lien vers le jeu de données) est obligatoire."
