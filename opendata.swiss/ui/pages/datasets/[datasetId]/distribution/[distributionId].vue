@@ -32,7 +32,7 @@ const node = computed(() => {
   return rootNode
 })
 
-const breadcrumbs = [
+const _breadcrumbs = [
   await homePageBreadcrumb(locale),
   {
     title: t('message.header.navigation.datasets'),

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { definePropertyNode, PropertyTable, PropertyTableNode } from '@piveau/sdk-vue'
+import { definePropertyNode } from '@piveau/sdk-vue'
 import { computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useDatasetsSearch } from '../../../app/piveau/search'
@@ -9,6 +9,7 @@ import OdsDetailTermsOfUse from '../../../app/components/dataset-detail/OdsDetai
 import OdsDetailsTable from '../../../app/components/dataset-detail/OdsDetailsTable.vue'
 import OdsTagList from '../../../app/components/dataset-detail/OdsTagList.vue'
 import OdsDownloadsList from '../../../app/components/dataset-detail/OdsDownloadsList.vue'
+import { useI18n } from 'vue-i18n';
 
 const { locale, t } = useI18n();
 const route = useRoute()
@@ -34,6 +35,7 @@ const breadcrumbs = [
 </script>
 
 <template>
+  <div>
   <header id="main-header">
     <OdsBreadcrumbs :breadcrumbs="breadcrumbs" />
   </header>
@@ -161,58 +163,10 @@ const breadcrumbs = [
          </div>
       </div>
    </section>
-</main>
-<pre>{{ resultEnhanced }}</pre>
-  <div class="dataset-details-page">
-    <div v-if="isSuccess">
-      <h1>{{ resultEnhanced?.getTitle }}</h1>
-      <section class="dataset-description">
-        <hr>
-        <p>{{ resultEnhanced?.getDescription }}</p>
-        <hr>
-      </section>
-      <section class="dataset-distributions">
-        <h2>Distributions</h2>
-        <div class="distributions-list">
-          <div v-for="distribution in resultEnhanced?.getDistributions" :key="distribution.id" class="distribution-card">
-            <h3>{{ distribution.title }}</h3>
-            <p>{{ distribution.description }}</p>
-            <ul v-if="distribution.accessUrls.length > 0" class="distribution-access-urls">
-              <li><a v-for="(link, i) in distribution.accessUrls" :key="`accessUrl@${i}`" :href="link" target="_blank">{{ link }}</a></li>
-            </ul>
-            <ul v-if="distribution.downloadUrls.length > 0" class="distribution-download-urls">
-              <li><a v-for="(link, i) in distribution.downloadUrls" :key="`downloadUrl@${i}`" :href="link" target="_blank">{{ link }}</a></li>
-            </ul>
-          </div>
-        </div>
-      </section>
-      <hr>
-      <section class="dataset-distributions">
-        <h2>More information</h2>
-        <PropertyTable
-          v-slot="{ nodes }"
-          as="div"
-          class="property-table"
-          :node="node"
-        >
-          <PropertyTableNode :nodes="nodes">
-            <template #title="{ title, depth }">
-              <span :class="{ 'font-medium': depth <= 0 }"> {{ title }} </span>
-            </template>
-            <template #item="{ data, depth }">
-              <div v-if="data.type === 'node' && depth >= 1" class="property-table-nested">
-                <PropertyTableNode :nodes="data.data" :depth="depth + 1">
-                  <template #title="{ title }">
-                    <span class="font-small">{{ title }}</span>
-                  </template>
-                </PropertyTableNode>
-              </div>
-            </template>
-          </PropertyTableNode>
-        </PropertyTable>
-      </section>
-    </div>
-  </div>
+   <pre>{{ resultEnhanced }}</pre>
+  </main>
+</div>
+
 </template>
 
 <style lang="scss" scoped>
