@@ -49,11 +49,11 @@ breadcrumbs.push({
 </script>
 
 <template>
-  <div>
+  <div v-if="isSuccess">
   <header id="main-header">
     <OdsBreadcrumbs :breadcrumbs="breadcrumbs" />
   </header>
-  <main v-if="isSuccess" id="main-content">
+  <main id="main-content">
    <section class="hero hero--default">
       <div class="container container--grid gap--responsive">
          <div class="hero__content">
