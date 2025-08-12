@@ -15,6 +15,7 @@
 
 <script setup lang="ts">
 import SvgIcon from './SvgIcon.vue'
+import type { RouteLocationNamedI18n } from 'vue-router'
 import { computed } from 'vue'
 
 const props = defineProps({
@@ -29,7 +30,7 @@ const props = defineProps({
     default: () => '',
   },
   link: {
-    type: String,
+    type: [Object, String] as PropType<RouteLocationNamedI18n<string | number | symbol>>,
     required: true,
   },
   label: {

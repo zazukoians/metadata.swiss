@@ -9,8 +9,10 @@
       class="pagination__input"
       pattern="\d+"
       :class="computedClasses"
-      aria-label="pagination input"
-      @input="$emit('pageChange', currentPage)"
+      :aria-label="t('message.ods-pagination.input_label')"
+      inputmode="numeric"
+      type="text"
+      @keyup.enter="checkBoundriesAndEmit($event)"
     >
     <div v-if="field" class="pagination__text">
       {{ totalPagesLabel }}
@@ -32,13 +34,18 @@
 <script setup lang="ts">
 import PaginationItem from './OdsPaginationItem.vue'
 import { computed } from 'vue'
+import type { RouteLocationNamedI18n } from 'vue-router'
+
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 
 const currentPage = defineModel('currentPage', {
   type: Number,
   required: true,
 })
 
-defineEmits({
+const emit = defineEmits({
   pageChange: (_page: number) => true,
 })
 
@@ -66,7 +73,7 @@ const props = defineProps({
     default: () => '',
   },
   paginationItems: {
-    type: Array<{ icon?: string; label?: string; link?: any }>,
+    type: Array<{ icon?: string; label?: string; link: RouteLocationNamedI18n<string | number | symbol> }>,
     default: () => [],
   },
 })
@@ -76,4 +83,18 @@ const computedClasses = computed(() => {
   if (props.type) base += `input--${props.type} `
   return base
 })
+
+function checkBoundariesAndEmit(event: Event) {
+  const input = event.target as HTMLInputElement
+  let page = parseInt(input.value, 10)
+
+  if (isNaN(page) || page < 1) {
+    page = 1
+  } else if (page > props.totalPages) {
+    page = props.totalPages
+  }
+
+  currentPage.value = page
+  emit('pageChange', page)
+}
 </script>
