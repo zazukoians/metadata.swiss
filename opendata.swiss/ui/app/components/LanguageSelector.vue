@@ -24,9 +24,12 @@
 import Select from './OdsSelect.vue'
 import { ref, computed } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { useLocale as piveauLocale } from '@piveau/sdk-vue' ;
 
 const switchLocalePath = useSwitchLocalePath()
 const { locale, locales } = useI18n()
+
+const { setLocale } = piveauLocale();
 
 // Props
 defineProps({
@@ -45,6 +48,7 @@ const selectedLocale = ref(locale.value)
 // Handle language switching
 watch(selectedLocale, (newLocale) => {
   if (newLocale !== locale.value) {
+    setLocale(newLocale) // set the piveau locale
     const newPath = switchLocalePath(newLocale)
     navigateTo(newPath)
   }
