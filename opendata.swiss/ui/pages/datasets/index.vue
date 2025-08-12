@@ -89,11 +89,11 @@ watch(
 
 <template>
   <div>
-<!--
+
   <header id="main-header">
     <OdsBreadcrumbs :breadcrumbs="breadcrumbs" />
   </header>
--->
+
  <main id="main-content">
 
   <!-- search panel -->

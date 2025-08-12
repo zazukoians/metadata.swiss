@@ -12,7 +12,7 @@
       :aria-label="t('message.ods-pagination.input_label')"
       inputmode="numeric"
       type="text"
-      @keyup.enter="checkBoundriesAndEmit($event)"
+      @keyup.enter="checkBoundariesAndEmit($event)"
     >
     <div v-if="field" class="pagination__text">
       {{ totalPagesLabel }}
@@ -84,7 +84,7 @@ const computedClasses = computed(() => {
   return base
 })
 
-function checkBoundriesAndEmit(event: Event) {
+function checkBoundariesAndEmit(event: Event) {
   const input = event.target as HTMLInputElement
   let page = parseInt(input.value, 10)
 

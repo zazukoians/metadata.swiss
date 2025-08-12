@@ -69,6 +69,8 @@ onUnmounted(() => {
   window.removeEventListener('resize', handleResize)
 })
 
+const { progress } = useLoadingIndicator()
+
 </script>
 
 
