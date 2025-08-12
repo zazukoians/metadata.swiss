@@ -6,7 +6,11 @@
 
         <ul>
           <li v-if="menuStack.length > 0" style="border-bottom: none;" @click="goBack">
-            <a style="padding-top: 12px; padding-bottom: 12px;"><span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" class="icon icon--lg icon--ArrowLeft"><path d="M8.306 5.116 4.24 12.16l4.066 7.044.65-.375-3.633-6.294H20.51v-.75H5.323l3.633-6.294z"></path></svg> </span></a>
+            <a style="padding-top: 12px; padding-bottom: 12px;">
+              <span>
+                <SvgIcon icon="ArrowLeft" size="lg"></SvgIcon>
+              </span>
+            </a>
           </li>
           <li v-if="menuStack.length > 0" style="border-bottom: none;">
             <h2 class="navy__title">{{ t(parentLabel ?? '') }}</h2>
@@ -27,7 +31,7 @@
                 v-else-if="(item.subMenu?.length ?? -1) > 0"
               @click="drillDown(item)"
               >
-              <a>{{t(item.label)}} <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" class="icon icon--lg icon--ArrowRight"><path d="m16.444 19.204 4.066-7.044-4.066-7.044-.65.375 3.633 6.294H4.24v.75h15.187l-3.633 6.294z"></path></svg></a>
+              <a>{{t(item.label)}} <SvgIcon size="lg" icon="ArrowRight" /></a>
             </li>
           </template>
         </ul>

@@ -7,7 +7,6 @@ import OdsPagination from "../../app/components/OdsPagination.vue";
 import OdsDatasetList from "../../app/components/dataset/OdsDatasetList.vue";
 import OdsFilterButton from "../../app/components/dataset/OdsFilterButton.vue";
 import OdsListCardToggle from "../../app/components/dataset/list-card-toggle/OdsListCardToggle.vue";
-import OdsSearchIconButton from "../../app/components/OdsSearchIconButton.vue"
 import {homePageBreadcrumb} from "../../app/composables/breadcrumbs";
 import { useRoute } from 'vue-router'
 import { useI18n } from 'vue-i18n'
@@ -115,7 +114,15 @@ watch(
                 class="search"
                 @keyup.enter="onSearch"
               >
-              <OdsSearchIconButton @click="onSearch" />
+              <OdsButton
+                variant="bare"
+                :title="t('message.dataset_search.search_button')"
+                size="lg"
+                icon-only
+                @click="onSearch"
+              >
+                <SvgIcon icon="Search" role="btn" />
+              </OdsButton>
             </div>
          </div>
          <div class="search__filters">
@@ -181,11 +188,7 @@ watch(
             </div>
 
          <div class="notification notification--info">
-               <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="icon icon--base icon--InfoCircle notification__icon">
-                  <path xmlns="http://www.w3.org/2000/svg" d="m11.8042 10.05464h1.24121v7.26074h-1.24121z"></path>
-                  <path xmlns="http://www.w3.org/2000/svg" d="m12.43506 7.41108a.69272.69272 0 0 0 -.54688.208.74063.74063 0 0 0 -.18457.50977.71511.71511 0 0 0 .18457.50293.70351.70351 0 0 0 .54688.20214.6722.6722 0 0 0 .73779-.70507.73376.73376 0 0 0 -.1875-.50977.70459.70459 0 0 0 -.55029-.208z"></path>
-                  <path xmlns="http://www.w3.org/2000/svg" d="m12.375 4.079a8.29151 8.29151 0 1 0 8.291 8.292 8.30132 8.30132 0 0 0 -8.291-8.292zm0 15.833a7.54151 7.54151 0 1 1 7.5415-7.541 7.55 7.55 0 0 1 -7.5415 7.54106z"></path>
-               </svg>
+               <SvgIcon icon="InfoCircle" role="notification" />
                <div class="notification__content">
                   <div class="text--bold">Haben Sie nicht gefunden wonach Sie suchen?</div>
                   <div>Gerne geben wir Ihnen auch persönlich Auskunft. Bitte melden Sie sich

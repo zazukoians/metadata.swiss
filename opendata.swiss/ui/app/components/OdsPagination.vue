@@ -12,7 +12,7 @@
       :aria-label="t('message.ods-pagination.input_label')"
       inputmode="numeric"
       type="text"
-      @keyup.enter="checkBoundriesAndEmit($event)"
+      @keyup.enter="checkBoundariesAndEmit($event)"
     >
     <div v-if="field" class="pagination__text">
       {{ totalPagesLabel }}

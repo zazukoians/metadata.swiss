@@ -1,39 +1,31 @@
 <template>
-  <InlineSvg v-if="svgSrc" :src="svgSrc" :class="iconClass" />
+  <InlineSvg v-if="svgSrc" :src="svgSrc" :class="['icon', 'icon--base', ...iconClasses]" />
 </template>
 
 <script setup lang="ts">
 import InlineSvg from 'vue-inline-svg'
 import { computed, ref, watchEffect } from 'vue'
 
-const props = defineProps({
-  icon: {
-    type: String,
-    required: true,
-  },
-  size: {
-    type: String,
-    required: false,
-    default: () => 'base',
-    validator: (prop) =>
-      ['sm', 'base', 'md', 'lg', 'xl', '2xl', '3xl', '4xl', 'full'].includes(
-        prop as string,
-      ),
-  },
-  spin: {
-    type: Boolean,
-    default: () => false,
-  },
-})
+interface PropTypes {
+  icon: string,
+  size?: 'sm' | 'base' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl' | 'full',
+  spin?: boolean,
+  role?: 'btn' | 'menu__item' | 'navigation',
+}
+
+const props = defineProps<PropTypes>()
 
 const svgSrc = ref('')
 
-const iconClass = computed(() => {
-  let base = `icon `
-  if (props.size) base += `icon--${props.size} `
-  if (props.icon) base += `icon--${props.icon} `
-  if (props.spin) base += `icon--spin `
-  return base
+const iconClasses = computed(() => {
+  function * generate() {
+    if (props.size) yield `icon--${props.size}`
+    if (props.icon) yield `icon--${props.icon}`
+    if (props.spin) yield `icon--spin`
+    if (props.role) yield `${props.role}__icon`
+  }
+
+  return [...generate()]
 })
 
 watchEffect(async () => {

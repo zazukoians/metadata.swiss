@@ -63,9 +63,7 @@ onUnmounted(() => {
               :class="['menu__item', 'menu__item--border', 'menu__item--condensed', { 'menu__item--active': heading.id === activeHeadingId }]"
             >
               <div>{{ heading.text }}</div>
-              <svg viewBox="0 0 24 24" enable-background="new 0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="icon icon--base icon--ArrowAngleBottomLeft menu__item__icon">
-                <path xmlns="http://www.w3.org/2000/svg" d="m17.7 13.7v-8.4h-.8v7.7h-11.8l2.4-4.2-.6-.4-2.9 4.9 2.9 4.9.6-.4-2.4-4.2z" />
-              </svg>
+              <SvgIcon icon="ArrowAngleBottomLeft" role="menu__item" />
             </a>
           </li>
         </ul>
