@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import OdsBreadcrumbs from "../app/components/OdsBreadcrumbs.vue";
 import { useBreadcrumbs } from "../app/composables/breadcrumbs";
+import { loadPageBreadcrumb } from "../app/lib/breadcrumbs";
 
 const route = useRoute()
 const { locale } = useI18n()
@@ -8,11 +9,7 @@ const { locale } = useI18n()
 const breadcrumbs = await useBreadcrumbs({
   route,
   locale,
-  loadContent({ path }) {
-    return queryCollection('pages')
-      .select('id', 'title')
-      .where('path', 'LIKE', `%${path}.${locale.value}`)
-  }
+  loadContent: loadPageBreadcrumb(locale)
 })
 
 const {data: page} = await useAsyncData(route.path, () => {

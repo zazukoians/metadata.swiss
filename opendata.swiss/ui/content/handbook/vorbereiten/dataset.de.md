@@ -1,8 +1,8 @@
 ---
-id: Vorbereiten / Dataset
+section: Vorbereiten
 title: Für jedes Dataset
 breadcrumb_title: Dataset
-permalink: vorbereiten/dataset
+permalink: dataset
 ---
 
 ## Welche Schritte sind vor der Publikation eines Datasets nötig?

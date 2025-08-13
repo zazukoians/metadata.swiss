@@ -19,6 +19,15 @@ export default defineContentConfig({
         title: z.string(),
         breadcrumb_title: z.string(),
         permalink: z.string(),
+        section: z.string(),
+      })
+    }),
+    handbookSections: defineCollection({
+      source: 'sections/*.md',
+      type: 'page',
+      schema: z.object({
+        id: z.string(),
+        title: z.string(),
       })
     }),
     blog: defineCollection({

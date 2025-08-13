@@ -1,5 +1,5 @@
 # Uncomment for local development
-local_backend: true
+# local_backend: true
 
 backend:
   name: gitlab
@@ -20,18 +20,45 @@ i18n:
   locales: [de, fr, it, en]
 
 collections:
+  - name: handbook-section
+    label: "Handbook sections"
+    label_singular: Handbook section
+    folder: "content/sections"
+    extension: md
+    widget: "list"
+    create: true
+    i18n: true
+    fields:
+      - label: Title
+        name: title
+        widget: string
+        required: true
+        i18n: true
+      - name: body
+        label: Body
+        widget: markdown
+        i18n: true
   - name: handbook
-    label: "Handbuch"
+    label: "Handbook articles"
+    label_singular: Handbook article
     identifier_field: id
     folder: "content/handbook"
     extension: md
     widget: "list"
     create: true
     i18n: true
+    summary: "{{title}}"
+    view_groups:
+      - label: Section
+        field: section
+    path: '{{section}}/{{slug}}'
     fields:
-      - label: Id
-        name: id
-        widget: string
+      - label: Section
+        name: section
+        widget: relation
+        collection: handbook-section
+        search_fields: ["title"]
+        value_field: title
         required: true
         i18n: duplicate
       - label: Title
@@ -48,7 +75,7 @@ collections:
         name: permalink
         widget: string
         i18n: duplicate
-        pattern: ["^[a-z0-9]+(?:-[a-z0-9]+)*$", "Permalink must be lowercase and can only contain letters, numbers, and hyphens."]
+        pattern: ["^[a-z0-9]+(?:/[a-z0-9-]+)*$", "Permalink must be lowercase and can only contain letters, numbers, slashes, and hyphens."]
       - name: body
         label: Body
         widget: markdown
@@ -98,7 +125,7 @@ collections:
         widget: string
         i18n: false
         required: false
-        pattern: ["^[a-z0-9]+(?:-[a-z0-9]+)*$", "Slug must be lowercase and can only contain letters, numbers, and hyphens."]
+        pattern: ["^[a-z0-9]+(?:/[a-z0-9-]+)*$", "Permalink must be lowercase and can only contain letters, numbers, slashes, and hyphens."]
       - label: Date
         name: date
         widget: datetime
