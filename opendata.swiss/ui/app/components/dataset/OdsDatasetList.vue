@@ -3,28 +3,35 @@
 import type { Dataset } from '../../model/dataset'
 import OdsDatasetCardListItem from './OdsDatasetCardListItem.vue'
 import OdsDatasetListItem from './OdsDatasetListItem.vue'
+import type { LocationQueryRaw } from "#vue-router"
 
 interface Props {
   items: Dataset[] | undefined,
   listType: 'card' | 'list'
+  searchParams?: LocationQueryRaw
 }
 const props = defineProps<Props>()
 
-
+const searchParamsEncoded = computed(() => {
+  const params = new URLSearchParams(props.searchParams || {})
+  return {
+    search: params.toString(),
+  }
+})
 </script>
 
 <template>
   <div  v-if="props.items && props.listType === 'card'" class="ods-card-list">
     <ul class="search-results-list">
       <li  v-for="dataset in props.items" :key="dataset.getId">
-        <OdsDatasetCardListItem :item="dataset" />
+        <OdsDatasetCardListItem :item="dataset" :search-params="searchParamsEncoded" />
       </li>
     </ul>
   </div>
 
   <ul v-if="props.items && props.listType === 'list'" >
     <li  v-for="dataset in props.items" :key="dataset.getId">
-      <OdsDatasetListItem :item="dataset" />
+      <OdsDatasetListItem :item="dataset" :search-params="searchParamsEncoded" />
     </li>
   </ul>
 </template>

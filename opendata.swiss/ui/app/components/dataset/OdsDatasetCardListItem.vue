@@ -17,10 +17,10 @@
                       <span class="meta-info__item">Topic one</span><span class="meta-info__item">Topic two</span>
                     </template>
                     <template #footer-action>
-                      <NuxtLink :to="localePath({ name: 'datasets-datasetId', params: { datasetId: props.item.getId } })" type="false" class="btn btn--outline btn--icon-only" aria-label="false">
+                      <NuxtLinkLocale :to="{ name: 'datasets-datasetId', params: { datasetId: props.item.getId }, query: searchParams }" type="false" class="btn btn--outline btn--icon-only" aria-label="false">
                         <SvgIcon icon="ArrowRight" role="btn" />
                         <span class="btn__text">Weiterlesen</span>
-                      </NuxtLink>
+                      </NuxtLinkLocale>
                     </template>
                   </OdsCard>
 
@@ -29,13 +29,9 @@
 <script setup lang="ts">
 import type { Dataset } from '~/model/dataset';
 
-const localePath = useLocalePath()
-
-
 interface Props {
   item: Dataset
+  searchParams?: Record<string, string>
 }
 const props = defineProps<Props>()
-
-
 </script>

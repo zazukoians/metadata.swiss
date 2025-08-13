@@ -11,10 +11,10 @@ import {homePageBreadcrumb} from "../../app/composables/breadcrumbs";
 import { useRoute } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 
+const router = useRouter()
 const route = useRoute()
 
 const { locale, t} = useI18n();
-const localePath = useLocalePath()
 
 // 👇 Query parameters
 
@@ -23,7 +23,7 @@ const publisher = ref<string[]>([]);
 const queryParams: SearchParamsBase = reactive({
   limit: 10,
   page: route.query.page ? Number(route.query.page) - 1 : 0,
-  q: '',
+  q: Array.isArray(route.query.q) ? route.query.q.join(' ') : route.query.q || '',
 })
 
 // 👇 Create hub-search asynchronous state
@@ -67,8 +67,17 @@ const availablePublisher = computed(() =>
   availableFacetsEn.value.find((f) => f.id === 'publisher')
 );
 
-const searchInput = ref('')
-const onSearch = () => queryParams.q = searchInput.value
+function goToPage(newPage: number | string, query = route.query) {
+  const page = newPage ? Number(newPage) : 1
+  router.push({
+    name: route.name,
+    query: { ...query, page },
+    hash: '#search-results',
+  })
+}
+
+const searchInput = ref(route.query.q)
+const onSearch = () => goToPage(1, { q: searchInput.value })
 
 const breadcrumbs = [
   await homePageBreadcrumb(locale),
@@ -78,13 +87,16 @@ const breadcrumbs = [
   }
 ]
 
-
-watch(
-  () => route.query.page,
-  (newPage) => {
-    queryParams.page = newPage ? Number(newPage) - 1 : 0
-  }
-)
+const notFirstPage = route.query.page && Number(route.query.page) > 1
+const hasOtherQueryParams = Object.keys(route.query).length > 1 || (route.query.q && route.query.q !== '')
+if (notFirstPage || hasOtherQueryParams) {
+  breadcrumbs.push(
+    {
+      title: t('message.dataset_search.search_results'),
+      route
+    }
+  )
+}
 </script>
 
 <template>
@@ -164,7 +176,7 @@ watch(
             <div v-if="isFetching" class="is-fetching">
               Fetching...
             </div>
-            <OdsDatasetList v-else :items="getSearchResultsEnhanced" :list-type="listType" />
+            <OdsDatasetList v-else :items="getSearchResultsEnhanced" :list-type="listType" :search-params="route.query" />
             <div class="pagination pagination--right">
               <OdsPagination
                 :current-page="(queryParams.page ?? 0) + 1"
@@ -175,15 +187,15 @@ watch(
                 {
                   icon: 'ChevronLeft',
                   label: t('message.ods-pagination.previous'),
-                  link: { path:  `/` +  route.path.split('/').slice(2).join('/'), query: { ...route.query, page: (queryParams.page ?? 1), hash: '#search-results' } },
+                  link: { name: route.name, query: { ...route.query, page: (queryParams.page ?? 1), hash: '#search-results' } },
                 },
                 {
                   icon: 'ChevronRight',
                   label: t('message.ods-pagination.next'),
-                  link: { path: `/` + route.path.split('/').slice(2).join('/'), query: { ...route.query, page: (queryParams.page ?? 1) + 2 }, hash: '#search-results' }
+                  link: { name: route.name, query: { ...route.query, page: (queryParams.page ?? 1) + 2 }, hash: '#search-results' }
                 }
               ]"
-                @page-change="(newPage) => { queryParams.page = newPage ? Number(newPage) - 1 : 0 }"
+                @page-change="(page) => goToPage(page)"
                 />
             </div>
 
