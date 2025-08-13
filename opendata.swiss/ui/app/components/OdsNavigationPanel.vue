@@ -43,7 +43,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, defineProps, defineEmits } from 'vue'
+import { ref, computed } from 'vue'
 import type { OdsNavTabItem } from './headers/model/ods-nav-tab-item';
 import { useI18n } from 'vue-i18n';
 
