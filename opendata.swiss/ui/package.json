@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "decap": "decap-server",
+    "decap": "decap-server & vite",
     "dev": "nuxt dev",
     "build": "nuxt build",
     "generate": "nuxt generate",
@@ -20,9 +20,12 @@
     "@piveau/sdk-core": "^0.0.0-beta.1",
     "@piveau/sdk-vue": "^1.0.0-beta.8",
     "better-sqlite3": "^12.2.0",
+    "bootstrap": "^5.3.7",
+    "decap-cms-app": "^3.8.3",
     "eslint": "^9.31.0",
     "nuxt": "^4.0.0",
     "pinia": "^3.0.3",
+    "react-bootstrap-typeahead": "^6.4.1",
     "sass-embedded": "^1.89.2",
     "sharp": "^0.34.3",
     "swiper": "^11.2.10",
@@ -36,6 +39,8 @@
     "@mdi/font": "^7.4.47",
     "decap-server": "^3.3.0",
     "vite-plugin-vuetify": "^2.1.1",
+    "vite-plugin-node-polyfills": "^0.24.0",
+    "vite-plugin-static-copy": "^3.1.1",
     "vuetify": "^3.9.2"
   }
 }
