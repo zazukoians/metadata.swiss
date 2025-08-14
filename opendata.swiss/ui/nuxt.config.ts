@@ -45,7 +45,7 @@ export default defineNuxtConfig({
     ]
   },
   routeRules: {
-    '**': { ssr: false },
+    '/datasets/**': { ssr: false },
     '/*/datasets/**': { ssr: false }
   },
     build: {
