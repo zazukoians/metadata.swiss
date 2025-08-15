@@ -142,7 +142,8 @@ collections:
 
   - name: Showcases
     label: "Showcases"
-    folder: "showcases"
+    label_singular: Showcase
+    folder: "content/showcases"
     i18n: true
     extension: md
     widget: "list"
@@ -194,7 +195,7 @@ collections:
         piveau:
           hub: https://piveau-ln.zazukoians.org/
           search: https://piveau-hub-search-ln.zazukoians.org/
-      - name: Tags
+      - name: tags
         label: Tags
         widget: list
       - name: body
