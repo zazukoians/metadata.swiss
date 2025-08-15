@@ -17,7 +17,9 @@ const { page } = defineProps({
         <div class="hero__content">
           <h1 class="hero__title">{{ page.heading || page.title }}</h1>
           <div class="hero__description">
-            <MDC v-if="page.subHeading" :value="page.subHeading"/>
+            <slot name="hero-subheading">
+              <MDC v-if="page.subHeading" :value="page.subHeading"/>
+            </slot>
           </div>
         </div>
       </div>

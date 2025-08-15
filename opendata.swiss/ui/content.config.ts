@@ -39,6 +39,19 @@ export default defineContentConfig({
         date: z.date().optional(),
         subHeading: z.string().optional(),
       })
+    }),
+    showcases: defineCollection({
+      source: 'showcases/*.md',
+      type: 'page',
+      schema: z.object({
+        title: z.string(),
+        image: z.string().optional(),
+        url: z.string().optional(),
+        category: z.string().optional(),
+        type: z.string().optional(),
+        datasets: z.array(z.string()).optional(),
+        tags: z.array(z.string()).optional(),
+      })
     })
   }
 })
