@@ -17,9 +17,18 @@ export default defineConfig({
       targets: [
         {
           src: 'config.yml',
-          dest: ''
+          dest: '',
+          transform(content, filename) {
+            console.log(filename)
+            if (filename.endsWith('config.yml') && process.env.NODE_ENV === 'development') {
+              // In development, we want to use the local backend
+              return `local_backend: true\n\n${content}`
+            }
+
+            return content
+          }
         }
       ]
-    })
+    }),
   ],
 })

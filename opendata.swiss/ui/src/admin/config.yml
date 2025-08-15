@@ -1,6 +1,3 @@
-# Uncomment for local development
-local_backend: true
-
 backend:
   name: gitlab
   repo: docker/lindas-next-piveau-js
