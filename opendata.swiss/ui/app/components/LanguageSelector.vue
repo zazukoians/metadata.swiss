@@ -29,7 +29,7 @@ import { useLocale as piveauLocale } from '@piveau/sdk-vue' ;
 const switchLocalePath = useSwitchLocalePath()
 const { locale, locales } = useI18n()
 
-const { setLocale } = piveauLocale();
+const { setLocale, currentLocale } = piveauLocale();
 
 // Props
 defineProps({
@@ -53,4 +53,16 @@ watch(selectedLocale, (newLocale) => {
     navigateTo(newPath)
   }
 })
+
+onMounted(() => {
+  const appLocale = locale.value
+  const piveauLocale = (currentLocale as Ref<string>).value
+  if (appLocale !== piveauLocale) {
+    // this is needed to set the piveau locale on startup
+    setLocale(appLocale)
+  }
+})
+
+const { progress } = useLoadingIndicator()
+
 </script>
