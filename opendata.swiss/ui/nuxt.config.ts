@@ -12,16 +12,16 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     '@nuxtjs/i18n',
     '@nuxt/image',
-      (_options, nuxt) => {
-          nuxt.hooks.hook('vite:extendConfig', (config) => {
-              config.plugins?.push(vuetify({ autoImport: true }))
-          })
-      },
+    (_options, nuxt) => {
+      nuxt.hooks.hook('vite:extendConfig', (config) => {
+        config.plugins?.push(vuetify({ autoImport: true }))
+      })
+    },
   ],
   css: [
     '~/assets/main.css',
   ],
-  dir:{
+  dir: {
     pages: resolve(import.meta.dirname, 'pages'),
   },
   pages: {
@@ -44,31 +44,27 @@ export default defineNuxtConfig({
       '~/components/content',
     ]
   },
-  routeRules: {
-    '/datasets/**': { ssr: false },
-    '/*/datasets/**': { ssr: false }
+  build: {
+    transpile: ['vuetify', 'form-data'],
   },
-    build: {
-        transpile: ['vuetify'],
+  vite: {
+    vue: {
+      template: {
+        transformAssetUrls,
+      },
     },
-    vite: {
-        vue: {
-            template: {
-                transformAssetUrls,
-            },
-        },
-    },
-    plugins: [
-        { src: '~/plugins/piveau', mode: 'client' },
-    ],
-    i18n: {
-        defaultLocale: 'de',
-        strategy: 'prefix',
-        locales: [
-            { code: 'de', name: 'Deutsch', file: 'de.json' },
-            { code: 'en', name: 'English', file: 'en.json' },
-            { code: 'fr', name: 'Francais', file: 'fr.json' },
-            { code: 'it', name: 'Itlaliano', file: 'it.json' },
-        ]
-    }
+  },
+  plugins: [
+    { src: '~/plugins/piveau.ts', mode: 'all' },
+  ],
+  i18n: {
+    defaultLocale: 'de',
+    strategy: 'prefix',
+    locales: [
+      { code: 'de', name: 'Deutsch', file: 'de.json' },
+      { code: 'en', name: 'English', file: 'en.json' },
+      { code: 'fr', name: 'Francais', file: 'fr.json' },
+      { code: 'it', name: 'Itlaliano', file: 'it.json' },
+    ]
+  }
 })
