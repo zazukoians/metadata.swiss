@@ -5,7 +5,7 @@
    <!---->
    <div class="card__content">
       <div class="card__body">
-         <p class="meta-info"><span class="meta-info__item">Article</span><span class="meta-info__item">12. April 2022</span></p>
+         <p class="meta-info"><span class="meta-info__item">{{ t('message.dataset_detail.dataset') }}</span><span class="meta-info__item">12. April 2022</span></p>
          <div class="card__title">
             <h3>{{ props.item.getTitle }}</h3>
          </div>
@@ -14,7 +14,11 @@
       </div>
       <div class="card__footer">
          <div class="card__footer__info">
-            <p class="meta-info"><span class="meta-info__item">Topic one</span><span class="meta-info__item">Topic two</span></p>
+          <p class="meta-info">
+            <span class="meta-info__item" style="color:magenta">{{ props.item.getCategories.map(k => k.label['en']).join(', ') }}</span>
+            <span class="meta-info__item">{{ props.item.getKeywords.map(k => k.label).join(', ') }}</span>
+            <span class="meta-info__item" style="color:red">{{(props.item.getOdsFormats ?? []).map(f => f.label ).join(', ') }}</span>
+          </p>
          </div>
          <div class="card__footer__action">
               <NuxtLinkLocale :to="{ name: 'datasets-datasetId', params: { datasetId: props.item.getId }, query: searchParams }" type="false" class="btn btn--outline btn--icon-only" aria-label="false">
@@ -34,6 +38,9 @@
 
 <script setup lang="ts">
 import type { Dataset } from '~/model/dataset';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
 
 interface Props {
   item: Dataset

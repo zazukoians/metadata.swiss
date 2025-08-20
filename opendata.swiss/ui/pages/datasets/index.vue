@@ -9,12 +9,15 @@ import OdsFilterButton from "../../app/components/dataset/OdsFilterButton.vue";
 import OdsListCardToggle from "../../app/components/dataset/list-card-toggle/OdsListCardToggle.vue";
 import {homePageBreadcrumb} from "../../app/composables/breadcrumbs";
 import { useRoute } from 'vue-router'
+
 import { useI18n } from 'vue-i18n'
+
+const { t, locale} = useI18n()
+
 
 const router = useRouter()
 const route = useRoute()
 
-const { locale, t} = useI18n();
 
 // 👇 Query parameters
 
@@ -292,6 +295,7 @@ if (notFirstPage || hasOtherQueryParams) {
     </button>
   </section>
 -->
+  <pre>{{getSearchResultsEnhanced}}</pre>
 </div>
 
 </template>

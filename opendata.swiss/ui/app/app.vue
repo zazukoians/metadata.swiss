@@ -14,7 +14,7 @@
           <v-main>
               <Transition name="fade-content">
                 <div v-if="!isMobileMenuOpen" style="min-height: calc(100vh - 128px);">
-                  <NuxtPage  :page-key="route => route.fullPath" />
+                  <NuxtPage :page-key="route => route.path" />
                 </div>
               </Transition>
           </v-main>
