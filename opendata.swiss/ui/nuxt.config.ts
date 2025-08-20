@@ -44,12 +44,9 @@ export default defineNuxtConfig({
       '~/components/content',
     ]
   },
-  routeRules: {
-    '/datasets/**': {ssr: false},
-    '/*/datasets/**': {ssr: false}
-  },
+
   build: {
-    transpile: ['vuetify'],
+    transpile: ['vuetify', 'form-data'],
   },
   vite: {
     vue: {
@@ -59,7 +56,7 @@ export default defineNuxtConfig({
     },
   },
   plugins: [
-    {src: '~/plugins/piveau', mode: 'client'},
+    {src: '~/plugins/piveau.ts', mode: 'all'},
   ],
   i18n: {
     defaultLocale: 'de',
