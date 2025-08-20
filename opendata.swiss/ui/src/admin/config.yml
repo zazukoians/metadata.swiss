@@ -162,7 +162,7 @@ collections:
         widget: string
         i18n: duplicate
       - label: Category
-        name: category
+        name: categories
         widget: select
         multiple: true
         i18n: duplicate

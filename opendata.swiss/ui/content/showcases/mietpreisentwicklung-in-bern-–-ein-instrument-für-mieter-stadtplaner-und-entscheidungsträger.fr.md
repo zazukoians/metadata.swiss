@@ -3,7 +3,7 @@ title: Évolution des loyers à Berne – Un outil pour les locataires, urbanist
   et décideurs
 image: https://repository-images.githubusercontent.com/788945570/a1998415-fef9-4518-8a5d-d2937f17edec
 url: https://giodi.github.io/dashboard-wohnungsmietpreise-stadt-bern/
-category:
+categories:
   - soci
 type: application
 datasets:
