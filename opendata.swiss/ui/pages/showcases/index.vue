@@ -13,6 +13,27 @@ const breadcrumbs = [
 useSeoMeta({
   title: `${t('message.header.navigation.showcases')} | opendata.swiss`,
 })
+
+const { data: showcases } = await useAsyncData('showcases', () => {
+  return queryCollection('showcases')
+    .where('path', 'LIKE', `%.${locale.value}`)
+    .all()
+})
+
+function firstParagraph(showcase) {
+  const [firstPara] = showcase.body.value
+  return {
+    ...showcase,
+    body: {
+      ...showcase.body,
+      value: [firstPara]
+    },
+  }
+}
+
+function showcaseId(showcase) {
+  return showcase.id.replace(/.*?([^/]+)\.de\.md$/, '$1')
+}
 </script>
 
 <template>
@@ -23,7 +44,31 @@ useSeoMeta({
     <section class="section section--py">
       <div class="container container--grid container--reverse-mobile gap--responsive">
         <div class="container__main vertical-spacing">
-          Showcases are not yet implemented.
+          <OdsCard
+            v-for="showcase in showcases"
+            :key="showcase.id"
+            :title="showcase.title"
+            clickable
+          >
+            <template #image>
+              <img :src="showcase.image" :alt="showcase.title" >
+            </template>
+
+            <template #top-meta>
+              <div>
+                <span class="meta-info__item">{{ showcase.type }}</span>
+              </div>
+            </template>
+
+            <ContentRenderer :value="firstParagraph(showcase)" />
+
+            <template #footer-action>
+              <NuxtLinkLocale :to="{ name: 'showcase-id', params: { id: showcaseId(showcase) } }" type="false" class="btn btn--outline btn--icon-only" aria-label="false">
+                <SvgIcon icon="ArrowRight" role="btn" />
+                <span class="btn__text">Weiterlesen</span>
+              </NuxtLinkLocale>
+            </template>
+          </OdsCard>
         </div>
       </div>
     </section>
