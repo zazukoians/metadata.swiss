@@ -1,6 +1,6 @@
 <template>
 
-                  <OdsCard :title="props.item.getTitle">
+                  <OdsCard :title="props.item.getTitle" type="universal" clickable>
                     <template #top-meta>
                       <span class="meta-info__item">{{ props.item.getPublisher?.name }}</span><span class="meta-info__item">{{ props.item.getModified ? props.item.getModified  : '' }}</span>
                     </template>

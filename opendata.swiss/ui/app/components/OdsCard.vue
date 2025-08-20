@@ -1,15 +1,21 @@
-<script setup>
-const { title } = defineProps({
-  title: {
-    type: String,
-    required: true
-  },
-})
+<script setup lang="ts">
+const { title, type = 'default', clickable = false } = defineProps<{
+  title: string
+  type?: 'default' | 'highlight' | 'twitter' | 'flat' | 'universal' | 'list'
+  clickable?: boolean
+}>()
 
+const classes = computed(() => {
+  return {
+    'card': true,
+    [`card--${type}`]: true,
+    'card--clickable': clickable,
+  }
+})
 </script>
 
 <template>
-  <div class="card card--universal card--clickable">
+  <div :class="classes">
     <div class="card__content">
       <div class="card__body">
         <p class="meta-info">

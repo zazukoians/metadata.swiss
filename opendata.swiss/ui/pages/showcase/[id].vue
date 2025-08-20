@@ -1,6 +1,8 @@
 <script setup>
 import OdsPage from "../../app/components/OdsPage.vue"
 import {homePageBreadcrumb} from "../../app/composables/breadcrumbs.js";
+import OdsInfoBlock from "../../app/components/OdsInfoBlock.vue";
+import OdsTagItem from "../../app/components/OdsTagItem.vue";
 
 const route = useRoute()
 const { locale, t } = useI18n()
@@ -36,6 +38,25 @@ useSeoMeta({
 
     <template #hero-subheading>
       <img v-if="showcase.image" :src="showcase.image" :alt="showcase.title" >
+    </template>
+
+    <template #aside-content>
+      <OdsCard :title="t('message.dataset_detail.additional_information')">
+        <OdsInfoBlock :title="t('message.showcase.type.header')">
+          {{ showcase.type }}
+        </OdsInfoBlock>
+        <OdsInfoBlock :title="t('message.showcase.categories')">
+          <span v-for="category in showcase.categories" :key="category">
+            {{ category }}
+          </span>
+        </OdsInfoBlock>
+        <OdsInfoBlock :title="t('message.showcase.tags')">
+          <OdsTagItem v-for="tag in showcase.tags" :key="tag" :label="tag" />
+        </OdsInfoBlock>
+        <OdsInfoBlock :title="t('message.showcase.submitted_by')">
+          Pending
+        </OdsInfoBlock>
+      </OdsCard>
     </template>
   </OdsPage>
 </template>

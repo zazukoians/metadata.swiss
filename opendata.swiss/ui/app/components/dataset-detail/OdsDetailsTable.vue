@@ -1,16 +1,13 @@
 <template>
 <div>
   <template v-for="row in tableEntries" :key="row.id">
-     <div class="info-block border-t" style="display: flex; flex-direction: column;">
-      <h3 class="info-block__title">{{ row.label }}</h3>
-      <div>
-         <div v-if="row.type === 'value'">{{ row.value }}</div>
-         <div v-if="row.type === 'href'">
-            <OdsExternalLink v-if="row.href && row.href.startsWith('http')" :href="row.href">{{ row.value }}</OdsExternalLink>
-            <a v-if="row.href && !row.href.startsWith('http')" :href="row.href">{{ row.value }}</a>
-         </div>
+    <OdsInfoBlock :title="row.label">
+      <div v-if="row.type === 'value'">{{ row.value }}</div>
+      <div v-if="row.type === 'href'">
+        <OdsExternalLink v-if="row.href && row.href.startsWith('http')" :href="row.href">{{ row.value }}</OdsExternalLink>
+        <a v-if="row.href && !row.href.startsWith('http')" :href="row.href">{{ row.value }}</a>
       </div>
-   </div>
+    </OdsInfoBlock>
   </template>
 </div>
 
