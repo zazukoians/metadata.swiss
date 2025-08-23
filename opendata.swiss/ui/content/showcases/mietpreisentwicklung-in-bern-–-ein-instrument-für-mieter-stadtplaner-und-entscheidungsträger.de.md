@@ -1,4 +1,5 @@
 ---
+active: true
 title: Mietpreisentwicklung in Bern – Ein Instrument für Mieter, Stadtplaner und
   Entscheidungsträger
 image: https://repository-images.githubusercontent.com/788945570/a1998415-fef9-4518-8a5d-d2937f17edec

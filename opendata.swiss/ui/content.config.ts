@@ -44,6 +44,7 @@ export default defineContentConfig({
       source: 'showcases/*.md',
       type: 'page',
       schema: z.object({
+        active: z.boolean(),
         title: z.string(),
         image: z.string().optional(),
         url: z.string().optional(),

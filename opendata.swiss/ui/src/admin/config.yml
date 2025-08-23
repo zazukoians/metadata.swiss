@@ -149,6 +149,11 @@ collections:
     widget: "list"
     create: true
     fields:
+      - label: Active
+        name: active
+        widget: boolean
+        default: true
+        i18n: duplicate
       - label: Title
         name: title
         widget: string

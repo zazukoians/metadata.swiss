@@ -17,6 +17,7 @@ useSeoMeta({
 const { data: showcases } = await useAsyncData('showcases_' + locale.value, () => {
   return queryCollection('showcases')
     .where('path', 'LIKE', `%.${locale.value}`)
+    .where('active', '==', true)
     .all()
 })
 

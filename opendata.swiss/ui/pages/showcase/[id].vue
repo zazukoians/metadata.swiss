@@ -11,6 +11,7 @@ const { id } = route.params
 const { data: showcase } = await useAsyncData(route.path, () => {
   return queryCollection('showcases')
     .where('stem', 'LIKE', `%${id}.${locale.value}`)
+    .where('active', '==', true)
     .first()
 })
 
