@@ -22,11 +22,16 @@ const { data: showcases } = await useAsyncData('showcases', () => {
 
 function firstParagraph(showcase) {
   const [firstPara] = showcase.body.value
+  let body = [firstPara]
+  if (!firstPara) {
+    body = []
+  }
+
   return {
     ...showcase,
     body: {
       ...showcase.body,
-      value: [firstPara]
+      value: body
     },
   }
 }
