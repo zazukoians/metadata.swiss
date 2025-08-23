@@ -14,7 +14,7 @@ useSeoMeta({
   title: `${t('message.header.navigation.showcases')} | opendata.swiss`,
 })
 
-const { data: showcases } = await useAsyncData('showcases', () => {
+const { data: showcases } = await useAsyncData('showcases_' + locale.value, () => {
   return queryCollection('showcases')
     .where('path', 'LIKE', `%.${locale.value}`)
     .all()
