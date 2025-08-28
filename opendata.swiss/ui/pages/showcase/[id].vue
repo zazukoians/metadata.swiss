@@ -47,9 +47,11 @@ useSeoMeta({
           {{ showcase.type }}
         </OdsInfoBlock>
         <OdsInfoBlock :title="t('message.showcase.categories')">
-          <span v-for="category in showcase.categories" :key="category">
-            {{ category }}
-          </span>
+          <ul>
+            <li v-for="category in showcase.categories" :key="category">
+              {{ category }}
+            </li>
+          </ul>
         </OdsInfoBlock>
         <OdsInfoBlock :title="t('message.showcase.tags')">
           <OdsTagItem v-for="tag in showcase.tags" :key="tag" :label="tag" />

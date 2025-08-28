@@ -168,16 +168,12 @@ collections:
         i18n: duplicate
       - label: Category
         name: categories
-        widget: select
+        widget: piveau-vocabulary
         multiple: true
         i18n: duplicate
-        options:
-          - label: "Environment"
-            value: envi
-          - label: "Regions"
-            value: regi
-          - label: "Social"
-            value: soci
+        piveau:
+          search: https://piveau-hub-search-ln.zazukoians.org/
+          vocabulary: data-theme
       - label: Type of content
         name: type
         widget: select
@@ -193,12 +189,11 @@ collections:
             value: blog_and_media_articles
       - name: datasets
         label: Datasets
-        widget: dataset
+        widget: piveau-dataset
         multiple: true
         i18n: duplicate
         required: false
         piveau:
-          hub: https://piveau-ln.zazukoians.org/
           search: https://piveau-hub-search-ln.zazukoians.org/
       - name: tags
         label: Tags

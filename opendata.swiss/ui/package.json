@@ -4,8 +4,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "decap": "decap-server & vite",
+    "decap": "rimraf public/admin && decap-server & vite src/admin",
     "dev": "nuxt dev",
+    "prebuild": "vite build src/admin --emptyOutDir",
     "build": "nuxt build",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
@@ -26,6 +27,7 @@
     "nuxt": "^4.0.0",
     "pinia": "^3.0.3",
     "react-bootstrap-typeahead": "^6.4.1",
+    "rimraf": "^6.0.1",
     "sass-embedded": "^1.89.2",
     "sharp": "^0.34.3",
     "swiper": "^11.2.10",

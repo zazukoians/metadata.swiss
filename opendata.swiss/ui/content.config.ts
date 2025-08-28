@@ -50,7 +50,10 @@ export default defineContentConfig({
         url: z.string().optional(),
         categories: z.array(z.string()).optional(),
         type: z.string().optional(),
-        datasets: z.array(z.string()).optional(),
+        datasets: z.array(z.object({
+          id: z.string(),
+          label: z.string(),
+        })).optional(),
         tags: z.array(z.string()).optional(),
       })
     })
