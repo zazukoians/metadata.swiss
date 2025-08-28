@@ -4,6 +4,10 @@ import { getKeywords } from './get-keywords'
 import { getOdsFormats } from './get-ods-formats'
 
 
+
+// export const ACTIVE_FACETS = ['categories', 'publisher', 'catalog', 'format', 'license', 'keywords']
+export const ACTIVE_FACETS = ['catalog', 'categories', 'publisher', 'format', 'license', 'keywords']
+
 /**
  * Returns a piveau hub-search query definition for DCAT-AP datasets
  */
@@ -12,7 +16,7 @@ export function useDatasetsSearch() {
     baseUrl: 'https://piveau-hub-search-ln.zazukoians.org/',
     index: 'dataset',
     indexDetails: 'datasets',
-    facets: ['categories', 'publisher', 'catalog', 'format', 'license', 'keywords'],
+    facets: ACTIVE_FACETS,
     schema: schemaDataset,
   }, (dataset, localeInstance) => {
     const { setup: base } = dcatApDataset()
