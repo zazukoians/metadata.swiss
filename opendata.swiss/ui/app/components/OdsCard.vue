@@ -24,7 +24,7 @@ const classes = computed(() => {
     </div>
     <div class="card__content">
       <div class="card__body">
-        <p v-if="$slots['toop-meta']" class="meta-info">
+        <p v-if="$slots['top-meta']" class="meta-info">
           <slot name="top-meta" />
         </p>
         <div class="card__title">
