@@ -34,11 +34,13 @@
     "vue": "^3.5.17",
     "vue-i18n": "^11.1.10",
     "vue-inline-svg": "^4.0.1",
-    "vue-router": "^4.5.1"
+    "vue-router": "^4.5.1",
+    "vue-select": "^4.0.0-beta.6"
   },
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^6.7.2",
     "@mdi/font": "^7.4.47",
+    "@types/vue-select": "^3.16.8",
     "decap-server": "^3.3.0",
     "vite-plugin-vuetify": "^2.1.1",
     "vite-plugin-node-polyfills": "^0.24.0",

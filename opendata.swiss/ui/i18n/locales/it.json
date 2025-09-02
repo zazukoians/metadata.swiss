@@ -26,6 +26,7 @@
             "search_button": "Cerca",
             "search_results": "Risultati della ricerca",
             "show_filters": "Mostra filtri",
+            "hide_filters": "Nascondi filtri",
             "sort": "Ordina per"
         },
         "dataset_detail": {
