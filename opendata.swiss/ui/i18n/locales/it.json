@@ -27,7 +27,14 @@
             "search_results": "Risultati della ricerca",
             "show_filters": "Mostra filtri",
             "hide_filters": "Nascondi filtri",
-            "sort": "Ordina per"
+            "sort": "Ordina per",
+            "sort_by": {
+                "relevance": "per pertinenza",
+                "date_modified_desc": "per data di modifica (più recente prima)",
+                "date_modified_asc": "per data di modifica (più vecchio prima)",
+                "title_asc": "per titolo (a-z)",
+                "title_desc": "per titolo (z-a)"
+            }
         },
         "dataset_detail": {
             "dataset": "Set di dati",
