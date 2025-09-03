@@ -55,7 +55,7 @@ export default defineNuxtConfig({
     },
   },
   plugins: [
-    { src: '~/plugins/piveau.ts', mode: 'all' },
+    //    { src: '~/plugins/piveau.ts', mode: 'all' },
   ],
   i18n: {
     defaultLocale: 'de',

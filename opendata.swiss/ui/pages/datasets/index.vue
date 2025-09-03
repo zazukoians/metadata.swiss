@@ -63,6 +63,7 @@ const piveauQueryParams: SearchParamsBase = reactive({
 
 const { useSearch } = useDatasetsSearch()
 const {
+  query,
   isFetching,
   getSearchResultsEnhanced,
   getSearchResultsCount,
@@ -75,10 +76,12 @@ const {
 
 })
 
+const { suspense } = query
+
 const LIST_TYPE_KEY = 'datasets-list-type';
 const getInitialListType = () => {
   const stored = typeof window !== 'undefined' ? window.localStorage.getItem(LIST_TYPE_KEY) : null;
-  return stored === 'list' ? 'list' : 'card';
+  return stored === 'card' ? 'card' : 'list';
 };
 const listType = ref<'card' | 'list'>(getInitialListType());
 
@@ -218,6 +221,7 @@ onMounted(() => {
   })
 })
 
+await suspense()
 
 </script>
 
@@ -295,10 +299,10 @@ onMounted(() => {
                </div>
             </div>
             <h2 class="sr-only">Results list</h2>
-            <div v-if="isFetching" class="is-fetching">
+           <!-- <div v-if="isFetching" class="is-fetching">
               Fetching...
-            </div>
-            <OdsDatasetList v-else :items="getSearchResultsEnhanced" :list-type="listType" :search-params="route.query" />
+            </div>-->
+            <OdsDatasetList :items="getSearchResultsEnhanced" :list-type="listType" :search-params="route.query" />
             <div class="pagination pagination--right">
               <OdsPagination
                 :current-page="(Number(route.query.page  ?? 1) )"
