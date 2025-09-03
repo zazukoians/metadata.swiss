@@ -26,7 +26,14 @@
             "search_results": "Suchergebnisse",
             "show_filters": "Filter anzeigen",
             "hide_filters": "Filter ausblenden",
-            "sort": "Sortieren"
+            "sort": "Sortieren",
+            "sort_by": {
+                "relevance": "nach Relevanz sortieren",
+                "date_modified_desc": "nach Datum zuletzt geändert (neueste zuerst)",
+                "date_modified_asc": "nach Datum zuletzt geändert (älteste zuerst)",
+                "title_asc": "nach Titel sortieren (a-z)",
+                "title_desc": "nach Titel sortieren (z-a)"
+            }
         },
         "dataset_detail": {
             "dataset": "Datensatz",
