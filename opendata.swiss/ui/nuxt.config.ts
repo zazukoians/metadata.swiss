@@ -1,11 +1,11 @@
-import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
+import vuetify, {transformAssetUrls} from 'vite-plugin-vuetify'
 
-import { resolve } from 'node:path'
+import {resolve} from 'node:path'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
-  devtools: { enabled: true },
+  devtools: {enabled: true},
   modules: [
     '@nuxt/eslint',
     '@nuxt/content',
@@ -14,7 +14,7 @@ export default defineNuxtConfig({
     '@nuxt/image',
     (_options, nuxt) => {
       nuxt.hooks.hook('vite:extendConfig', (config) => {
-        config.plugins?.push(vuetify({ autoImport: true }))
+        config.plugins?.push(vuetify({autoImport: true}))
       })
     },
   ],
@@ -44,6 +44,7 @@ export default defineNuxtConfig({
       '~/components/content',
     ]
   },
+
   build: {
     transpile: ['vuetify', 'form-data'],
   },
@@ -55,16 +56,21 @@ export default defineNuxtConfig({
     },
   },
   plugins: [
-    { src: '~/plugins/piveau.ts', mode: 'all' },
+    {src: '~/plugins/piveau.ts', mode: 'all'},
   ],
   i18n: {
     defaultLocale: 'de',
     strategy: 'prefix',
     locales: [
-      { code: 'de', name: 'Deutsch', file: 'de.json' },
-      { code: 'en', name: 'English', file: 'en.json' },
-      { code: 'fr', name: 'Francais', file: 'fr.json' },
-      { code: 'it', name: 'Itlaliano', file: 'it.json' },
+      {code: 'de', name: 'Deutsch', file: 'de.json'},
+      {code: 'en', name: 'English', file: 'en.json'},
+      {code: 'fr', name: 'Francais', file: 'fr.json'},
+      {code: 'it', name: 'Itlaliano', file: 'it.json'},
     ]
+  },
+  nitro: {
+    devProxy: {
+      '/admin/': 'http://localhost:5173/admin/',
+    }
   }
 })

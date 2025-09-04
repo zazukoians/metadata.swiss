@@ -10,6 +10,10 @@ export const APP_NAVIGATION_ITEMS: OdsNavTabItem[] = [
     to: '/datasets'
   },
   {
+    label: 'message.header.navigation.showcases',
+    to: '/showcases'
+  },
+  {
     label: 'message.header.navigation.blog',
     to: '/blog'
   },

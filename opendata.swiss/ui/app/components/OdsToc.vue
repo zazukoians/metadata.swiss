@@ -50,26 +50,19 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="card card--default">
-    <div class="card__content">
-      <div class="card__body">
-        <div class="card__title">
-          <h2>{{ t('message.ods_toc.contents') }}</h2>
-        </div>
-        <ul class="menu text--sm">
-          <li v-for="heading in toc.links" :key="heading.id">
-            <a
-              :href="`#${heading.id}`"
-              :class="['menu__item', 'menu__item--border', 'menu__item--condensed', { 'menu__item--active': heading.id === activeHeadingId }]"
-            >
-              <div>{{ heading.text }}</div>
-              <SvgIcon icon="ArrowAngleBottomLeft" role="menu__item" />
-            </a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
+  <OdsCard :title="t('message.ods_toc.contents')">
+    <ul class="menu text--sm">
+      <li v-for="heading in toc.links" :key="heading.id">
+        <a
+          :href="`#${heading.id}`"
+          :class="['menu__item', 'menu__item--border', 'menu__item--condensed', { 'menu__item--active': heading.id === activeHeadingId }]"
+        >
+          <div>{{ heading.text }}</div>
+          <SvgIcon icon="ArrowAngleBottomLeft" role="menu__item" />
+        </a>
+      </li>
+    </ul>
+  </OdsCard>
 </template>
 
 <style scoped>

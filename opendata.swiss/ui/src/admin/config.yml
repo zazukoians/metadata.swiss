@@ -1,6 +1,3 @@
-# Uncomment for local development
-# local_backend: true
-
 backend:
   name: gitlab
   repo: docker/lindas-next-piveau-js
@@ -38,6 +35,7 @@ collections:
         label: Body
         widget: markdown
         i18n: true
+
   - name: handbook
     label: "Handbook articles"
     label_singular: Handbook article
@@ -80,6 +78,7 @@ collections:
         label: Body
         widget: markdown
         i18n: true
+
   - name: pages
     label: "Pages"
     folder: "content/pages"
@@ -106,6 +105,7 @@ collections:
         label: Body
         widget: markdown
         i18n: true
+
   - name: blog
     label: Blog
     label_singular: Blog Post
@@ -135,6 +135,69 @@ collections:
         label: Subheading
         widget: markdown
         i18n: true
+      - name: body
+        label: Body
+        widget: markdown
+        i18n: true
+
+  - name: Showcases
+    label: "Showcases"
+    label_singular: Showcase
+    folder: "content/showcases"
+    i18n: true
+    extension: md
+    widget: "list"
+    create: true
+    fields:
+      - label: Active
+        name: active
+        widget: boolean
+        default: true
+        i18n: duplicate
+      - label: Title
+        name: title
+        widget: string
+        i18n: true
+      - label: Image
+        name: image
+        widget: image
+        i18n: duplicate
+      - label: Website
+        name: url
+        widget: string
+        i18n: duplicate
+      - label: Category
+        name: categories
+        widget: piveau-vocabulary
+        multiple: true
+        i18n: duplicate
+        piveau:
+          search: https://piveau-hub-search-ln.zazukoians.org/
+          vocabulary: data-theme
+      - label: Type of content
+        name: type
+        widget: select
+        i18n: duplicate
+        options:
+          - label: "Application"
+            value: application
+          - label: "Data Visualization"
+            value: data_visualization
+          - label: "Event"
+            value: event
+          - label: "Blog/Article"
+            value: blog_and_media_articles
+      - name: datasets
+        label: Datasets
+        widget: piveau-dataset
+        multiple: true
+        i18n: duplicate
+        required: false
+        piveau:
+          search: https://piveau-hub-search-ln.zazukoians.org/
+      - name: tags
+        label: Tags
+        widget: list
       - name: body
         label: Body
         widget: markdown
