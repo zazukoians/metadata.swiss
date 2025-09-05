@@ -30,13 +30,21 @@
         },
         "dataset_detail": {
             "dataset": "Jeu de données",
+            "catalog": "Catalogue",
+            "this_dataset_record": "Cette entrée de jeu de données a été",
+            "accrual_periodicity": "Fréquence de mise à jour",
+            "show_catalog_entry": "Afficher l’entrée du catalogue",
+            "hide_catalog_entry": "Masquer l’entrée du catalogue",
             "distribution": "Distribution",
             "additional_information": "Informations supplémentaires",
-            "published_on": "Publié le",
-            "modified_on": "Dernière mise à jour le",
+            "published_on": "Publié",
+            "created_on": "Créé",
+            "modified_on": "Dernière mise à jour",
             "categories": "Catégories",
             "download": "Télécharger",
-            "go_to_resource": "Aller à la ressource"
+            "go_to_resource": "Aller à la ressource",
+            "show_raw": "Afficher la date brute",
+            "show_relative": "Afficher le temps relatif"
         },
         "terms_of_use": {
             "ods_open": {

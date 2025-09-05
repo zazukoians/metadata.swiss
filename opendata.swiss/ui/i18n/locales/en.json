@@ -30,13 +30,21 @@
         },
         "dataset_detail": {
             "dataset": "Dataset",
+            "catalog": "Catalog",
+            "this_dataset_record": "This dataset record has been",
+            "accrual_periodicity": "Update frequency",
+            "show_catalog_entry": "Show catalog entry",
+            "hide_catalog_entry": "Hide catalog entry",
             "distribution": "Distribution",
             "additional_information": "Additional information",
-            "published_on": "Published on",
-            "modified_on": "Last updated on",
+            "published_on": "Published",
+            "created_on": "Created",
+            "modified_on": "Last updated ",
             "categories": "Categories",
             "download": "Download",
-            "go_to_resource": "Go to resource"
+            "go_to_resource": "Go to resource",
+            "show_raw": "Show raw date",
+            "show_relative": "Show relative time"
         },
         "terms_of_use": {
             "ods_open": {
