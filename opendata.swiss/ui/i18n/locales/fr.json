@@ -27,7 +27,14 @@
             "search_results": "Résultats de recherche",
             "show_filters": "Afficher les filtres",
             "hide_filters": "Masquer les filtres",
-            "sort": "Trier par"
+            "sort": "Trier par",
+            "sort_by": {
+                "relevance": "par pertinence",
+                "date_modified_desc": "par date de modification (plus récent d'abord)",
+                "date_modified_asc": "par date de modification (plus ancien d'abord)",
+                "title_asc": "par titre (a-z)",
+                "title_desc": "par titre (z-a)"
+            }
         },
         "dataset_detail": {
             "dataset": "Jeu de données",
