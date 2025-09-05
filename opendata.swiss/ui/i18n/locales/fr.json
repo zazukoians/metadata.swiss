@@ -14,7 +14,8 @@
                 "contact": "Contact",
                 "what_is_ods": "Qu'est-ce qu'opendata.swiss?",
                 "terms_of_use": "Conditions d'utilisation",
-                "handbook": "Manuel"
+                "handbook": "Manuel",
+                "showcases": "Showcases"
             }
         },
         "ods_toc": {
@@ -37,6 +38,16 @@
             "categories": "Catégories",
             "download": "Télécharger",
             "go_to_resource": "Aller à la ressource"
+        },
+        "showcase": {
+            "type": {
+                "header": "Type de contenu"
+            },
+            "categories": "Catégories",
+            "tags": "Tags",
+            "submitted_by": "Soumis par",
+            "externalLink": "Lien externe",
+            "open": "Ouvrir le site web"
         },
         "terms_of_use": {
             "ods_open": {

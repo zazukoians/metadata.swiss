@@ -61,7 +61,7 @@ const breadcrumbs = [
         <div class="search-results search-results--grid" aria-live="polite" aria-busy="false">
           <ul class="search-results-list">
             <li v-for="post in posts" :key="post.id">
-              <OdsCard :title="post.title">
+              <OdsCard :title="post.title" type="universal" clickable>
                 <template #top-meta>
                     <NuxtTime class="meta-info__item" :datetime="new Date(post.date)" relative />
                 </template>

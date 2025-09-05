@@ -1,5 +1,5 @@
 <template>
-  <OdsCard :title="props.item.getTitle">
+  <OdsCard :title="props.item.getTitle" type="universal" clickable>
     <template #top-meta>
       <div>
         <span class="meta-info__item">{{ t('message.dataset_detail.dataset') }}</span>

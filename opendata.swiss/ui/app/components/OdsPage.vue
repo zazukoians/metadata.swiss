@@ -17,7 +17,9 @@ const { page } = defineProps({
         <div class="hero__content">
           <h1 class="hero__title">{{ page.heading || page.title }}</h1>
           <div class="hero__description">
-            <MDC v-if="page.subHeading" :value="page.subHeading"/>
+            <slot name="hero-subheading">
+              <MDC v-if="page.subHeading" :value="page.subHeading"/>
+            </slot>
           </div>
         </div>
       </div>
@@ -28,9 +30,10 @@ const { page } = defineProps({
           <div class="container__main vertical-spacing">
               <ContentRenderer :value="page"/>
           </div>
-          <div v-if="page.body?.toc?.links.length" class="container__aside">
+          <div class="container__aside">
             <div id="aside-content" class="sticky sticky--top">
-              <OdsToc :toc="page.body.toc"/>
+              <OdsToc v-if="page.body?.toc?.links.length" :toc="page.body.toc"/>
+              <slot name="aside-content" />
             </div>
           </div>
         </div>
