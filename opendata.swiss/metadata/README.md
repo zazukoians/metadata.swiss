@@ -35,7 +35,15 @@ To create the catalogues, run:
 ./scripts/catalogues.sh
 ```
 
-To remove them, run:
+And to trigger a harvest, run:
+
+```sh
+./scripts/harvest.sh
+```
+
+If you open the UI at [http://localhost:8080](http://localhost:8080), you should see that the catalogues and datasets are now visible.
+
+To remove the catalogues, run:
 
 ```sh
 ./scripts/catalogues_delete.sh
