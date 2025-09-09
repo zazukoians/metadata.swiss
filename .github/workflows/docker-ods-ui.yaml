@@ -50,7 +50,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: ./opendata.swiss/ui
-          file: ./Dockerfile
+          file: ./opendata.swiss/ui/Dockerfile
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.docker_meta.outputs.tags }}
           labels: ${{ steps.docker_meta.outputs.labels }}
