@@ -3,8 +3,8 @@ name: "[UI] Build and push Docker image"
 on:
   push:
     paths:
-      - "opendata.swiss/ui/**"
-      - ".github/workflows/docker-ui.yaml"
+      - "opendata.swiss/ui/**" # Only trigger if files in the ui directory change
+      - ".github/workflows/docker-ods-ui.yaml" # Trigger also if this workflow file is changed
 
 jobs:
   docker:
