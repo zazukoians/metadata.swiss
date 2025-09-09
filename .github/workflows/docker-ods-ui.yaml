@@ -44,6 +44,7 @@ jobs:
           tags: |
             type=ref,event=branch
             type=sha
+            type=raw,value={{branch}}-${{ github.run_id }}
 
       - name: Build and push Docker images
         id: docker_build
