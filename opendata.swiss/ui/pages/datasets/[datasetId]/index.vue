@@ -10,7 +10,7 @@ import OdsDetailsTable from '../../../app/components/dataset-detail/OdsDetailsTa
 import OdsTagList from '../../../app/components/dataset-detail/OdsTagList.vue'
 import OdsDownloadsList from '../../../app/components/dataset-detail/OdsDownloadsList.vue'
 import OdsDatasetMetaInfo from '../../../app/components/dataset-detail/OdsDatasetMetaInfo.vue'
-
+import OdsDatasetCatalogPanel from '../../../app/components/dataset-detail/OdsDatasetCatalogPanel.vue'
 import { useI18n } from 'vue-i18n';
 const md = `
 ::alert
@@ -121,10 +121,11 @@ const breadcrumbs = computed(() => {
             </div>
          </div>
       </div>
+
    </section>
    <section class="section publication-back-button-section">
       <div class="container">
-        <OdsButton title="Zurück" icon="ArrowLeft" @click="router.back()" variant="outline" class="btn--back" size="sm"></OdsButton>
+        <OdsButton title="Zurück" icon="ArrowLeft" variant="outline" class="btn--back" size="sm" @click="router.back()" />
       </div>
    </section>
    <section class="section bg--secondary-50">
@@ -150,7 +151,7 @@ const breadcrumbs = computed(() => {
                          variant="outline"
                          icon-only
                          icon="ArrowRight"
-                         title="Weiterlesen"></OdsButton>
+                         title="Weiterlesen" />
                      </div>
                   </div>
                </div>
@@ -182,6 +183,8 @@ const breadcrumbs = computed(() => {
             </div>
          </div>
       </div>
+
+
    </section>
    <pre>{{ resultEnhanced }}</pre>
   </main>
