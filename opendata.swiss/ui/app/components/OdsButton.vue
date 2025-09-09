@@ -5,17 +5,22 @@
   :aria-label="title"
   :title="title"
   >
-    <SvgIcon v-if="icon" :icon="icon" :size="size" class="btn__icon"></SvgIcon>
+    <slot name="icon-before">
+      <SvgIcon v-if="icon" :icon="icon" :size="size" class="btn__icon"></SvgIcon>
+    </slot>
     <span class="btn__text">
       <a v-if="href" :href="href" >
         <slot>{{ title }}</slot>
       </a>
       <slot v-else>{{ title }}</slot>
     </span>
+    <slot name="icon-after" />
   </button>
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue';
+
 const { title, iconOnly = false, ...props } = defineProps<{
   title?: string
   variant?: 'outline' | 'bare' | 'filled' | 'outline-negative' | 'bare-negative' | 'link' | 'link-negative'
@@ -27,7 +32,7 @@ const { title, iconOnly = false, ...props } = defineProps<{
 }>()
 
 const classes = computed(() => {
-  const classes = []
+  const classes: string[] = []
 
   if(iconOnly) {
     classes.push('btn--icon-only')
