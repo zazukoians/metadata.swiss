@@ -32,7 +32,7 @@ const { title, iconOnly = false, ...props } = defineProps<{
 }>()
 
 const classes = computed(() => {
-  const classes: string[] = []
+  const classes = []
 
   if(iconOnly) {
     classes.push('btn--icon-only')
