@@ -5,7 +5,7 @@
   :aria-label="title"
   :title="title"
   >
-    <slot name="icon-left">
+    <slot name="icon">
       <SvgIcon v-if="icon" :icon="icon" :size="size" class="btn__icon" />
     </slot>
     <span class="btn__text">
@@ -14,8 +14,6 @@
       </a>
       <slot v-else>{{ title }}</slot>
     </span>
-
-    <slot name="icon-right" />
 
   </button>
 </template>
@@ -69,9 +67,4 @@ const classes = computed(() => {
   color: rgb(255 255 255 / var(--tw-text-opacity, 1));
 }
 /* end fixes */
-
-.btn--link .btn__icon {
-    fill: var(--color-primary-600) !important;
-    stroke: var(--color-primary-600) !important;
-}
 </style>

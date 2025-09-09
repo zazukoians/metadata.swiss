@@ -7,7 +7,7 @@
     size="sm"
     @click="showFilters = !showFilters"
   >
-    <template #icon-left>
+    <template #icon>
       <SvgIcon
         icon="ChevronDown"
         role="btn"

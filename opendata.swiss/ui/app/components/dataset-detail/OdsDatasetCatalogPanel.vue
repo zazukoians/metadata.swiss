@@ -10,11 +10,12 @@
     :title="showCatalogInfo ? t('message.dataset_detail.hide_catalog_entry') : t('message.dataset_detail.show_catalog_entry')"
     :aria-label="showCatalogInfo ? t('message.dataset_detail.hide_catalog_entry') : t('message.dataset_detail.show_catalog_entry')"
     size="sm"
+    icon-right
     @click="showCatalogInfo = !showCatalogInfo"
   >
           {{ showCatalogInfo ? props.dataset.getOdsCatalogInfo.title : props.dataset.getOdsCatalogInfo.title }}
 
-          <template #icon-right>
+          <template #icon>
     <SvgIcon
       icon="ChevronDown"
       role="btn"
