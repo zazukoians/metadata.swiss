@@ -12,3 +12,37 @@
 
 - `scripts/`: Various scripts, needs to be run from this directory (`./scripts/your_script.sh`)
 - `.env`: Configure some environment variables (not in git)
+
+## Local Stack
+
+It is possible to start a local stack, in order to quickly try changes locally.
+
+For this, you need to have Docker and Docker Compose installed.
+
+Then, you will need to create a `.env` file, based on the `.env.example` file, and fill in the secrets.
+
+Finally, you can start the stack with:
+
+```sh
+docker-compose up -d # You can ignore the `-d` to see the logs in real time
+```
+
+You can open the UI at [http://localhost:8080](http://localhost:8080).
+
+To create the catalogues, run:
+
+```sh
+./scripts/catalogues.sh
+```
+
+To remove them, run:
+
+```sh
+./scripts/catalogues_delete.sh
+```
+
+To stop the stack, run:
+
+```sh
+docker-compose down
+```
