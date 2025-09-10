@@ -3,6 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "type": "module",
+  "overrides": {
+    "@nuxtjs/mdc": "^0.17.4"
+  },
   "scripts": {
     "decap": "rimraf public/admin && decap-server & vite src/admin",
     "dev": "nuxt dev",
