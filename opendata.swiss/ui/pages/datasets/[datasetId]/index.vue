@@ -10,13 +10,9 @@ import OdsDetailsTable from '../../../app/components/dataset-detail/OdsDetailsTa
 import OdsTagList from '../../../app/components/dataset-detail/OdsTagList.vue'
 import OdsDownloadsList from '../../../app/components/dataset-detail/OdsDownloadsList.vue'
 import OdsDatasetMetaInfo from '../../../app/components/dataset-detail/OdsDatasetMetaInfo.vue'
-import OdsDatasetCatalogPanel from '../../../app/components/dataset-detail/OdsDatasetCatalogPanel.vue'
+import ExternalLink from '../../../app/components/ExternalLink.vue'
 import { useI18n } from 'vue-i18n';
-const md = `
-::alert
-Hello MDC
-::
-`
+
 const { locale, t } = useI18n();
 const route = useRoute()
 const router = useRouter()
@@ -70,8 +66,7 @@ const breadcrumbs = computed(() => {
          <div class="hero__content">
             <OdsDatasetMetaInfo :dataset="resultEnhanced" />
             <h1 class="hero__title"> {{ resultEnhanced?.getTitle }} </h1>
-            <h2 class="hero__subtitle"> {{ resultEnhanced?.getDescription }} </h2>
-            <pre>{{ resultEnhanced?.getDescription }}</pre>
+            <MDC :value="resultEnhanced?.getDescription ?? ''" />
             <!----><!---->
             <aside class="authors">
                <div class="disc-images" aria-hidden="true">

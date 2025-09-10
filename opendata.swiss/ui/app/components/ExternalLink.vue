@@ -1,5 +1,6 @@
 <template>
     <a
+      v-if="isExternal"
       :href="href"
       :aria-label="ariaLabel || props.href"
       :title ="props.ariaLabel || props.href"
@@ -8,6 +9,14 @@
     >
     <slot/>
     <SvgIcon icon="External" size="xs" class="icon--external-link" />
+    </a>
+    <a
+      v-else
+      :href="href"
+      :aria-label="ariaLabel || props.href"
+      :title ="props.ariaLabel || props.href"
+    >
+    <slot/>
     </a>
 </template>
 
@@ -19,6 +28,17 @@ interface Props {
 }
 
 const props = defineProps<Props>()
+
+const isExternal = computed(() => {
+  try {
+    const url = new URL(props.href, window.location.origin)
+    return url.host !== window.location.host
+  } catch {
+    // If it's not a valid URL, treat as internal
+    return false
+  }
+})
+
 </script>
 
 <style lang="scss" scoped>
