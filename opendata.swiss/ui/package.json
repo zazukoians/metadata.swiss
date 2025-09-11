@@ -27,6 +27,7 @@
     "bootstrap": "^5.3.7",
     "decap-cms-app": "^3.8.3",
     "eslint": "^9.31.0",
+    "is-absolute-url": "^4.0.1",
     "nuxt": "^4.0.0",
     "pinia": "^3.0.3",
     "react-bootstrap-typeahead": "^6.4.1",
@@ -46,9 +47,9 @@
     "@mdi/font": "^7.4.47",
     "@types/vue-select": "^3.16.8",
     "decap-server": "^3.3.0",
-    "vite-plugin-vuetify": "^2.1.1",
     "vite-plugin-node-polyfills": "^0.24.0",
     "vite-plugin-static-copy": "^3.1.1",
+    "vite-plugin-vuetify": "^2.1.1",
     "vuetify": "^3.9.2"
   }
 }

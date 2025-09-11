@@ -65,8 +65,7 @@ const breadcrumbs = computed(() => {
          <div class="hero__content">
             <OdsDatasetMetaInfo :dataset="resultEnhanced" />
             <h1 class="hero__title"> {{ resultEnhanced?.getTitle }} </h1>
-            <h2 class="hero__subtitle"> {{ resultEnhanced?.getDescription }} </h2>
-            <pre>{{ resultEnhanced?.getDescription }}</pre>
+            <MDC :value="resultEnhanced?.getDescription ?? ''" />
             <!----><!---->
             <aside class="authors">
                <div class="disc-images" aria-hidden="true">
