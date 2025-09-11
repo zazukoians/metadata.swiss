@@ -1,16 +1,28 @@
 <template>
-  <NuxtLink
+    <NuxtLink
+    v-if="isExternal"
     :href="props.href"
-    :target="isExternal ? '_blank' : props.target"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="link--external">
+    <slot />
+  </NuxtLink>
+
+  <NuxtLinkLocale
+    v-else
+    :href="props.href"
+    :target="props.target"
     :class="{ 'link--external': isExternal }"
   >
     <slot />
-  </NuxtLink>
+  </NuxtLinkLocale>
+
 </template>
 
 <script setup lang="ts">
 
 import type { PropType } from 'vue'
+import isAbsolute from 'is-absolute-url';
 
 const props = defineProps({
   href: {
@@ -25,26 +37,20 @@ const props = defineProps({
 })
 
 const isExternal = computed(() => {
-  try {
-    if (!props.href) {
-      return false;
-    }
-    let baseHost= '';
-    if(import.meta.client) {
-      baseHost = window.location.host;
-    } else {
-      // ssr context
-      baseHost = useRequestURL().host;
-    }
-
-    const url = new URL(props.href, `https://${baseHost}`);
-
-    if(! (url.protocol === 'http:' || url.protocol === 'https:')) {
-      return false;
-    }
-    return url.host !== baseHost;
-  } catch {
-    return false;
+  if (!props.href) {
+    return false
   }
+
+  if(props.href.startsWith('mailto')) {
+    return false
+  }
+
+  if(isAbsolute(props.href)) {
+    const base = import.meta.client ? window.location : useRequestURL()
+
+    return new URL(props.href).host !== base.host;
+  }
+
+  return false
 });
 </script>
