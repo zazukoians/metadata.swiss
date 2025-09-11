@@ -84,10 +84,6 @@ const breadcrumbs = computed(() => {
       <div class="container container--grid gap--responsive">
          <div class="container__main vertical-spacing">
             <div class="container__mobile">
-               <!-- <div class="box">
-                  <h2 class="h5">Download</h2>
-                  <OdsDownloadsList :dataset="resultEnhanced" />
-               </div>-->
                <div class="box">
                   <h2 class="h5">{{ t(`message.header.navigation.terms_of_use`) }}</h2>
                   <OdsDetailTermsOfUse v-for="value in resultEnhanced?.getLicenses" :key="value" :name="value" />
@@ -107,10 +103,6 @@ const breadcrumbs = computed(() => {
          </div>
          <div class="hidden container__aside md:block">
             <div id="aside-content" class="sticky sticky--top">
-            <!--  <div class="box">
-                  <h2 class="h5">{{ t('message.dataset_detail.go_to_resource') }}</h2>
-                  <OdsDownloadsList :dataset="resultEnhanced"/>
-               </div> -->
                <div class="box">
                   <h2 class="h5">{{ t(`message.header.navigation.terms_of_use`) }}</h2>
                   <OdsDetailTermsOfUse v-for="value in resultEnhanced?.getLicenses" :key="value" :name="value" />
