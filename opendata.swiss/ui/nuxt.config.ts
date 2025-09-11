@@ -46,9 +46,8 @@ export default defineNuxtConfig({
   },
   mdc: {
     components: {
-      prose: false, // Disable predefined prose components
       map: {
-        a: 'ExternalLink', // Map <a> tags to the ExternalLink component
+        a: 'OdsProseA', // Map <a> tags to the OdsProseA component
       }
     }
   },

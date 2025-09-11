@@ -10,7 +10,6 @@ import OdsDetailsTable from '../../../app/components/dataset-detail/OdsDetailsTa
 import OdsTagList from '../../../app/components/dataset-detail/OdsTagList.vue'
 import OdsDownloadsList from '../../../app/components/dataset-detail/OdsDownloadsList.vue'
 import OdsDatasetMetaInfo from '../../../app/components/dataset-detail/OdsDatasetMetaInfo.vue'
-import ExternalLink from '../../../app/components/ExternalLink.vue'
 import { useI18n } from 'vue-i18n';
 
 const { locale, t } = useI18n();
