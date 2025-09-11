@@ -1,6 +1,7 @@
 <template>
+      <span class="dataset-label">{{ t('message.dataset_detail.dataset') }}</span>
+
   <p class="meta-info">
-    <span class="meta-info__item">{{ t('message.dataset_detail.dataset') }}</span>
     <span
       v-if="props.dataset.getCreated"
       class="meta-info__item"
@@ -73,4 +74,18 @@ function toggleRaw() {
   flex-direction: row;
   align-items: center;
 }
+.dataset-label {
+  position: relative;
+  background-color: #e6f0fa;
+  color: #1976d2;
+  padding: 2px 10px;
+  border-radius: 6px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  display: inline-block;
+  margin-right: 10px;
+  vertical-align: middle;
+  border: 1px solid #b3d4fc;
+}
+
 </style>
