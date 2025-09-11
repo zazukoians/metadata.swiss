@@ -44,6 +44,7 @@
             "show_catalog_entry": "Afficher l’entrée du catalogue",
             "hide_catalog_entry": "Masquer l’entrée du catalogue",
             "distribution": "Distribution",
+            "distributions": "Distributions",
             "additional_information": "Informations supplémentaires",
             "published_on": "Publié",
             "created_on": "Créé",
@@ -52,7 +53,8 @@
             "download": "Télécharger",
             "go_to_resource": "Aller à la ressource",
             "show_raw": "Afficher la date brute",
-            "show_relative": "Afficher le temps relatif"
+            "show_relative": "Afficher le temps relatif",
+            "details": "Détails"
         },
         "showcase": {
             "type": {
