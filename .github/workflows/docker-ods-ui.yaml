@@ -71,11 +71,12 @@ jobs:
 
       - name: Build and push Docker images
         id: docker_build
+        if: github.event_name != 'pull_request'
         uses: docker/build-push-action@v6
         with:
           context: ./opendata.swiss/ui
           file: ./opendata.swiss/ui/Dockerfile
-          push: ${{ github.event_name != 'pull_request' }}
+          push: true
           tags: ${{ steps.docker_meta.outputs.tags }}
           labels: ${{ steps.docker_meta.outputs.labels }}
           platforms: |
