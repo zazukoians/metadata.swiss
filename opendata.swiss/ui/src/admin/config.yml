@@ -15,7 +15,7 @@ collections:
   - name: handbook-section
     label: "Handbook sections"
     label_singular: Handbook section
-    folder: "content/sections"
+    folder: "opendata.swiss/ui/content/sections"
     extension: md
     widget: "list"
     create: true
@@ -35,7 +35,7 @@ collections:
     label: "Handbook articles"
     label_singular: Handbook article
     identifier_field: id
-    folder: "content/handbook"
+    folder: "opendata.swiss/ui/content/handbook"
     extension: md
     widget: "list"
     create: true
@@ -76,7 +76,7 @@ collections:
 
   - name: pages
     label: "Pages"
-    folder: "content/pages"
+    folder: "opendata.swiss/ui/content/pages"
     extension: md
     widget: "list"
     create: false
@@ -104,7 +104,7 @@ collections:
   - name: blog
     label: Blog
     label_singular: Blog Post
-    folder: "content/blog"
+    folder: "opendata.swiss/ui/content/blog"
     extension: md
     widget: "list"
     create: true
@@ -138,7 +138,7 @@ collections:
   - name: Showcases
     label: "Showcases"
     label_singular: Showcase
-    folder: "content/showcases"
+    folder: "opendata.swiss/ui/content/showcases"
     i18n: true
     extension: md
     widget: "list"
