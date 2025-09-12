@@ -18,6 +18,7 @@ jobs:
 
     permissions:
       contents: read
+      pull-requests: write
 
     steps:
       - name: Checkout
@@ -70,6 +71,24 @@ jobs:
         if: github.event.action != 'closed'
         run: |
           kubectl apply -f manifest.yaml
+
+      # Handle preview URL comment on the PR
+      - name: Find Comment
+        uses: peter-evans/find-comment@v3
+        id: fc
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          comment-author: "github-actions[bot]"
+          body-includes: Your preview environment is ready
+      - name: Show preview URL directly on the PR
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          comment-id: ${{ steps.fc.outputs.comment-id }}
+          edit-mode: replace
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            Your preview environment is ready! 🚀
+            **URL:** https://${{ steps.vars.outputs.branch }}.piveau-ln-preview.zazukoians.org/
 
       - name: Delete manifests
         working-directory: ./opendata.swiss/ui/k8s
