@@ -1,11 +1,6 @@
 backend:
-  name: gitlab
-  repo: docker/lindas-next-piveau-js
-  auth_type: pkce
-  app_id: your-app-id # TODO: Application ID from your GitLab settings
-  api_root: https://gitlab.zazuko.com/api/v4
-  base_url: https://gitlab.zazuko.com
-  auth_endpoint: oauth/authorize
+  name: github
+  repo: opendata-swiss/metadata.swiss
 
 # These lines should *not* be indented
 media_folder: "public/img" # Media files will be stored in the repo under static/images/uploads
