@@ -2,6 +2,11 @@ name: "[UI] Handle previews on PR"
 
 on:
   pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+      - closed
     paths:
       - "opendata.swiss/ui/**" # Only trigger if files in the ui directory change
       - ".github/workflows/previews-ods-ui.yaml" # Trigger also if this workflow file is changed
@@ -56,3 +61,16 @@ jobs:
           kustomize edit set image "ghcr.io/opendata-swiss/ods-ui=ghcr.io/opendata-swiss/ods-ui:sha-${{ steps.vars.outputs.short_sha }}"
           kustomize edit set label "app.kubernetes.io/instance:${{ steps.vars.outputs.branch }}"
           kustomize build | tee manifest.yaml
+
+      - name: Apply manifests
+        working-directory: ./opendata.swiss/ui/k8s
+        if: github.event.action != 'closed'
+        run: |
+          kubectl apply -f manifest.yaml
+
+      - name: Delete manifests
+        working-directory: ./opendata.swiss/ui/k8s
+        if: github.event.action == 'closed'
+        continue-on-error: true
+        run: |
+          kubectl delete -f manifest.yaml
