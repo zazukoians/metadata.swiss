@@ -83,7 +83,7 @@ jobs:
         with:
           issue-number: ${{ github.event.pull_request.number }}
           comment-author: "github-actions[bot]"
-          body-includes: Your preview environment is ready
+          body-includes: Your preview environment is deployed
       - name: Show preview URL directly on the PR
         uses: peter-evans/create-or-update-comment@v4
         with:
