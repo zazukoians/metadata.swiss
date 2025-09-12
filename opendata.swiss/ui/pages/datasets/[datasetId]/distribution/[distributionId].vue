@@ -8,6 +8,11 @@ import { useDatasetsSearch } from '../../../../app/piveau/search.js'
 import { homePageBreadcrumb } from "../../../../app/composables/breadcrumbs.js";
 import OdsDetailTermsOfUse from '../../../../app/components/dataset-detail/OdsDetailTermsOfUse.vue';
 import OdsDetailsTable from '../../../../app/components/dataset-detail/OdsDetailsTable.vue'
+
+
+import { DcatApChV2DatasetAdapter } from '../../../../app/components/dataset-detail/model/dcat-ap-ch-v2-dataset-adapter.js'
+
+
 const { locale, t } = useI18n();
 
 const route = useRoute()
@@ -19,9 +24,21 @@ const distributionId = computed(() => route.params.distributionId as string)
 const { useResource } = useDatasetsSearch()
 const { isSuccess, resultEnhanced } = useResource(datasetId)
 
+const dataset = computed(() => {
+  if (!resultEnhanced.value) {
+    return undefined
+  }
+  return new DcatApChV2DatasetAdapter(resultEnhanced.value)
+})
+
+
 const distribution = computed(() => {
-  const dists = resultEnhanced.value?.getDistributions.find(d => d.id === distributionId.value) ?? undefined
-  return dists
+  const dist = dataset.value?.distributions.find(d => d.id === distributionId.value);
+  if (!dist) {
+    return undefined
+  }
+
+  return dist
 })
 
 const node = computed(() => {
@@ -52,7 +69,7 @@ const _breadcrumbs = [
         <div class="hero__content">
           <p class="meta-info"><span class="meta-info__item">{{ t('message.dataset_detail.distribution') }}</span><span class="meta-info__item">{{ t('message.dataset_detail.published_on') }} {{ resultEnhanced?.getCreated }} </span><span class="meta-info__item">{{ t('message.dataset_detail.modified_on') }} {{ resultEnhanced?.getModified }} </span></p>
           <h1 class="hero__title"> {{ distribution.title }} </h1>
-          <h2 class="hero__subtitle"> {{ distribution.description }} </h2>
+          <MDC :value="distribution.description ?? ''" />
         </div>
       </div>
    </section>

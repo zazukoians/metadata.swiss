@@ -98,7 +98,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
-import type { Dataset } from '~/model/dataset'
+import type { DcatApChV2DatasetAdapter } from './model/dcat-ap-ch-v2-dataset-adapter'
 import OdsButton from '../OdsButton.vue'
 
 const { locale, t } = useI18n()
@@ -107,7 +107,7 @@ const showRaw = ref(false)
 const showCatalogInfo = ref(false)
 const props = defineProps({
   dataset: {
-    type: Object as () => Dataset,
+    type: Object as PropType<DcatApChV2DatasetAdapter>,
     required: true
   }
 })

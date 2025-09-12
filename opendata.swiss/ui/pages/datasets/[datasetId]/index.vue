@@ -2,7 +2,11 @@
 import { definePropertyNode } from '@piveau/sdk-vue'
 import { computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
+import { useI18n } from 'vue-i18n';
+
 import { useDatasetsSearch } from '../../../app/piveau/search'
+import { DcatApChV2DatasetAdapter } from '../../../app/components/dataset-detail/model/dcat-ap-ch-v2-dataset-adapter';
+
 import { homePageBreadcrumb } from "../../../app/composables/breadcrumbs";
 import OdsBreadcrumbs from "../../../app/components/OdsBreadcrumbs.vue";
 import OdsDetailTermsOfUse from '../../../app/components/dataset-detail/OdsDetailTermsOfUse.vue'
@@ -10,7 +14,7 @@ import OdsDetailsTable from '../../../app/components/dataset-detail/OdsDetailsTa
 import OdsTagList from '../../../app/components/dataset-detail/OdsTagList.vue'
 import OdsDatasetMetaInfo from '../../../app/components/dataset-detail/OdsDatasetMetaInfo.vue'
 import OdsDistributionList from '../../../app/components/dataset-detail/OdsDistributionList.vue'
-import { useI18n } from 'vue-i18n';
+
 
 const { locale, t } = useI18n();
 const route = useRoute()
@@ -21,6 +25,16 @@ const { useResource } = useDatasetsSearch()
 const { isSuccess, resultEnhanced } = useResource(datasetId)
 
 const node = computed(() => definePropertyNode({ id: 'root', data: resultEnhanced.value?.getPropertyTable }, { compact: true, maxDepth: 2 }))
+
+const dataset = computed(() => {
+  if (!resultEnhanced.value) {
+    return undefined
+  }
+  return new DcatApChV2DatasetAdapter(resultEnhanced.value)
+})
+
+const distributions = computed(() => (dataset.value?.distributions ?? []).sort((a, b) => a.title.localeCompare(b.title)))
+
 
 const homePage = await homePageBreadcrumb(locale)
 const breadcrumbs = computed(() => {
@@ -55,7 +69,7 @@ const breadcrumbs = computed(() => {
 </script>
 
 <template>
-  <div v-if="isSuccess">
+  <div v-if="dataset">
   <header id="main-header">
     <OdsBreadcrumbs :breadcrumbs="breadcrumbs" />
   </header>
@@ -63,16 +77,16 @@ const breadcrumbs = computed(() => {
    <section class="hero hero--default">
       <div class="container container--grid gap--responsive">
          <div class="hero__content">
-            <OdsDatasetMetaInfo :dataset="resultEnhanced" />
-            <h1 class="hero__title"> {{ resultEnhanced?.getTitle }} </h1>
-            <MDC :value="resultEnhanced?.getDescription ?? ''" />
+            <OdsDatasetMetaInfo :dataset="dataset" />
+            <h1 class="hero__title"> {{ dataset.title }} </h1>
+            <MDC :value="dataset.description" />
             <!----><!---->
-            <aside class="authors">
-               <div class="disc-images" aria-hidden="true">
-                  <div class="disc-image"><img src="https://picsum.photos/120/120/?image=29" :title="resultEnhanced?.getPublisher?.name ?? ''"></div>
-               </div>
-               <address class="authors__names">
-                <a class="link author__name" href="#">{{ resultEnhanced?.getPublisher?.name }}</a>
+            <aside v-if="dataset.publisher" class="authors">
+              <div class="disc-images" aria-hidden="true">
+                <div class="disc-image"><img src="https://picsum.photos/120/120/?image=29" :title="dataset.publisher.name"></div>
+              </div>
+              <address class="authors__names">
+                <a class="link author__name link--external" target="_blank" :href="dataset.publisher.resource">{{ dataset.publisher.name }}</a>
               </address>
             </aside>
          </div>
@@ -89,10 +103,10 @@ const breadcrumbs = computed(() => {
                </div>
             </div>
             <h2 class="h2">{{ t('message.dataset_detail.distributions') }}</h2>
-            <OdsDistributionList :dataset="resultEnhanced" />
+            <OdsDistributionList :distributions="distributions" />
 
             <h2 class="h2">{{ t('message.dataset_detail.additional_information') }}</h2>
-            <OdsDetailsTable :root-node="node"/>
+            <OdsDetailsTable :table-entries="dataset.propertyTable"/>
             <div>
                <h2 class="h2">{{ t('message.dataset_detail.categories') }}</h2>
                <div>
@@ -160,11 +174,12 @@ const breadcrumbs = computed(() => {
                      <!---->
                      <div class="card__footer__action">
                        <OdsButton
-                         variant="outline"
-                         icon-only
-                         @click="router.back()"
-                         icon="ArrowRight"
-                         title="Weiterlesen"></OdsButton>
+                          variant="outline"
+                          icon-only
+                          icon="ArrowRight"
+                          title="Weiterlesen"
+                          @click="router.back()"
+                        />
                      </div>
                   </div>
                </div>

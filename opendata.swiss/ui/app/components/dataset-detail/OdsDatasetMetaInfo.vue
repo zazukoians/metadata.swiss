@@ -3,22 +3,22 @@
 
   <p class="meta-info">
     <span
-      v-if="props.dataset.getCreated"
+      v-if="props.dataset.releaseDate"
       class="meta-info__item"
       style="cursor: pointer"
       :title="showRaw ? t('message.dataset_detail.show_relative') : t('message.dataset_detail.show_raw')"
       :aria-label="showRaw ? t('message.dataset_detail.show_relative') : t('message.dataset_detail.show_raw')"
       @click="toggleRaw"
     >
-      {{ t('message.dataset_detail.published_on') }}
+      {{ t('message.dataset_detail.released') }}
       <NuxtTime
-        :datetime="new Date(props.dataset.getCreated)"
+        :datetime="props.dataset.releaseDate"
         :locale="locale"
         :relative="!showRaw"
       />
     </span>
     <span
-      v-if="props.dataset.getModified"
+      v-if="props.dataset.modificationDate"
       class="meta-info__item"
       style="cursor: pointer"
       :title="showRaw ? t('message.dataset_detail.show_relative') : t('message.dataset_detail.show_raw')"
@@ -27,16 +27,16 @@
     >
       {{ t('message.dataset_detail.modified_on') }}
       <NuxtTime
-        :datetime="new Date(props.dataset.getModified)"
+        :datetime="props.dataset.modificationDate"
         :locale="locale"
         :relative="!showRaw"
       />
     </span>
      <span
-      v-if="props.dataset.getOdsAccrualPeriodicity"
+      v-if="props.dataset.frequency"
       class="meta-info__item"
     >
-      {{ t('message.dataset_detail.accrual_periodicity') }} <a class="link--external" :href="props.dataset.getOdsAccrualPeriodicity.resource">{{ props.dataset.getOdsAccrualPeriodicity.label }}</a>
+      {{ t('message.dataset_detail.frequency') }} <a class="link--external" target="_blank" :href="props.dataset.frequency.resource">{{ props.dataset.frequency.label }}</a>
     </span>
   </p>
   <p class="meta-info catalog-meta-info">
@@ -48,7 +48,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
-import type { Dataset } from '~/model/dataset'
+import type { DcatApChV2DatasetAdapter } from './model/dcat-ap-ch-v2-dataset-adapter'
 import OdsDatasetCatalogPanel from './OdsDatasetCatalogPanel.vue'
 
 const { locale, t } = useI18n()
@@ -57,7 +57,7 @@ const showRaw = ref(false)
 
 const props = defineProps({
   dataset: {
-    type: Object as () => Dataset,
+    type: Object as PropType<DcatApChV2DatasetAdapter>,
     required: true
   }
 })

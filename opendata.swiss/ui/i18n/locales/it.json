@@ -40,7 +40,7 @@
             "dataset": "Set di dati",
             "catalog": "Catalogo",
             "this_dataset_record": "Questo record del set di dati è stato",
-            "accrual_periodicity": "Frequenza di aggiornamento",
+            "frequency": "Frequenza di aggiornamento",
             "show_catalog_entry": "Mostra la voce di catalogo",
             "hide_catalog_entry": "Nascondi la voce di catalogo",
             "distribution": "Distribuzione",
@@ -54,7 +54,8 @@
             "go_to_resource": "Vai alla risorsa",
             "show_raw": "Mostra data grezza",
             "show_relative": "Mostra tempo relativo",
-            "details": "Dettagli"
+            "details": "Dettagli",
+            "released": "Rilasciato"
         },
         "showcase": {
             "type": {
