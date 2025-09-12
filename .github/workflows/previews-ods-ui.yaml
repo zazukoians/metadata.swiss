@@ -35,7 +35,7 @@ jobs:
       - name: Configure some variables
         id: vars
         run: |
-          echo "short_sha=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+          echo "short_sha=${GITHUB_SHA::8}" >> $GITHUB_OUTPUT
           echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF_NAME}}" >> $GITHUB_OUTPUT
 
       - name: Configure cluster context
@@ -87,8 +87,9 @@ jobs:
           edit-mode: replace
           issue-number: ${{ github.event.pull_request.number }}
           body: |
-            Your preview environment is ready! 🚀
+            Your preview environment is deployed! 🚀
             **URL:** https://${{ steps.vars.outputs.branch }}.piveau-ln-preview.zazukoians.org/
+            **Note:** It may take a few minutes for the DNS to propagate, the certificate to be generated and the preview to be reachable.
 
       - name: Delete manifests
         working-directory: ./opendata.swiss/ui/k8s
