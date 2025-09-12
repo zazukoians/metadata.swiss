@@ -122,6 +122,17 @@ jobs:
               - secretName: ${{ steps.vars.outputs.branch }}-prev-tls
                 hosts:
                   - ${{ steps.vars.outputs.branch }}.piveau-ln-preview.zazukoians.org
+              rules:
+                - host: ${{ steps.vars.outputs.branch }}.piveau-ln-preview.zazukoians.org
+                  http:
+                    paths:
+                      - path: /
+                        pathType: Prefix
+                        backend:
+                          service:
+                            name: piveau-ui
+                            port:
+                              name: http
           EOF
           )"
           kustomize edit set image "ghcr.io/opendata-swiss/ods-ui=ghcr.io/opendata-swiss/ods-ui:sha-${{ steps.vars.outputs.short_sha }}"
