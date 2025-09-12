@@ -23,6 +23,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v5
+        # Fetch the full history for the branch to be able to get the short SHA
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
 
       - name: Set up kubectl
         uses: azure/setup-kubectl@v4
@@ -35,8 +39,8 @@ jobs:
       - name: Configure some variables
         id: vars
         run: |
-          echo "short_sha=${GITHUB_SHA::8}" >> $GITHUB_OUTPUT
-          echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF_NAME}}" >> $GITHUB_OUTPUT
+          echo "short_sha=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+          echo "branch=${GITHUB_HEAD_REF}" >> $GITHUB_OUTPUT
 
       - name: Configure cluster context
         run: |
