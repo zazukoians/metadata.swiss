@@ -43,29 +43,16 @@ jobs:
         working-directory: ./opendata.swiss/ui/k8s
         run: |
           kustomize edit set nameprefix "${{ steps.vars.outputs.branch }}-"
-          kustomize edit add patch --patch "$(cat <<EOF
-          apiVersion: networking.k8s.io/v1
-          kind: Ingress
-          metadata:
-            name: piveau-ui
-          spec:
-            tls:
-              - secretName: ${{ steps.vars.outputs.branch }}-prev-tls
-                hosts:
-                  - ${{ steps.vars.outputs.branch }}.piveau-ln-preview.zazukoians.org
-              rules:
-                - host: ${{ steps.vars.outputs.branch }}.piveau-ln-preview.zazukoians.org
-                  http:
-                    paths:
-                      - path: /
-                        pathType: Prefix
-                        backend:
-                          service:
-                            name: piveau-ui
-                            port:
-                              name: http
-          EOF
-          )"
+          kustomize edit add patch \
+            --group networking.k8s.io \
+            --version v1 \
+            --kind Ingress \
+            --name piveau-ui \
+            --patch '[
+              {"op": "replace", "path": "/spec/tls/0/secretName", "value": "${{ steps.vars.outputs.branch }}-prev-tls"},
+              {"op": "replace", "path": "/spec/tls/0/hosts/0", "value": "${{ steps.vars.outputs.branch }}.piveau-ln-preview.zazukoians.org"},
+              {"op": "replace", "path": "/spec/rules/0/host", "value": "${{ steps.vars.outputs.branch }}.piveau-ln-preview.zazukoians.org"}
+            ]'
           kustomize edit set image "ghcr.io/opendata-swiss/ods-ui=ghcr.io/opendata-swiss/ods-ui:sha-${{ steps.vars.outputs.short_sha }}"
           kustomize edit set label "app.kubernetes.io/instance:${{ steps.vars.outputs.branch }}"
           kustomize build | tee manifest.yaml
