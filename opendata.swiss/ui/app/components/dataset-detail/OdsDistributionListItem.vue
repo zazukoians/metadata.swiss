@@ -8,7 +8,7 @@
     </a>
 
     <NuxtLink :to="`${props.distribution.dataset.id}/distribution/${props.distribution.id}`" class="no-underline no-overvlow">
-      <h3 class="download-item__title">{{ props.distribution.title }}</h3>
+      <h3 class="download-item__title" :title="props.distribution.title">{{ props.distribution.title }}</h3>
       <p class="download-item__description" />
 
       <div class="footer">
