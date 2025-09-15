@@ -14,7 +14,7 @@
       <div class="footer">
         <p class="meta-info download-item__meta-info">
           <span v-if="props.distribution.format" class="meta-info__item">{{ props.distribution.format }}</span>
-          <span v-if="props.distribution.issued" class="meta-info__item">{{ props.distribution.modified ? props.distribution.modified : props.distribution.issued }}</span>
+          <span v-if="props.distribution.releaseDate" class="meta-info__item">{{ props.distribution.modified ? props.distribution.modified : props.distribution.releaseDate }}</span>
           <span v-if="props.distribution.formattedByteSize" class="meta-info__item">{{ props.distribution.formattedByteSize }}</span>
         </p>
         <OdsButton icon="ArrowRight" variant="bare" size="sm" class="download-item__button" icon-right :to="`${props.distribution.dataset.id}/distribution/${props.distribution.id}`" >

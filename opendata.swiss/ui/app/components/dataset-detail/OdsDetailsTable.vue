@@ -22,6 +22,7 @@
 <script setup lang="ts">
 
 import type { TableEntry } from './model/table-entry';
+import OdsInfoBlock from '../OdsInfoBlock.vue';
 
 const props = defineProps({
   tableEntries: {

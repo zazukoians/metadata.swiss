@@ -13,7 +13,7 @@ import OdsDetailsTable from '../../../app/components/dataset-detail/OdsDetailsTa
 import OdsTagList from '../../../app/components/dataset-detail/OdsTagList.vue'
 import OdsDatasetMetaInfo from '../../../app/components/dataset-detail/OdsDatasetMetaInfo.vue'
 import OdsDistributionList from '../../../app/components/dataset-detail/OdsDistributionList.vue'
-import { useI18n } from 'vue-i18n';
+import { useSeoMeta } from 'nuxt/app';
 
 const { locale, t } = useI18n();
 const route = useRoute()
@@ -100,7 +100,7 @@ useSeoMeta({
             <div class="container__mobile">
                <div class="box">
                   <h2 class="h5">{{ t(`message.header.navigation.terms_of_use`) }}</h2>
-                  <OdsDetailTermsOfUse v-for="value in resultEnhanced?.getLicenses" :key="value" :name="value" />
+                  <OdsDetailTermsOfUse v-for="value in dataset.licenses" :key="value" :name="value" />
                </div>
             </div>
             <h2 class="h2">{{ t('message.dataset_detail.distributions') }}</h2>

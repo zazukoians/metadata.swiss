@@ -103,6 +103,13 @@ export class DcatApChV2DatasetAdapter {
   get getLicenses(): string[] {
     return this.#dataset?.getLicenses ?? [];
   }
+  /**
+   * Get the licenses of the dataset.
+   *
+   */
+  get licenses(): string[] {
+    return this.#dataset?.getLicenses ?? [];
+  }
 
   get getIssued(): string | undefined {
     return this.#dataset?.getIssued;

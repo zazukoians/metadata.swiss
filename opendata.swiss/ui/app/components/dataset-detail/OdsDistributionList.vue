@@ -21,6 +21,7 @@ const props = defineProps({
 
 
 <style lang="scss" scoped>
+
 .ods-distribution-list {
   display: flex;
   flex-direction: column;

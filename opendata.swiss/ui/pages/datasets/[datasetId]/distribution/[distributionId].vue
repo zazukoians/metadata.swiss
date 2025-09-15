@@ -11,6 +11,7 @@ import OdsBreadcrumbs from "../../../../app/components/OdsBreadcrumbs.vue";
 import OdsButton from "../../../../app/components/OdsButton.vue";
 import OdsDownloadList from '../../../../app/components/distribution/OdsDownloadList.vue'
 import { DcatApChV2DatasetAdapter } from '../../../../app/components/dataset-detail/model/dcat-ap-ch-v2-dataset-adapter.js'
+import { useSeoMeta } from 'nuxt/app';
 
 
 const { locale, t } = useI18n();
@@ -33,7 +34,10 @@ const dataset = computed(() => {
 
 
 const distribution = computed(() => {
-  const dists = resultEnhanced.value?.getDistributions.find(d => d.id === distributionId.value) ?? undefined
+  if (!dataset.value) {
+    return undefined
+  }
+  const dists = dataset.value.distributions.find(d => d.id === distributionId.value) ?? undefined
   return dists
 })
 

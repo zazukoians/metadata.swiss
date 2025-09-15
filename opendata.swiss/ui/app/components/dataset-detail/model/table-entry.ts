@@ -1,5 +1,3 @@
-
-
 export interface TableEntry {
   id: string;
   label: string;
