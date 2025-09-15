@@ -27,7 +27,7 @@ const props = defineProps({
 }
 
 .list-element {
-  height: 100px;
+  height: 105px;
 }
 
 </style>
