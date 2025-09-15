@@ -13,7 +13,7 @@ import OdsDetailsTable from '../../../app/components/dataset-detail/OdsDetailsTa
 import OdsTagList from '../../../app/components/dataset-detail/OdsTagList.vue'
 import OdsDatasetMetaInfo from '../../../app/components/dataset-detail/OdsDatasetMetaInfo.vue'
 import OdsDistributionList from '../../../app/components/dataset-detail/OdsDistributionList.vue'
-
+import { useI18n } from 'vue-i18n';
 
 const { locale, t } = useI18n();
 const route = useRoute()
@@ -62,6 +62,10 @@ const breadcrumbs = computed(() => {
   })
 
   return result
+})
+
+useSeoMeta({
+  title: `${resultEnhanced.value?.getTitle} | ${t('message.header.navigation.datasets')} | opendata.swiss`,
 })
 </script>
 

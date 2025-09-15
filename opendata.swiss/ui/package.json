@@ -7,7 +7,7 @@
     "@nuxtjs/mdc": "^0.17.4"
   },
   "scripts": {
-    "decap": "rimraf public/admin && decap-server & vite src/admin",
+    "decap": "rimraf public/admin && (cd ../..; decap-server) & vite src/admin",
     "dev": "nuxt dev",
     "prebuild": "vite build src/admin --emptyOutDir",
     "build": "nuxt build",

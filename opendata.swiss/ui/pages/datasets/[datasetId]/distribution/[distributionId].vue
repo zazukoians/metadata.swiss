@@ -7,6 +7,8 @@ import { useDatasetsSearch } from '../../../../app/piveau/search.js'
 import { homePageBreadcrumb } from "../../../../app/composables/breadcrumbs.js";
 import OdsDetailTermsOfUse from '../../../../app/components/dataset-detail/OdsDetailTermsOfUse.vue';
 import OdsDetailsTable from '../../../../app/components/dataset-detail/OdsDetailsTable.vue'
+import OdsBreadcrumbs from "../../../../app/components/OdsBreadcrumbs.vue";
+import OdsButton from "../../../../app/components/OdsButton.vue";
 import OdsDownloadList from '../../../../app/components/distribution/OdsDownloadList.vue'
 import { DcatApChV2DatasetAdapter } from '../../../../app/components/dataset-detail/model/dcat-ap-ch-v2-dataset-adapter.js'
 
@@ -31,16 +33,12 @@ const dataset = computed(() => {
 
 
 const distribution = computed(() => {
-  const dist = dataset.value?.distributions.find(d => d.id === distributionId.value);
-  if (!dist) {
-    return undefined
-  }
-
-  return dist
+  const dists = resultEnhanced.value?.getDistributions.find(d => d.id === distributionId.value) ?? undefined
+  return dists
 })
 
 
-const _breadcrumbs = [
+const breadcrumbs = [
   await homePageBreadcrumb(locale),
   {
     title: t('message.header.navigation.datasets'),
@@ -48,13 +46,26 @@ const _breadcrumbs = [
   },
   {
     title: resultEnhanced.value?.getTitle,
-    path: route.path,
+    path: {
+      name: 'datasets-datasetId',
+      params: { datasetId: datasetId.value },
+    },
+  },
+  {
+    title: distribution.value?.title
   }
 ]
+
+useSeoMeta({
+  title: `${distribution.value?.title} | ${resultEnhanced.value?.getTitle} | ${t('message.header.navigation.datasets')} | opendata.swiss`,
+})
 </script>
 
 <template>
   <main v-if="isSuccess && distribution" id="main-content">
+    <header id="main-header">
+      <OdsBreadcrumbs :breadcrumbs="breadcrumbs" />
+    </header>
     <section class="hero hero--default">
       <div class="container container--grid gap--responsive">
         <div class="hero__content">
