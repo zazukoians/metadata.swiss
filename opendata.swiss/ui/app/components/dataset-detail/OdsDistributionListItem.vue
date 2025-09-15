@@ -7,20 +7,22 @@
       <SvgIcon icon="Download" size="xl" class="download-item__icon" />
     </a>
 
-    <NuxtLink :to="`${props.distribution.dataset.id}/distribution/${props.distribution.id}`" class="no-underline" style="flex-grow: 1;">
+    <NuxtLink :to="`${props.distribution.dataset.id}/distribution/${props.distribution.id}`" class="no-underline no-overvlow">
       <h3 class="download-item__title">{{ props.distribution.title }}</h3>
       <p class="download-item__description" />
 
-      <p class="meta-info download-item__meta-info">
-        <span v-if="props.distribution.format" class="meta-info__item">{{ props.distribution.format }}</span>
-        <span v-if="props.distribution.issued" class="meta-info__item">{{ props.distribution.modified ? props.distribution.modified : props.distribution.issued }}</span>
-        <span v-if="props.distribution.formattedByteSize" class="meta-info__item">{{ props.distribution.formattedByteSize }}</span>
-      </p>
-      <div style="display: flex; justify-content: flex-end; align-items: center; height: 100%; margin-top: -10px; margin-top:-40px;">
-          <OdsButton icon="ArrowRight" variant="bare" size="sm" class="download-item__button" icon-right :to="`${props.distribution.dataset.id}/distribution/${props.distribution.id}`" >
-           <span>{{ t('message.dataset_detail.details') }}</span>
-          </OdsButton>
+      <div class="footer">
+        <p class="meta-info download-item__meta-info">
+          <span v-if="props.distribution.format" class="meta-info__item">{{ props.distribution.format }}</span>
+          <span v-if="props.distribution.issued" class="meta-info__item">{{ props.distribution.modified ? props.distribution.modified : props.distribution.issued }}</span>
+          <span v-if="props.distribution.formattedByteSize" class="meta-info__item">{{ props.distribution.formattedByteSize }}</span>
+        </p>
+        <OdsButton icon="ArrowRight" variant="bare" size="sm" class="download-item__button" icon-right :to="`${props.distribution.dataset.id}/distribution/${props.distribution.id}`" >
+          <span>{{ t('message.dataset_detail.details') }}</span>
+        </OdsButton>
       </div>
+
+
 
     </NuxtLink>
 
@@ -54,5 +56,22 @@ const props = defineProps({
 }
 .no-underline {
   text-decoration: none;
+}
+
+.no-overvlow {
+  overflow-x: hidden;
+  flex-grow: 1;
+}
+
+.download-item__title {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
 }
 </style>

@@ -1,5 +1,7 @@
 <template>
-  <OdsDistributionListItem v-for="dist in props.distributions" :key="dist.id" :distribution="dist" />
+  <div class="ods-distribution-list">
+  <OdsDistributionListItem v-for="dist in props.distributions" :key="dist.id" :distribution="dist" class="list-element" />
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -16,3 +18,16 @@ const props = defineProps({
 })
 
 </script>
+
+
+<style lang="scss" scoped>
+.ods-distribution-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.list-element {
+  height: 100px;
+}
+
+</style>
