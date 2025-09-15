@@ -21,12 +21,18 @@ jobs:
       pull-requests: write
 
     steps:
-      - name: Checkout
+      - name: Checkout branch
+        if: github.event.action != 'closed'
         uses: actions/checkout@v5
         # Fetch the full history for the branch to be able to get the short SHA
         with:
           ref: ${{ github.head_ref }}
           fetch-depth: 0
+
+      # If the PR is closed, the branch may be deleted already, so we can't checkout the branch
+      - name: Checkout
+        if: github.event.action == 'closed'
+        uses: actions/checkout@v5
 
       - name: Set up kubectl
         uses: azure/setup-kubectl@v4
