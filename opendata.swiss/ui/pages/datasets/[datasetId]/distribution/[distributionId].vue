@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { definePropertyNode, } from '@piveau/sdk-vue'
 import { useI18n } from 'vue-i18n'
 
 import { computed } from 'vue'
@@ -41,13 +40,6 @@ const distribution = computed(() => {
   return dist
 })
 
-const node = computed(() => {
-  if (!distribution.value) {
-    return null
-  }
-  const rootNode = definePropertyNode({ id: 'root', data: distribution.value.getPropertyTable}, { compact: true, maxDepth: 2 })
-  return rootNode
-})
 
 const _breadcrumbs = [
   await homePageBreadcrumb(locale),
@@ -100,7 +92,7 @@ const _breadcrumbs = [
             </div>
           </div>
           <h2 class="h2">{{ t('message.dataset_detail.additional_information') }}</h2>
-          <OdsDetailsTable v-if="node" :root-node="node"/>
+          <OdsDetailsTable :table-entries="distribution.propertyTable"/>
         </div>
         <div class="hidden container__aside md:block">
           <div id="aside-content" class="sticky sticky--top">

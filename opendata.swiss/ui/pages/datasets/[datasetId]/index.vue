@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { definePropertyNode } from '@piveau/sdk-vue'
 import { computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n';
@@ -23,8 +22,6 @@ const datasetId = computed(() => route.params.datasetId as string)
 
 const { useResource } = useDatasetsSearch()
 const { isSuccess, resultEnhanced } = useResource(datasetId)
-
-const node = computed(() => definePropertyNode({ id: 'root', data: resultEnhanced.value?.getPropertyTable }, { compact: true, maxDepth: 2 }))
 
 const dataset = computed(() => {
   if (!resultEnhanced.value) {
@@ -69,7 +66,7 @@ const breadcrumbs = computed(() => {
 </script>
 
 <template>
-  <div v-if="dataset">
+  <div v-if="isSuccess && dataset">
   <header id="main-header">
     <OdsBreadcrumbs :breadcrumbs="breadcrumbs" />
   </header>
