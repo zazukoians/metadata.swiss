@@ -7,8 +7,7 @@ import { useDatasetsSearch } from '../../../../app/piveau/search.js'
 import { homePageBreadcrumb } from "../../../../app/composables/breadcrumbs.js";
 import OdsDetailTermsOfUse from '../../../../app/components/dataset-detail/OdsDetailTermsOfUse.vue';
 import OdsDetailsTable from '../../../../app/components/dataset-detail/OdsDetailsTable.vue'
-
-
+import OdsDownloadList from '../../../../app/components/distribution/OdsDownloadList.vue'
 import { DcatApChV2DatasetAdapter } from '../../../../app/components/dataset-detail/model/dcat-ap-ch-v2-dataset-adapter.js'
 
 
@@ -59,36 +58,31 @@ const _breadcrumbs = [
     <section class="hero hero--default">
       <div class="container container--grid gap--responsive">
         <div class="hero__content">
-          <p class="meta-info"><span class="meta-info__item">{{ t('message.dataset_detail.distribution') }}</span><span class="meta-info__item">{{ t('message.dataset_detail.published_on') }} {{ resultEnhanced?.getCreated }} </span><span class="meta-info__item">{{ t('message.dataset_detail.modified_on') }} {{ resultEnhanced?.getModified }} </span></p>
+          <p class="meta-info">
+            <span class="meta-info__item">{{ t('message.dataset_detail.distribution') }}</span>
+            <span class="meta-info__item">{{ t('message.dataset_detail.published_on') }} {{distribution.releaseDate }} </span>
+            <span class="meta-info__item">{{ t('message.dataset_detail.modified_on') }} {{ distribution.modified }} </span></p>
           <h1 class="hero__title"> {{ distribution.title }} </h1>
           <MDC :value="distribution.description ?? ''" />
         </div>
       </div>
    </section>
+   <section class="section publication-back-button-section">
+      <div class="container">
+       <pre style="overflow-x: hidden; text-overflow: hidden; word-break: break-all;">{{ distribution.downloadUrls }}</pre>
+      </div>
+    </section>
   <section class="section">
     <div class="container container--grid gap--responsive">
       <div class="container__main vertical-spacing">
         <div class="container__mobile">
           <div class="box">
             <h2 class="h5">Download</h2>
-              <ul class="download-items">
-                <li>
-                  <a v-for="link in distribution.downloadUrls" :key="link" :href="link"  class="download-item"  target="_blank">
-                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="icon icon--xl icon--Download download-item__icon">
-                      <path xmlns="http://www.w3.org/2000/svg" d="m19.419 13.698-.375-.649-6.294 3.634v-12.228h-.75v12.228l-6.294-3.634-.375.649 7.044 4.067z" />
-                      <path xmlns="http://www.w3.org/2000/svg" d="m6.00576 19.91649h12.76855v.75h-12.76855z"/>
-                    </svg>
-                    <div>
-                      <h2 class="download-item__title">{{ distribution.title }}</h2>
-                      <p class="meta-info download-item__meta-info"><span class="meta-info__item">{{ distribution.format ? distribution.format : distribution.title }}</span><span class="meta-info__item">{{ distribution.languages.join(', ') }}</span></p>
-                    </div>
-                  </a>
-                </li>
-              </ul>
+              <OdsDownloadList :download-urls="distribution.downloadUrls" :name="distribution.title" :format="distribution.format" :languages="distribution.languages" :byte-size="distribution.formattedByteSize"/>
             </div>
             <div class="box">
               <h2 class="h5">{{ t(`message.header.navigation.terms_of_use`) }}</h2>
-              <OdsDetailTermsOfUse v-for="value in resultEnhanced?.getLicenses" :key="value" :name="value" />
+              <OdsDetailTermsOfUse v-if="distribution.license" :name="distribution.license" />
             </div>
           </div>
           <h2 class="h2">{{ t('message.dataset_detail.additional_information') }}</h2>
@@ -98,24 +92,11 @@ const _breadcrumbs = [
           <div id="aside-content" class="sticky sticky--top">
             <div class="box">
               <h2 class="h5">Download</h2>
-              <ul class="download-items">
-                <li>
-                  <a v-for="link in distribution.downloadUrls" :key="link" :href="link"  class="download-item"  target="_blank">
-                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="icon icon--xl icon--Download download-item__icon">
-                      <path xmlns="http://www.w3.org/2000/svg" d="m19.419 13.698-.375-.649-6.294 3.634v-12.228h-.75v12.228l-6.294-3.634-.375.649 7.044 4.067z" />
-                      <path xmlns="http://www.w3.org/2000/svg" d="m6.00576 19.91649h12.76855v.75h-12.76855z"/>
-                    </svg>
-                    <div>
-                      <h2 class="download-item__title">{{ distribution.title }}</h2>
-                      <p class="meta-info download-item__meta-info"><span class="meta-info__item">{{ distribution.format ? distribution.format : distribution.title }}</span><span class="meta-info__item">{{ distribution.languages.join(', ') }}</span></p>
-                    </div>
-                  </a>
-                </li>
-              </ul>
+              <OdsDownloadList :download-urls="distribution.downloadUrls" :name="distribution.title" :format="distribution.format" :languages="distribution.languages" :byte-size="distribution.formattedByteSize"/>
             </div>
             <div class="box">
               <h2 class="h5">{{ t(`message.header.navigation.terms_of_use`) }}</h2>
-              <OdsDetailTermsOfUse v-for="value in resultEnhanced?.getLicenses" :key="value" :name="value" />
+              <OdsDetailTermsOfUse v-if="distribution.license" :name="distribution.license" />
             </div>
           </div>
         </div>
@@ -126,7 +107,7 @@ const _breadcrumbs = [
         <OdsButton title="Zurück" icon="ArrowLeft" class="btn--back" @click="router.back()" />
       </div>
     </section>
-    <pre>{{ distribution }}</pre>
+    <pre>{{ resultEnhanced?.getDistributions.filter(d => d.id === distributionId) }}</pre>
   </main>
 </template>
 

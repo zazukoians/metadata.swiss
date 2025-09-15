@@ -7,13 +7,15 @@ import type { TableEntry } from './table-entry';
 type EnhancedDistribution = Dataset['getDistributions'][number]
 
 
-export class DcatApChV2DistributionAdapter implements EnhancedDistribution {
+export class DcatApChV2DistributionAdapter {
   #distribution: EnhancedDistribution | undefined;
   #dataset: DcatApChV2DatasetAdapter;
 
   constructor(d: EnhancedDistribution, dataset: DcatApChV2DatasetAdapter) {
     this.#distribution = d;
     this.#dataset = dataset;
+
+    console.log('id', this.#distribution?.id);
   }
 
   /**
@@ -93,7 +95,7 @@ export class DcatApChV2DistributionAdapter implements EnhancedDistribution {
 
     // Try to parse the byte size as a number.
     // Piveau returns it as a string with dots as thousands separators which is not valid for Number()
-    const byteSizeNumber = Number(byteSizeValue.replace(/\./g, '')); // Remove dots for thousands separators
+    const byteSizeNumber = Number(byteSizeValue.replace(/\./g, '').replace(/,/g, '').replace(/\s+/g, '')); // Remove spaces for thousands separators
 
     if (isNaN(byteSizeNumber)) {
       return byteSizeValue; // Return the raw value if parsing fails
@@ -115,45 +117,166 @@ export class DcatApChV2DistributionAdapter implements EnhancedDistribution {
     return `${size % 1 === 0 ? size : size.toFixed(2)} ${units[unitIndex]}`;
   }
 
-
-
-  get getPropertyTable() {
-    return this.#distribution?.getPropertyTable || [];
-  }
-
-
+  /**
+   * Get the download URLs of the distribution.
+   *
+   * From dcat-ap-ch:
+   * Property	download URL
+   * Requirement level	Optional
+   * Cardinality	0..n
+   * URI	dcat:downloadURL
+   * Range	rdfs:Resource
+   * Usage Note
+   * - In case of a downloadable file, it is good practice to repeat the mandatory accessURL in this more specific property,
+   *   to indicate to the data user that the distribution has this extra characteristic of being downloadable. The downloadURLs
+   *   MAY thus be the same as the accessURLs but they MAY also differ.
+   */
   get downloadUrls() {
     return this.#distribution?.downloadUrls || [];
   }
 
+  /**
+   * Get the access URLs of the distribution.
+   *
+   * From dcat-ap-ch:
+   * Property	access URL
+   * Requirement level	Mandatory
+   * Cardinality	1..n
+   * URI	dcat:accessURL
+   * Range	rdfs:Resource
+   * Usage Note
+   * - This property contains a URL that gives access to a Distribution of the Dataset. The resource at the access URL may contain
+   *   information about how to get the Dataset.
+   */
   get accessUrls() {
     return this.#distribution?.accessUrls || [];
   }
 
-  get format() {
-    return this.#distribution?.format ?? '';
+  /**
+   * Get the format of the distribution.
+   *
+   * From dcat-ap-ch:
+   * Property	format
+   * Requirement level	Recommended
+   * Cardinality	0..1
+   * URI	dct:format
+   * Range	dct:MediaTypeOrExtent
+   * Usage Note
+   * - This property refers to the file format of the Distribution.CV to be used: [VOCAB-EU-FILE-TYPE]
+   * - CV to be used: [VOCAB-EU-FILE-TYPE]
+   * - If a format is not available:
+   *   a) media type ([IANA-MEDIA-TYPES]) should be used
+   *   b) If necessary, a discussion to evaluate the adoption within the EU should be launched (Contact point: [VOCAB-EU-OP-CONTACT]).
+   */
+  get format(): string {
+    const format = this.#distribution?.format
+    if (format) {
+      return format;
+    }
+    // Fallback: get mediaType from property table
+    const mediaTypeNode = this.#distribution?.getPropertyTable.find(node => node.id === 'mediaType');
+    if (!mediaTypeNode || !mediaTypeNode.data?.length) {
+      return '';
+    }
+    const mediaType = mediaTypeNode?.data[0]?.data ?? '';
+    if (typeof mediaType !== 'string') {
+      return '';
+    }
+    return mediaType;
   }
 
+  /**
+   * Get the license of the distribution if available
+   *
+   * From dcat-ap-ch:
+   * Property	license
+   * Requirement level	Mandatory
+   * Cardinality	1..1
+   * URI	dct:license
+   * Range	dct:LicenseDocument
+   * Usage Note
+   * This property refers to the licence under which the Distribution is made available.
+   * CV to used: [VOCAB-CH-LICENSE]
+   */
   get license() {
-    return this.#distribution?.license;
+    const lic = this.#distribution?.license;
+    const licIri = lic?.resource
+    if (!licIri) {
+      return undefined;
+    }
+    return licIri
   }
 
-  get issued() {
-    return this.#distribution?.issued || '';
+
+  /**
+   * Get the release date of the distribution if available
+   * Property	release date
+   * Requirement level	Optional
+   * Cardinality	0..1
+   * URI	dct:issued
+   * Range	rdfs:Literal (typed as as xsd:date, xsd:dateTime, xsd:gYear or xsd:gYearMonth)
+   * Usage Note
+   * - This property contains the date of formal issuance (e.g., publication) of the Distribution.
+   * - Date of formal issuance (publication) of the distribution
+   * - UsageThe first time issuance of the distribution.
+   *
+   * @returns {Date | undefined} The release date as a Date object, or undefined if not available or invalid.
+   */
+  get releaseDate() {
+    const releaseDateString = this.#distribution?.issued || '';
+    if (!releaseDateString) {
+      return undefined;
+    }
+    const releaseDate = new Date(releaseDateString);
+    return isNaN(releaseDate.getTime()) ? undefined : releaseDate;
   }
 
+  /**
+   * Get the modified date of the distribution if available
+   *
+   * from dcat-ap-ch:
+   *  Property: update/modification date
+   * This property contains the most recent date on which the Distribution was changed or modified.
+   * Property	update/ modification date
+   * Requirement level	Recommended
+   * Cardinality	0..1
+   * URI	dct:modified
+   * Range	rdfs:Literal (typed as as xsd:date, xsd:dateTime, xsd:gYear or xsd:gYearMonth)
+   * Usage Note
+   *
+   * @returns {Date | undefined} The modified date as a Date object, or undefined if not available or invalid.
+   */
   get modified() {
-    return this.#distribution?.modified || '';
+    const modifiedDateString = this.#distribution?.modified || '';
+    if (!modifiedDateString) {
+      return undefined;
+    }
+    const modifiedDate = new Date(modifiedDateString);
+    return isNaN(modifiedDate.getTime()) ? undefined : modifiedDate;
   }
 
+  /**
+   * Get the id of the distribution
+   *
+   * Note: This is not part of dcat-ap-ch, but added by piveau
+   */
   get id() {
     return this.#distribution?.id || '';
   }
 
-  get created() {
-    return this.#distribution?.created;
-  }
-
+  /**
+   * Property	Language
+   * Requirement level	Optional
+   * Cardinality	0..n
+   * URI	dct:language
+   * Range	rdfs:Literal
+   * Usage Note
+   * - This property refers to a language used in the Distribution.
+   * - This property can be repeated if the metadata is provided in multiple languages.
+   * - The property MUST be set if the distribution is language-dependent or if it is given in some of the languages
+   *   German, French, Italian and English but not in all four languages.
+   * - CV to be used: [VOCAB-EU-LANGUAGE]
+   */
   get languages() {
     return this.#distribution?.languages || [];
   }
@@ -170,17 +293,13 @@ export class DcatApChV2DistributionAdapter implements EnhancedDistribution {
 
 
   get propertyTable() {
-    const rootNode = this.#dataset.getPropertyTable;
+    const rootNode = this.#distribution?.getPropertyTable;
     if (!rootNode) {
       return [];
     }
 
-    //   const ignoredNode = ['catalogRecord'];
-    const ignoredNode: string[] = []
+    const ignoredNode = ['byteSize'];
     const nodesToConsider = rootNode.filter(n => n.data).filter(n => !ignoredNode.includes(n.id));
-
-    console.log('flatNodes', nodesToConsider);
-
 
     const table: TableEntry[] = [];
     for (const node of nodesToConsider) {

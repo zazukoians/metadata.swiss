@@ -215,9 +215,6 @@ export class DcatApChV2DatasetAdapter {
     return this.#dataset.getOdsAccrualPeriodicity;
   }
 
-
-
-
   get propertyTable() {
     const rootNode = this.#dataset.getPropertyTable;
     if (!rootNode) {
