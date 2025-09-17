@@ -209,50 +209,38 @@ export class DcatApChV2DatasetAdapter {
     const catalog = this.catalog;
 
     catalogTable.push({
-      id: 'catalogId',
       label: 'title',
-      help: 'The name of the catalog',
       value: [{ value: catalog.title, type: 'value' }],
       nodeType: 'value'
     });
 
     catalogTable.push({
-      id: 'catalogDescription',
       label: 'description',
-      help: 'The description of the catalog',
       value: [{ value: catalog.description, type: 'value' }],
       nodeType: 'value'
     });
 
     catalogTable.push({
-      id: 'catalogIssued',
       label: 'issued',
-      help: 'The date the catalog was issued',
       value: [{ value: catalog.issued, type: 'value' }],
       nodeType: 'value'
     });
 
     catalogTable.push({
-      id: 'catalogModified',
       label: 'modified',
-      help: 'The date the catalog was modified',
       value: [{ value: catalog.modified, type: 'value' }],
       nodeType: 'value'
     });
 
 
     catalogTable.push({
-      id: 'catalogRecordIssued',
       label: 'dataset issued',
-      help: 'The date the dataset was issued',
       value: [{ value: catalog.record.issued, type: 'value' }],
       nodeType: 'value'
     });
 
     catalogTable.push({
-      id: 'catalogRecordModified',
       label: 'dataset modified',
-      help: 'The date the dataset was modified',
       value: [{ value: catalog.record.modified, type: 'value' }],
       nodeType: 'value'
     });
@@ -292,9 +280,7 @@ export class DcatApChV2DatasetAdapter {
       const entry = {} as Partial<TableEntry>;
 
       if (node.type === 'node' && node.data) {
-        entry.help = node.help ?? '';
         entry.label = node.label;
-        entry.id = node.id;
         entry.nodeType = 'node';
 
         if (node.data && node.data.length > 0) {

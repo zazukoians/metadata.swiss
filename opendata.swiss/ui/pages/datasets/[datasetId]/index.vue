@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, Suspense } from 'vue'
+import { computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n';
 
@@ -13,9 +13,8 @@ import OdsDetailsTable from '../../../app/components/dataset-detail/OdsDetailsTa
 import OdsTagList from '../../../app/components/dataset-detail/OdsTagList.vue'
 import OdsDatasetMetaInfo from '../../../app/components/dataset-detail/OdsDatasetMetaInfo.vue'
 import OdsDistributionList from '../../../app/components/dataset-detail/OdsDistributionList.vue'
-import OdsDatasetCatalogPanel from '../../../app/components/dataset-detail/OdsDatasetCatalogPanel.vue'
-import OdsInfoBlock from '../../../app/components/OdsInfoBlock.vue'
 import OdsButton from '../../../app/components/OdsButton.vue';
+import OdsDatasetCatalogPanel from '../../../app/components/dataset-detail/OdsDatasetCatalogPanel.vue'
 import { useSeoMeta } from 'nuxt/app';
 
 const { locale, t } = useI18n();
@@ -121,21 +120,15 @@ await suspense()
 
             <h2 class="h2">{{ t('message.dataset_detail.additional_information') }}</h2>
             <OdsDetailsTable :table-entries="dataset.propertyTable"/>
-             <OdsInfoBlock :title="t('message.dataset_detail.catalog')">
-              <OdsDatasetCatalogPanel :dataset="dataset" />
-             </OdsInfoBlock>
             <div>
                <h2 class="h2">{{ t('message.dataset_detail.categories') }}</h2>
                <div>
                   <OdsTagList :tags="resultEnhanced?.getCategories ?? []" />
                </div>
             </div>
-            <div>
-               <h2 class="h2">{{ t('message.dataset_detail.catalog') }}</h2>
-               <div>
-                  <OdsDatasetCatalogPanel :dataset="dataset" />
-               </div>
-
+            <div v-if="dataset.catalog" >
+              <h2 class="h2">{{ t('message.dataset_detail.catalog') }}</h2>
+              <OdsDatasetCatalogPanel :dataset="dataset" />
             </div>
          </div>
          <div class="hidden container__aside md:block">
