@@ -15,6 +15,8 @@ import OdsDatasetMetaInfo from '../../../app/components/dataset-detail/OdsDatase
 import OdsDistributionList from '../../../app/components/dataset-detail/OdsDistributionList.vue'
 import OdsButton from '../../../app/components/OdsButton.vue';
 import OdsDatasetCatalogPanel from '../../../app/components/dataset-detail/OdsDatasetCatalogPanel.vue'
+import OdsMetadataDownloadList from '../../../app/components/dataset-detail/OdsMetadataDownloadList.vue'
+
 import { useSeoMeta } from 'nuxt/app';
 
 const { locale, t } = useI18n();
@@ -137,6 +139,10 @@ await suspense()
                   <h2 class="h5">{{ t(`message.header.navigation.terms_of_use`) }}</h2>
                   <OdsDetailTermsOfUse v-for="value in resultEnhanced?.getLicenses" :key="value" :name="value" />
                </div>
+                 <div class="box">
+                  <h2 class="h5">{{ t(`message.dataset_detail.metadata_download`) }}</h2>
+                  <OdsMetadataDownloadList :dataset="dataset" />
+               </div>
             </div>
          </div>
       </div>
@@ -145,63 +151,6 @@ await suspense()
    <section class="section publication-back-button-section">
       <div class="container">
         <OdsButton title="Zurück" icon="ArrowLeft" variant="outline" class="btn--back" size="sm" @click="router.back()" />
-      </div>
-   </section>
-   <section class="section bg--secondary-50">
-      <div class="container">
-         <h2 class="section__title">Das könnte Sie auch interessieren</h2>
-         <div class="grid grid--responsive-cols-3 gap--responsive">
-            <div class="card card--universal card--clickable">
-               <!----><!---->
-               <div class="card__content">
-                  <div class="card__body">
-                     <p class="meta-info"><span class="meta-info__item">Bericht</span><span class="meta-info__item">03. März 2000</span></p>
-                     <div class="card__title">
-                        <h3>Auswirkungen von Corona auf die Schweizer Gesellschaft</h3>
-                     </div>
-                     <p> Sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. </p>
-                     <div class="card__image"><img src="https://swiss.github.io/designsystem/images/publication-cover.png" alt="cat"></div>
-                     <p class="meta-info"><span class="meta-info__item">PDF</span><span class="meta-info__item">3.8 Mb</span><span class="meta-info__item">102 Seiten</span><span class="meta-info__item">Deutsch</span></p>
-                  </div>
-                  <div class="card__footer card__footer--icon-only">
-                     <!---->
-                     <div class="card__footer__action">
-                       <OdsButton
-                         variant="outline"
-                         icon-only
-                         icon="ArrowRight"
-                         title="Weiterlesen" />
-                     </div>
-                  </div>
-               </div>
-            </div>
-            <div class="card card--universal card--clickable">
-               <!----><!---->
-               <div class="card__content">
-                  <div class="card__body">
-                     <p class="meta-info"><span class="meta-info__item">Bericht</span><span class="meta-info__item">03. März 2000</span></p>
-                     <div class="card__title">
-                        <h3>Auswirkungen von Corona auf die Schweizer Gesellschaft</h3>
-                     </div>
-                     <p> Sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. </p>
-                     <div class="card__image"><img src="https://swiss.github.io/designsystem/images/publication-cover.png" alt="cat"></div>
-                     <p class="meta-info"><span class="meta-info__item">PDF</span><span class="meta-info__item">3.8 Mb</span><span class="meta-info__item">102 Seiten</span><span class="meta-info__item">Deutsch</span></p>
-                  </div>
-                  <div class="card__footer card__footer--icon-only">
-                     <!---->
-                     <div class="card__footer__action">
-                       <OdsButton
-                          variant="outline"
-                          icon-only
-                          icon="ArrowRight"
-                          title="Weiterlesen"
-                          @click="router.back()"
-                        />
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
       </div>
    </section>
   </main>

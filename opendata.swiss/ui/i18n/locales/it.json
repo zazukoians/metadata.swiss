@@ -55,7 +55,9 @@
             "show_raw": "Mostra data grezza",
             "show_relative": "Mostra tempo relativo",
             "details": "Dettagli",
-            "released": "Rilasciato"
+            "released": "Rilasciato",
+            "metadata_download": "Scarica i metadati",
+            "metadata": "Metadati"
         },
         "showcase": {
             "type": {

@@ -55,7 +55,9 @@
             "show_raw": "Datum anzeigen",
             "show_relative": "Relative Zeit anzeigen",
             "details": "Details",
-            "released": "Veröffentlicht"
+            "released": "Veröffentlicht",
+            "metadata_download": "Metadaten herunterladen",
+            "metadata": "Metadaten"
         },
         "showcase": {
             "type": {

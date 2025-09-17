@@ -95,10 +95,6 @@ export class DcatApChV2DatasetAdapter {
 
   }
 
-  get getFormats(): string[] {
-    return this.#dataset?.getFormats ?? [];
-  }
-
   get getLicenses(): string[] {
     return this.#dataset?.getLicenses ?? [];
   }
@@ -108,14 +104,6 @@ export class DcatApChV2DatasetAdapter {
    */
   get licenses(): string[] {
     return this.#dataset?.getLicenses ?? [];
-  }
-
-  get getIssued(): string | undefined {
-    return this.#dataset?.getIssued;
-  }
-
-  get getCreated(): string | undefined {
-    return this.#dataset?.getCreated;
   }
 
   /**
@@ -163,9 +151,6 @@ export class DcatApChV2DatasetAdapter {
     return new Date(this.#dataset.getModified)
   }
 
-
-
-
   get getLinkedData(): Record<LinkedDataFormats, string> {
     return this.#dataset?.getLinkedData ?? {} as Record<LinkedDataFormats, string>;
   }
@@ -183,14 +168,9 @@ export class DcatApChV2DatasetAdapter {
     return this.#dataset.getDistributions.map(d => new DcatApChV2DistributionAdapter(d, this));
   }
 
-  get getPropertyTable(): PropertyTableEntryNode[] {
-    return this.#dataset?.getPropertyTable ?? [];
-  }
-
-  get getPropertyTable2(): PropertyTableEntryNode[] {
-    return this.#dataset?.getPropertyTable2 ?? [];
-  }
-
+  /**
+   * Get the available formats of the dataset
+   */
   get getOdsFormats(): { id?: string | null | undefined; label?: string | null | undefined; resource?: string | null | undefined; }[] {
     return this.#dataset?.getOdsFormats ?? [];
   }

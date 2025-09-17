@@ -55,7 +55,9 @@
             "show_raw": "Show raw date",
             "show_relative": "Show relative time",
             "details": "Details",
-            "released": "Released"
+            "released": "Released",
+            "metadata_download": "Download metadata",
+            "metadata": "Metadata"
         },
         "showcase": {
             "type": {

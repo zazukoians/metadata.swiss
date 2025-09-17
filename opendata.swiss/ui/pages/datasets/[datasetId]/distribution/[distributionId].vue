@@ -137,7 +137,6 @@ await suspense()
         <OdsButton title="Zurück" icon="ArrowLeft" variant="outline" class="btn--back" @click="router.back()" />
       </div>
     </section>
-    <pre>{{ resultEnhanced?.getDistributions.filter(d => d.id === distributionId) }}</pre>
   </main>
 </template>
 
