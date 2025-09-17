@@ -200,53 +200,13 @@ export class DcatApChV2DatasetAdapter {
     return this.#dataset?.getKeywords ?? [];
   }
 
+  /**
+   * Get the catalog information of the dataset if available
+   */
   get catalog(): Catalog {
     return this.#dataset.getOdsCatalogInfo
   }
 
-  get catalogTable(): TableEntry[] {
-    const catalogTable: TableEntry[] = [];
-    const catalog = this.catalog;
-
-    catalogTable.push({
-      label: 'title',
-      value: [{ value: catalog.title, type: 'value' }],
-      nodeType: 'value'
-    });
-
-    catalogTable.push({
-      label: 'description',
-      value: [{ value: catalog.description, type: 'value' }],
-      nodeType: 'value'
-    });
-
-    catalogTable.push({
-      label: 'issued',
-      value: [{ value: catalog.issued, type: 'value' }],
-      nodeType: 'value'
-    });
-
-    catalogTable.push({
-      label: 'modified',
-      value: [{ value: catalog.modified, type: 'value' }],
-      nodeType: 'value'
-    });
-
-
-    catalogTable.push({
-      label: 'dataset issued',
-      value: [{ value: catalog.record.issued, type: 'value' }],
-      nodeType: 'value'
-    });
-
-    catalogTable.push({
-      label: 'dataset modified',
-      value: [{ value: catalog.record.modified, type: 'value' }],
-      nodeType: 'value'
-    });
-
-    return catalogTable;
-  }
 
   /**
    * Get the accrual periodicity of the dataset if available
