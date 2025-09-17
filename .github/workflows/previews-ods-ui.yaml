@@ -45,8 +45,10 @@ jobs:
       - name: Configure some variables
         id: vars
         run: |
+          BRANCH_NAME="${GITHUB_HEAD_REF}"
+          BRANCH_STANDARDIZED="$(echo ${BRANCH_NAME}| tr '[:upper:]' '[:lower:]' | sed -E 's/[^a-z0-9-]+/-/g; s/-+/-/g; s/^-+//; s/-+$//')"
           echo "short_sha=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
-          echo "branch=${GITHUB_HEAD_REF}" >> $GITHUB_OUTPUT
+          echo "branch=${BRANCH_STANDARDIZED}" >> $GITHUB_OUTPUT
 
       - name: Configure cluster context
         run: |
