@@ -14,8 +14,6 @@ export class DcatApChV2DistributionAdapter {
   constructor(d: EnhancedDistribution, dataset: DcatApChV2DatasetAdapter) {
     this.#distribution = d;
     this.#dataset = dataset;
-
-    console.log('id', this.#distribution?.id);
   }
 
   /**
@@ -48,7 +46,7 @@ export class DcatApChV2DistributionAdapter {
   }
 
   /**
-   * Get the description of the distribution.
+   * Get the description of the distribution. If not available, return the description of the dataset.
    *
    * It returns the description of the distribution if available, otherwise it returns an empty string.
    * Language handling is done by peiveau.
@@ -65,7 +63,7 @@ export class DcatApChV2DistributionAdapter {
    *
    */
   get description() {
-    return this.#distribution?.description ?? '';
+    return this.#distribution?.description || this.#dataset.description || '';
   }
 
   /**
@@ -298,7 +296,7 @@ export class DcatApChV2DistributionAdapter {
       return [];
     }
 
-    const ignoredNode = ['byteSize'];
+    const ignoredNode: string[] = ['byteSize'];
     const nodesToConsider = rootNode.filter(n => n.data).filter(n => !ignoredNode.includes(n.id));
 
     const table: TableEntry[] = [];
@@ -307,9 +305,7 @@ export class DcatApChV2DistributionAdapter {
       const entry = {} as Partial<TableEntry>;
 
       if (node.type === 'node' && node.data) {
-        entry.help = node.help ?? '';
         entry.label = node.label;
-        entry.id = node.id;
         entry.nodeType = 'node';
 
         if (node.data && node.data.length > 0) {
@@ -365,6 +361,7 @@ export class DcatApChV2DistributionAdapter {
       }
 
     }
+
     return table.sort((a, b) => a.label.localeCompare(b.label));
   }
 }

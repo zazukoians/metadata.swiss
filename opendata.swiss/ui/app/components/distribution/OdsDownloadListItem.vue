@@ -1,7 +1,7 @@
 <template>
   <div>
     <a class="download-item" :href="props.downloadUrl" target="_blank">
-      <SvgIcon icon="Download" size="xl" role="btn" />
+      <SvgIcon icon="Download" size="xl" class="download-item__icon" />
       <div>
        <h2 class="download-item__title">{{ props.name }}</h2>
        <p class="meta-info download-item__meta-info">
@@ -16,7 +16,6 @@
 
 <script setup lang="ts">
 
-import { defineProps } from 'vue';
 import SvgIcon from '../SvgIcon.vue';
 
 const props = defineProps({

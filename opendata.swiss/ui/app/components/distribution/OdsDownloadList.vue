@@ -4,14 +4,11 @@
       <OdsDownloadListItem :download-url="url" :name="props.name" :format="props.format" :languages="props.languages" :byte-size="props.byteSize" />
     </li>
   </ul>
-
 </template>
 
 
 <script setup lang="ts">
-import { defineProps } from 'vue';
 import OdsDownloadListItem from './OdsDownloadListItem.vue';
-
 
 const props = defineProps({
   downloadUrls: {

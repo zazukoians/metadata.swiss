@@ -2,14 +2,13 @@ import type { LinkedDataFormats, PropertyTableEntryNode } from '@piveau/sdk-vue'
 import type { Dataset } from '../../../model/dataset'
 import { DcatApChV2DistributionAdapter } from './dcat-ap-ch-v2-distribution-adapter'
 import type { TableEntry } from './table-entry';
+import type { Catalog } from '~/piveau/get-ods-catalog-info';
 
 export class DcatApChV2DatasetAdapter {
   #dataset: Dataset;
 
   constructor(d: Dataset) {
     this.#dataset = d;
-    const foo = this.propertyTable;
-    console.log('propertyTable', foo);
   }
 
   /**
@@ -201,8 +200,64 @@ export class DcatApChV2DatasetAdapter {
     return this.#dataset?.getKeywords ?? [];
   }
 
-  get getOdsCatalogInfo() {
+  get catalog(): Catalog {
     return this.#dataset.getOdsCatalogInfo
+  }
+
+  get catalogTable(): TableEntry[] {
+    const catalogTable: TableEntry[] = [];
+    const catalog = this.catalog;
+
+    catalogTable.push({
+      id: 'catalogId',
+      label: 'title',
+      help: 'The name of the catalog',
+      value: [{ value: catalog.title, type: 'value' }],
+      nodeType: 'value'
+    });
+
+    catalogTable.push({
+      id: 'catalogDescription',
+      label: 'description',
+      help: 'The description of the catalog',
+      value: [{ value: catalog.description, type: 'value' }],
+      nodeType: 'value'
+    });
+
+    catalogTable.push({
+      id: 'catalogIssued',
+      label: 'issued',
+      help: 'The date the catalog was issued',
+      value: [{ value: catalog.issued, type: 'value' }],
+      nodeType: 'value'
+    });
+
+    catalogTable.push({
+      id: 'catalogModified',
+      label: 'modified',
+      help: 'The date the catalog was modified',
+      value: [{ value: catalog.modified, type: 'value' }],
+      nodeType: 'value'
+    });
+
+
+    catalogTable.push({
+      id: 'catalogRecordIssued',
+      label: 'dataset issued',
+      help: 'The date the dataset was issued',
+      value: [{ value: catalog.record.issued, type: 'value' }],
+      nodeType: 'value'
+    });
+
+    catalogTable.push({
+      id: 'catalogRecordModified',
+      label: 'dataset modified',
+      help: 'The date the dataset was modified',
+      value: [{ value: catalog.record.modified, type: 'value' }],
+      nodeType: 'value'
+    });
+
+    return catalogTable;
   }
 
   /**
@@ -230,9 +285,6 @@ export class DcatApChV2DatasetAdapter {
 
     const ignoredNode = ['catalogRecord'];
     const nodesToConsider = rootNode.filter(n => n.data).filter(n => !ignoredNode.includes(n.id));
-
-    console.log('flatNodes', nodesToConsider);
-
 
     const table: TableEntry[] = [];
     for (const node of nodesToConsider) {

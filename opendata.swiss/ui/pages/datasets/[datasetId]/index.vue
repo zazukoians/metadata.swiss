@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, Suspense } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n';
 
@@ -13,6 +13,9 @@ import OdsDetailsTable from '../../../app/components/dataset-detail/OdsDetailsTa
 import OdsTagList from '../../../app/components/dataset-detail/OdsTagList.vue'
 import OdsDatasetMetaInfo from '../../../app/components/dataset-detail/OdsDatasetMetaInfo.vue'
 import OdsDistributionList from '../../../app/components/dataset-detail/OdsDistributionList.vue'
+import OdsDatasetCatalogPanel from '../../../app/components/dataset-detail/OdsDatasetCatalogPanel.vue'
+import OdsInfoBlock from '../../../app/components/OdsInfoBlock.vue'
+import OdsButton from '../../../app/components/OdsButton.vue';
 import { useSeoMeta } from 'nuxt/app';
 
 const { locale, t } = useI18n();
@@ -21,7 +24,9 @@ const router = useRouter()
 const datasetId = computed(() => route.params.datasetId as string)
 
 const { useResource } = useDatasetsSearch()
-const { isSuccess, resultEnhanced } = useResource(datasetId)
+const { query, isSuccess, resultEnhanced } = useResource(datasetId)
+
+const { suspense } = query
 
 const dataset = computed(() => {
   if (!resultEnhanced.value) {
@@ -44,11 +49,14 @@ const breadcrumbs = computed(() => {
   ]
 
   if(route.query.search || typeof route.query.search === 'string') {
+    const searchQuery = Array.isArray(route.query.search) ? route.query.search[0] : route.query.search;
     result.push({
       title: t('message.dataset_search.search_results'),
       route: {
         path: '/datasets',
-        query: Object.fromEntries(new URLSearchParams(decodeURIComponent(route.query.search)))
+        query: searchQuery
+          ? Object.fromEntries(new URLSearchParams(decodeURIComponent(searchQuery)))
+          : {}
       }
     })
   }
@@ -64,9 +72,14 @@ const breadcrumbs = computed(() => {
   return result
 })
 
+
 useSeoMeta({
   title: `${resultEnhanced.value?.getTitle} | ${t('message.header.navigation.datasets')} | opendata.swiss`,
 })
+
+
+await suspense()
+
 </script>
 
 <template>
@@ -108,11 +121,21 @@ useSeoMeta({
 
             <h2 class="h2">{{ t('message.dataset_detail.additional_information') }}</h2>
             <OdsDetailsTable :table-entries="dataset.propertyTable"/>
+             <OdsInfoBlock :title="t('message.dataset_detail.catalog')">
+              <OdsDatasetCatalogPanel :dataset="dataset" />
+             </OdsInfoBlock>
             <div>
                <h2 class="h2">{{ t('message.dataset_detail.categories') }}</h2>
                <div>
                   <OdsTagList :tags="resultEnhanced?.getCategories ?? []" />
                </div>
+            </div>
+            <div>
+               <h2 class="h2">{{ t('message.dataset_detail.catalog') }}</h2>
+               <div>
+                  <OdsDatasetCatalogPanel :dataset="dataset" />
+               </div>
+
             </div>
          </div>
          <div class="hidden container__aside md:block">
@@ -124,8 +147,8 @@ useSeoMeta({
             </div>
          </div>
       </div>
-
    </section>
+
    <section class="section publication-back-button-section">
       <div class="container">
         <OdsButton title="Zurück" icon="ArrowLeft" variant="outline" class="btn--back" size="sm" @click="router.back()" />
@@ -187,10 +210,7 @@ useSeoMeta({
             </div>
          </div>
       </div>
-
-
    </section>
-   <pre>{{ resultEnhanced }}</pre>
   </main>
 </div>
 

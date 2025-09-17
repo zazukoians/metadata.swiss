@@ -6,6 +6,15 @@ import { resolve } from 'node:path'
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
+  experimental: {
+    defaults: {
+      nuxtLink: {
+        prefetchOn: {
+          interaction: true
+        }
+      },
+    }
+  },
   modules: [
     '@nuxt/eslint',
     '@nuxt/content',

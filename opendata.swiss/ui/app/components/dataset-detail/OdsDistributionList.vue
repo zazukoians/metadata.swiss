@@ -1,6 +1,6 @@
 <template>
   <div class="ods-distribution-list">
-  <OdsDistributionListItem v-for="dist in props.distributions" :key="dist.id" :distribution="dist" class="list-element" />
+    <OdsDistributionListItem v-for="dist in props.distributions" :key="dist.id" :distribution="dist" class="list-element" />
   </div>
 </template>
 

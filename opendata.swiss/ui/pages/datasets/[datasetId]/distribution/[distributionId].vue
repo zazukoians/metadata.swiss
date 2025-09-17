@@ -10,6 +10,7 @@ import OdsDetailsTable from '../../../../app/components/dataset-detail/OdsDetail
 import OdsBreadcrumbs from "../../../../app/components/OdsBreadcrumbs.vue";
 import OdsButton from "../../../../app/components/OdsButton.vue";
 import OdsDownloadList from '../../../../app/components/distribution/OdsDownloadList.vue'
+import OdsRelativeDateToggle from '../../../../app/components/OdsRelativeDateToggle.vue';
 import { DcatApChV2DatasetAdapter } from '../../../../app/components/dataset-detail/model/dcat-ap-ch-v2-dataset-adapter.js'
 import { useSeoMeta } from 'nuxt/app';
 
@@ -23,7 +24,9 @@ const distributionId = computed(() => route.params.distributionId as string)
 
 
 const { useResource } = useDatasetsSearch()
-const { isSuccess, resultEnhanced } = useResource(datasetId)
+const { query, isSuccess, resultEnhanced } = useResource(datasetId)
+
+const { suspense } = query
 
 const dataset = computed(() => {
   if (!resultEnhanced.value) {
@@ -63,6 +66,8 @@ const breadcrumbs = [
 useSeoMeta({
   title: `${distribution.value?.title} | ${resultEnhanced.value?.getTitle} | ${t('message.header.navigation.datasets')} | opendata.swiss`,
 })
+
+await suspense()
 </script>
 
 <template>
@@ -73,27 +78,33 @@ useSeoMeta({
     <section class="hero hero--default">
       <div class="container container--grid gap--responsive">
         <div class="hero__content">
+          <span class="distribution-label">{{ t('message.dataset_detail.distribution') }}</span>
+
           <p class="meta-info">
-            <span class="meta-info__item">{{ t('message.dataset_detail.distribution') }}</span>
-            <span class="meta-info__item">{{ t('message.dataset_detail.published_on') }} {{distribution.releaseDate }} </span>
-            <span class="meta-info__item">{{ t('message.dataset_detail.modified_on') }} {{ distribution.modified }} </span></p>
+            <span v-if="distribution.releaseDate" class="meta-info__item">
+              {{ t('message.dataset_detail.published_on') }}
+               <OdsRelativeDateToggle :date="distribution.releaseDate" />
+            </span>
+            <span v-if="distribution.modified" class="meta-info__item">{{ t('message.dataset_detail.modified_on') }}
+              <OdsRelativeDateToggle :date="distribution.modified" />
+            </span>
+          </p>
           <h1 class="hero__title"> {{ distribution.title }} </h1>
           <MDC :value="distribution.description ?? ''" />
         </div>
       </div>
-   </section>
-   <section class="section publication-back-button-section">
-      <div class="container">
-       <pre style="overflow-x: hidden; text-overflow: hidden; word-break: break-all;">{{ distribution.downloadUrls }}</pre>
-      </div>
     </section>
-  <section class="section">
-    <div class="container container--grid gap--responsive">
-      <div class="container__main vertical-spacing">
-        <div class="container__mobile">
-          <div class="box">
-            <h2 class="h5">Download</h2>
-              <OdsDownloadList :download-urls="distribution.downloadUrls" :name="distribution.title" :format="distribution.format" :languages="distribution.languages" :byte-size="distribution.formattedByteSize"/>
+    <section class="section">
+      <div class="container container--grid gap--responsive">
+        <div class="container__main vertical-spacing">
+          <div class="container__mobile">
+            <div v-if="distribution.downloadUrls.length > 0" class="box">
+              <h2 class="h5">Download</h2>
+                <OdsDownloadList :download-urls="distribution.downloadUrls" :name="distribution.title" :format="distribution.format" :languages="distribution.languages" :byte-size="distribution.formattedByteSize"/>
+            </div>
+            <div class="box">
+              <h2 class="h5">Access</h2>
+              <OdsDownloadList :download-urls="distribution.accessUrls" :name="distribution.title" :format="distribution.format" :languages="distribution.languages" :byte-size="distribution.formattedByteSize"/>
             </div>
             <div class="box">
               <h2 class="h5">{{ t(`message.header.navigation.terms_of_use`) }}</h2>
@@ -105,9 +116,13 @@ useSeoMeta({
         </div>
         <div class="hidden container__aside md:block">
           <div id="aside-content" class="sticky sticky--top">
-            <div class="box">
+            <div v-if="distribution.downloadUrls.length > 0" class="box">
               <h2 class="h5">Download</h2>
               <OdsDownloadList :download-urls="distribution.downloadUrls" :name="distribution.title" :format="distribution.format" :languages="distribution.languages" :byte-size="distribution.formattedByteSize"/>
+            </div>
+             <div class="box">
+              <h2 class="h5">Access</h2>
+              <OdsDownloadList :download-urls="distribution.accessUrls" :name="distribution.title" :format="distribution.format" :languages="distribution.languages" :byte-size="distribution.formattedByteSize"/>
             </div>
             <div class="box">
               <h2 class="h5">{{ t(`message.header.navigation.terms_of_use`) }}</h2>
@@ -119,7 +134,7 @@ useSeoMeta({
     </section>
     <section class="section publication-back-button-section">
       <div class="container">
-        <OdsButton title="Zurück" icon="ArrowLeft" class="btn--back" @click="router.back()" />
+        <OdsButton title="Zurück" icon="ArrowLeft" variant="outline" class="btn--back" @click="router.back()" />
       </div>
     </section>
     <pre>{{ resultEnhanced?.getDistributions.filter(d => d.id === distributionId) }}</pre>
@@ -127,5 +142,17 @@ useSeoMeta({
 </template>
 
 <style lang="scss" scoped>
-
+.distribution-label {
+  position: relative;
+  background-color: #e6f0fa;
+  color: #1976d2;
+  padding: 2px 10px;
+  border-radius: 6px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  display: inline-block;
+  margin-right: 10px;
+  vertical-align: middle;
+  border: 1px solid #b3d4fc;
+}
 </style>

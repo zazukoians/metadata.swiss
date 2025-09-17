@@ -1,7 +1,5 @@
 export interface TableEntry {
-  id: string;
   label: string;
-  help: string;
   value: [
     {
       value: string;
