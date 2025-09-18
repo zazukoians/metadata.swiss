@@ -44,9 +44,10 @@ const distribution = computed(() => {
   return dists
 })
 
+const firstBreadcrumb = await homePageBreadcrumb(locale)
 
-const breadcrumbs = [
-  await homePageBreadcrumb(locale),
+const breadcrumbs = computed(()=> [
+  firstBreadcrumb,
   {
     title: t('message.header.navigation.datasets'),
     path: '/datasets',
@@ -61,7 +62,7 @@ const breadcrumbs = [
   {
     title: distribution.value?.title
   }
-]
+])
 
 useSeoMeta({
   title: `${distribution.value?.title} | ${resultEnhanced.value?.getTitle} | ${t('message.header.navigation.datasets')} | opendata.swiss`,
