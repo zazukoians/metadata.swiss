@@ -19,8 +19,8 @@ const { locale, t } = useI18n();
 
 const route = useRoute()
 const router = useRouter()
-const datasetId = computed(() => route.params.datasetId as string)
-const distributionId = computed(() => route.params.distributionId as string)
+const datasetId = route.params.datasetId as string
+const distributionId = route.params.distributionId as string
 
 
 const { useResource } = useDatasetsSearch()
@@ -40,7 +40,7 @@ const distribution = computed(() => {
   if (!dataset.value) {
     return undefined
   }
-  const dists = dataset.value.distributions.find(d => d.id === distributionId.value) ?? undefined
+  const dists = dataset.value.distributions.find(d => d.id === distributionId) ?? undefined
   return dists
 })
 
@@ -55,7 +55,7 @@ const breadcrumbs = [
     title: resultEnhanced.value?.getTitle,
     path: {
       name: 'datasets-datasetId',
-      params: { datasetId: datasetId.value },
+      params: { datasetId: datasetId },
     },
   },
   {
@@ -63,15 +63,8 @@ const breadcrumbs = [
   }
 ]
 
-const seoTitle = computed(() => {
-  if (distribution.value?.title) {
-    return `${distribution.value.title} | ${t('message.dataset_detail.distribution')} | opendata.swiss`
-  }
-  return ` ${t('message.dataset_detail.distribution')} | opendata.swiss`
-})
-
 useSeoMeta({
-  title: seoTitle,
+  title: () => `${distribution.value?.title} | ${t('message.dataset_detail.distribution')} | opendata.swiss`,
 })
 
 await suspense()
