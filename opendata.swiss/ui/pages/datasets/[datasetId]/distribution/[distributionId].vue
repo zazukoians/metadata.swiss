@@ -63,8 +63,15 @@ const breadcrumbs = [
   }
 ]
 
+const seoTitle = computed(() => {
+  if (distribution.value?.title) {
+    return `${distribution.value.title} | ${t('message.dataset_detail.distribution')} | opendata.swiss`
+  }
+  return ` ${t('message.dataset_detail.distribution')} | opendata.swiss`
+})
+
 useSeoMeta({
-  title: `${distribution.value?.title} | ${resultEnhanced.value?.getTitle} | ${t('message.header.navigation.datasets')} | opendata.swiss`,
+  title: seoTitle,
 })
 
 await suspense()
