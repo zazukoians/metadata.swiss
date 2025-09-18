@@ -64,7 +64,7 @@ const breadcrumbs = [
 ]
 
 useSeoMeta({
-  title: () => `${distribution.value?.title} | ${t('message.dataset_detail.distribution')} | opendata.swiss`,
+  title: () => `${distribution.value?.title} | ${dataset.value?.title} | ${t('message.header.navigation.datasets')} | opendata.swiss`,
 })
 
 await suspense()
