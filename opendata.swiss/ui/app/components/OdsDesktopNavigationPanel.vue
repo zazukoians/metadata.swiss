@@ -1,59 +1,58 @@
 <template>
-<Transition :name="transitionName" mode="out-in">
-  <div :key="menuKey">
-    <div id="mobile-menu">
-      <nav aria-label="Main" class="main-navigation main-navigation--mobile">
+  <Transition :name="transitionName" mode="out-in">
+    <div :key="menuKey">
+      <div class="navy">
+        <h2 class="navy__title">{{ t(parentLabel ?? '') }}</h2>
 
-        <ul>
-          <li v-if="menuStack.length > 0" style="border-bottom: none;" @click="goBack">
-            <a style="padding-top: 12px; padding-bottom: 12px;">
-              <span>
-                <SvgIcon icon="ArrowLeft" size="lg"/>
-              </span>
-            </a>
-          </li>
-          <li v-if="menuStack.length > 0" style="border-bottom: none;">
-            <h2 class="navy__title">{{ t(parentLabel ?? '') }}</h2>
-          </li>
-
-          <template v-for="item in currentMenu" :key="item.label">
-            <li v-if="item.to">
-              <NuxtLinkLocale
-                :to="item.to"
-                active-class="active"
-                :aria-label="t(item.label)"
-                @click="emitRequestClose"
-              >
-                <span>{{t(item.label)}}</span>
-              </NuxtLinkLocale><div/>
+        <nav class="navy__level-0 navy-menu__level-0">
+          <ul>
+            <li v-if="menuStack.length > 0" style="border-bottom: none;" @click="goBack">
+              <a style="padding-top: 12px; padding-bottom: 12px;">
+                <span>
+                  <SvgIcon icon="ArrowLeft" size="lg"/>
+                </span>
+              </a>
             </li>
-            <li
-                v-else-if="(item.subMenu?.length ?? -1) > 0"
-              @click="drillDown(item)"
-              >
-              <a>{{t(item.label)}} <SvgIcon size="lg" icon="ArrowRight" /></a>
-            </li>
-          </template>
-        </ul>
-      </nav>
 
+
+            <template v-for="item in currentMenu" :key="item.label">
+              <li v-if="item.to">
+                <NuxtLinkLocale
+                  :to="item.to"
+                  active-class="active"
+                  :aria-label="t(item.label)"
+                  @click="emitRequestClose"
+                >
+                  <span>{{t(item.label)}}</span>
+                </NuxtLinkLocale><div/>
+              </li>
+              <li
+                  v-else-if="(item.subMenu?.length ?? -1) > 0"
+                @click="drillDown(item)"
+                >
+                <a>{{t(item.label)}} <SvgIcon size="lg" icon="ArrowRight" /></a>
+              </li>
+            </template>
+          </ul>
+        </nav>
+      </div>
     </div>
-  </div>
   </Transition>
-</template>
+  </template>
 
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import type { OdsNavTabItem } from './headers/model/ods-nav-tab-item';
 import { useI18n } from 'vue-i18n';
 import SvgIcon from "~/components/SvgIcon.vue";
+import OdsButton from './OdsButton.vue';
 
 const emit = defineEmits(['requestClose']);
 const { t } = useI18n();
 
 const props = defineProps({
-    items: {
-      type: Array as PropType<OdsNavTabItem[]>,
+    menu: {
+      type: Object as PropType<OdsNavTabItem>,
       required: true
     }
 });
@@ -64,17 +63,26 @@ function emitRequestClose() {
     emit('requestClose');
 }
 
-const parentLabel = ref<string | undefined>(undefined);
+const parentLabel = ref<string | undefined>(props.menu.label);
 
 
 const menuStack = ref<OdsNavTabItem[][]>([]);
 const menuKey = computed(() => menuStack.value.length);
+
 const currentMenu = computed(() => {
-    if (menuStack.value.length === 0) return props.items;
+
+    if (menuStack.value.length === 0) {
+      console.log('returning props.items', props.menu.subMenu ?? []);
+      return props.menu.subMenu ?? []
+    };
+    console.log('returning last menu in stack', menuStack.value[menuStack.value.length - 1]);
     return menuStack.value[menuStack.value.length - 1];
 });
+
 const direction = ref<'forward' | 'backward'>('forward');
+
 const transitionName = computed(() => direction.value === 'forward' ? 'slide-menu-right' : 'slide-menu-left');
+
 function drillDown(item: OdsNavTabItem) {
     if (item.subMenu && item.subMenu.length > 0) {
         direction.value = 'forward';
@@ -91,8 +99,24 @@ function goBack() {
 </script>
 
 <style scoped lang="scss">
-
+.holly {
+  margin-top: -40px;
+}
 // list styles
+.navy {
+  position: unset !important;
+  perspective: none !important;
+}
+.navy__level-0 {
+  position: unset;
+  ul {
+    display: block;
+  }
+}
+.navy__title {
+  margin-top: 0;
+  margin-left: 12px
+}
 
 li {
   border-bottom-width: 1px;
