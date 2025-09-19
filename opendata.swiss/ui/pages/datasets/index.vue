@@ -18,7 +18,7 @@ import {homePageBreadcrumb} from "../../app/composables/breadcrumbs";
 import SvgIcon from "../../app/components/SvgIcon.vue";
 import OdsButton from "../../app/components/OdsButton.vue";
 import { useSeoMeta } from 'nuxt/app';
-import { clearDatasetBreadcrumbFromSessionStorage } from './[datasetId]/get-dataset-breadcrumb-from-session-stoage';
+import { clearDatasetBreadcrumbFromSessionStorage } from './[datasetId]/breadcrumb-session-stoage';
 
 const { t, locale} = useI18n()
 

@@ -13,7 +13,7 @@ import OdsDownloadList from '../../../../app/components/distribution/OdsDownload
 import OdsRelativeDateToggle from '../../../../app/components/OdsRelativeDateToggle.vue';
 import { DcatApChV2DatasetAdapter } from '../../../../app/components/dataset-detail/model/dcat-ap-ch-v2-dataset-adapter.js'
 import { useSeoMeta } from 'nuxt/app';
-import { getDatasetBreadcrumbFromSessionStorage } from '../get-dataset-breadcrumb-from-session-stoage.js';
+import { getDatasetBreadcrumbFromSessionStorage } from '../breadcrumb-session-stoage';
 
 
 const { locale, t } = useI18n();
@@ -170,5 +170,14 @@ await suspense()
   margin-right: 10px;
   vertical-align: middle;
   border: 1px solid #b3d4fc;
+}
+
+#main-header {
+   @media (min-width: 1024px) {
+    min-height: 65.5px;
+  }
+  @media (min-width: 1280px) {
+    min-height: 73.5px;
+  }
 }
 </style>

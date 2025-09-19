@@ -17,7 +17,7 @@ import OdsButton from '../../../app/components/OdsButton.vue';
 import OdsDatasetCatalogPanel from '../../../app/components/dataset-detail/OdsDatasetCatalogPanel.vue'
 import OdsMetadataDownloadList from '../../../app/components/dataset-detail/OdsMetadataDownloadList.vue'
 import { useSeoMeta } from 'nuxt/app';
-import { getDatasetBreadcrumbFromSessionStorage, storeDatasetBreadcrumbInSessionStorage } from './get-dataset-breadcrumb-from-session-stoage';
+import { getDatasetBreadcrumbFromSessionStorage, storeDatasetBreadcrumbInSessionStorage } from './breadcrumb-session-stoage';
 
 const { locale, t } = useI18n();
 const route = useRoute()
@@ -44,9 +44,8 @@ const searchBreadcrumb = ref<BreadcrumbItem | null>(null)
 const homePage = await homePageBreadcrumb(locale)
 const breadcrumbs = computed(() => {
   if (import.meta.client) {
-    const storedBreadcrumbs = getDatasetBreadcrumbFromSessionStorage(datasetId.value);
+    const storedBreadcrumbs = getDatasetBreadcrumbFromSessionStorage(datasetId);
     if (storedBreadcrumbs) {
-      console.log('Using stored breadcrumbs for dataset', datasetId.value, storedBreadcrumbs);
       return storedBreadcrumbs;
     }
   }
@@ -73,8 +72,7 @@ const breadcrumbs = computed(() => {
   })
 
   if (import.meta.client) {
-    storeDatasetBreadcrumbInSessionStorage(datasetId.value, result);
-    console.log('%cStoring breadcrumbs for dataset', 'color: green;');
+    storeDatasetBreadcrumbInSessionStorage(datasetId, result);
   }
 
 
@@ -89,8 +87,7 @@ useSeoMeta({
 
 
 watch(() => route.query.search,
-  (newVal, oldVal) => {
-    console.log('%croute.query.search changed:', 'color: blue;', { oldVal, newVal });
+  () => {
     if (import.meta.client) {
       const { search, ...rest } = route.query;
       router.replace({ query: rest });
@@ -194,5 +191,13 @@ await suspense()
 </template>
 
 <style lang="scss" scoped>
-
+#main-header {
+  // avoid layout shift from ssr to csr
+   @media (min-width: 1024px) {
+    min-height: 65.5px;
+  }
+  @media (min-width: 1280px) {
+    min-height: 73.5px;
+  }
+}
 </style>

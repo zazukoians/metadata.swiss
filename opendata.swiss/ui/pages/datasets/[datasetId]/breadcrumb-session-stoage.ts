@@ -8,7 +8,6 @@ export function getDatasetBreadcrumbFromSessionStorage(datasetId: string) {
     try {
       const sessionBreadcrumbs = JSON.parse(stored) as Record<string, BreadcrumbItem[]>;
       if (sessionBreadcrumbs[datasetId]) {
-        console.log('Using stored breadcrumbs for dataset', datasetId, sessionBreadcrumbs[datasetId]);
         return sessionBreadcrumbs[datasetId]
       }
     } catch {
