@@ -22,7 +22,7 @@ import { useSeoMeta } from 'nuxt/app';
 const { locale, t } = useI18n();
 const route = useRoute()
 const router = useRouter()
-const datasetId = computed(() => route.params.datasetId as string)
+const datasetId = route.params.datasetId as string
 
 const { useResource } = useDatasetsSearch()
 const { query, isSuccess, resultEnhanced } = useResource(datasetId)
@@ -66,7 +66,7 @@ const breadcrumbs = computed(() => {
     title: resultEnhanced.value?.getTitle,
     path: {
       name: 'datasets-datasetId',
-      params: { datasetId: datasetId.value },
+      params: { datasetId: datasetId },
     },
   })
 
@@ -75,7 +75,7 @@ const breadcrumbs = computed(() => {
 
 
 useSeoMeta({
-  title: `${resultEnhanced.value?.getTitle} | ${t('message.header.navigation.datasets')} | opendata.swiss`,
+  title: () => `${dataset.value?.title} | ${t('message.header.navigation.datasets')} | opendata.swiss`
 })
 
 
