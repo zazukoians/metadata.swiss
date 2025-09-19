@@ -20,8 +20,8 @@ const { locale, t } = useI18n();
 
 const route = useRoute()
 const router = useRouter()
-const datasetId = computed(() => route.params.datasetId as string)
-const distributionId = computed(() => route.params.distributionId as string)
+const datasetId = route.params.datasetId as string
+const distributionId = route.params.distributionId as string
 
 
 const { useResource } = useDatasetsSearch()
@@ -41,12 +41,12 @@ const distribution = computed(() => {
   if (!dataset.value) {
     return undefined
   }
-  const dists = dataset.value.distributions.find(d => d.id === distributionId.value) ?? undefined
+  const dists = dataset.value.distributions.find(d => d.id === distributionId) ?? undefined
   return dists
 })
 
 const firstBreadcrumb = await homePageBreadcrumb(locale)
-const storedBreadcrumbs = import.meta.client ? getDatasetBreadcrumbFromSessionStorage(datasetId.value) : null;
+const storedBreadcrumbs = import.meta.client ? getDatasetBreadcrumbFromSessionStorage(datasetId) : null;
 
 const breadcrumbs = computed(()=>{
   const bc = []
@@ -66,7 +66,7 @@ const breadcrumbs = computed(()=>{
         title: resultEnhanced.value?.getTitle,
         path: {
           name: 'datasets-datasetId',
-          params: { datasetId: datasetId.value },
+          params: { datasetId: datasetId },
         },
       },
       {
@@ -79,7 +79,7 @@ const breadcrumbs = computed(()=>{
 
 
 useSeoMeta({
-  title: `${distribution.value?.title} | ${resultEnhanced.value?.getTitle} | ${t('message.header.navigation.datasets')} | opendata.swiss`,
+  title: () => `${distribution.value?.title} | ${dataset.value?.title} | ${t('message.header.navigation.datasets')} | opendata.swiss`,
 })
 
 await suspense()
