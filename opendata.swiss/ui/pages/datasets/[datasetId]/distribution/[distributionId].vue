@@ -13,6 +13,7 @@ import OdsDownloadList from '../../../../app/components/distribution/OdsDownload
 import OdsRelativeDateToggle from '../../../../app/components/OdsRelativeDateToggle.vue';
 import { DcatApChV2DatasetAdapter } from '../../../../app/components/dataset-detail/model/dcat-ap-ch-v2-dataset-adapter.js'
 import { useSeoMeta } from 'nuxt/app';
+import { getDatasetBreadcrumbFromSessionStorage } from '../get-dataset-breadcrumb-from-session-stoage.js';
 
 
 const { locale, t } = useI18n();
@@ -45,24 +46,37 @@ const distribution = computed(() => {
 })
 
 const firstBreadcrumb = await homePageBreadcrumb(locale)
+const storedBreadcrumbs = import.meta.client ? getDatasetBreadcrumbFromSessionStorage(datasetId.value) : null;
 
-const breadcrumbs = computed(()=> [
-  firstBreadcrumb,
-  {
-    title: t('message.header.navigation.datasets'),
-    path: '/datasets',
-  },
-  {
-    title: resultEnhanced.value?.getTitle,
-    path: {
-      name: 'datasets-datasetId',
-      params: { datasetId: datasetId.value },
-    },
-  },
-  {
-    title: distribution.value?.title
+const breadcrumbs = computed(()=>{
+  const bc = []
+  if (storedBreadcrumbs && import.meta.client) {
+    bc.push(...storedBreadcrumbs)
+    bc.push({
+      title: distribution.value?.title
+    })
   }
-])
+  else {
+    bc.push(firstBreadcrumb)
+    bc.push({
+      title: t('message.header.navigation.datasets'),
+      path: '/datasets',
+      },
+      {
+        title: resultEnhanced.value?.getTitle,
+        path: {
+          name: 'datasets-datasetId',
+          params: { datasetId: datasetId.value },
+        },
+      },
+      {
+        title: distribution.value?.title
+      }
+    )
+  }
+  return bc
+})
+
 
 useSeoMeta({
   title: `${distribution.value?.title} | ${resultEnhanced.value?.getTitle} | ${t('message.header.navigation.datasets')} | opendata.swiss`,
@@ -74,7 +88,9 @@ await suspense()
 <template>
   <main v-if="isSuccess && distribution" id="main-content">
     <header id="main-header">
-      <OdsBreadcrumbs :breadcrumbs="breadcrumbs" />
+      <ClientOnly>
+        <OdsBreadcrumbs :breadcrumbs="breadcrumbs" />
+      </ClientOnly>
     </header>
     <section class="hero hero--default">
       <div class="container container--grid gap--responsive">
