@@ -28,10 +28,9 @@ export const APP_NAVIGATION_ITEMS: OdsNavTabItem[] = [
       { label: 'message.header.navigation.terms_of_use', to: '/terms-of-use' },
       { label: 'message.header.navigation.contact', to: '/contact' },
       {
-        label: 'fake sub menu ', subMenu: [
-          { label: 'fake sub menu 1', to: '/about' },
-          { label: 'fake sub menu 2', to: '/terms-of-use' },
-          { label: 'fake sub menu 3', to: '/contact' }
+        label: 'message.header.navigation.imprint', subMenu: [
+          { label: 'message.header.navigation.imprint', to: '/imprint' },
+          { label: 'message.header.navigation.privacy', to: '/privacy' }
         ]
       }
     ]
