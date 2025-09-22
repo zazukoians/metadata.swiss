@@ -28,9 +28,8 @@ export const APP_NAVIGATION_ITEMS: OdsNavTabItem[] = [
       { label: 'message.header.navigation.terms_of_use', to: '/terms-of-use' },
       { label: 'message.header.navigation.contact', to: '/contact' },
       {
-        label: 'message.header.navigation.imprint', subMenu: [
-          { label: 'message.header.navigation.imprint', to: '/imprint' },
-          { label: 'message.header.navigation.privacy', to: '/privacy' }
+        label: 'message.bottom_footer.ods_a_1', subMenu: [
+          { label: 'message.bottom_footer.ods_a_1', to: '/legal-framework' },
         ]
       }
     ]

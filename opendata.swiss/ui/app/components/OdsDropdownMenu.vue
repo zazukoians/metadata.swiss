@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted, onBeforeUnmount, type PropType } from 'vue';
+import { useI18n } from 'vue-i18n';
+
 import OdsButton from './OdsButton.vue';
 import SvgIcon from './SvgIcon.vue';
 import type { OdsNavTabItem } from './headers/model/ods-nav-tab-item';
@@ -13,45 +15,36 @@ const props = defineProps({
     type: Object as PropType<OdsNavTabItem>,
     required: true
   },
-  active: {
-    type: Boolean,
-    required: true
+  class: {
+    type: String,
+    required: false,
+    default: ''
   },
-  index: {
-    type: Number,
-    required: true
-  },
-  t: {
-     type: Function,
-      required: true
-    },
-  onTabClick: {
-    type: Function,
-    required: true
-  }
+
 });
 
-const isOpen = ref(false);
+const { t } = useI18n()
+const isOpen = ref(false)
 
-const dropdownRef = ref<HTMLElement | null>(null);
+const dropdownRef = ref<HTMLElement | null>(null)
 
 function toggleDropdown() {
   isOpen.value = !isOpen.value;
 }
 
 
-const parentLabelStack = ref<string[]>([props.menu.label]);
+const parentLabelStack = ref<string[]>([props.menu.label])
 
 const menuStack = ref<OdsNavTabItem[][]>([]);
 
-const menuKey = computed(() => menuStack.value.length);
+const menuKey = computed(() => menuStack.value.length)
 
 const currentMenu = computed(() => {
 
     if (menuStack.value.length === 0) {
       return props.menu.subMenu ?? []
-    };
-    return menuStack.value[menuStack.value.length - 1];
+    }
+    return menuStack.value[menuStack.value.length - 1]
 });
 
 const direction = ref<'forward' | 'backward'>('forward');
@@ -95,23 +88,14 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
+  <a href="#"  :class="props.class" @click.prevent="toggleDropdown">
+    <span class="activate-btn">{{ t(props.label) }}</span>
+  </a>
   <div ref="dropdownRef" class="ods-dropdown">
-    <a href="#" :class="{ active: props.active }" @click.prevent="toggleDropdown">
-      <span>{{ props.t(props.label) }} bs</span>
-      <span class="ods-dropdown__arrow">▼</span>
-    </a>
     <div v-if="isOpen" id="desktop-menu__drawer" class="desktop-menu__drawer ods-drop-down-panel" >
       <div class="close-button-container">
         <SvgIcon v-if="menuStack.length > 0" icon="ArrowLeft" size="lg"  @click.prevent="goBack"/>
-
         <div v-else />
-      <!--  <li v-if="menuStack.length > 0" style="border-bottom: none;" @click="goBack">
-                  <a style="padding-top: 12px; padding-bottom: 12px;">
-                    <span>
-                      <SvgIcon icon="ArrowLeft" size="lg"/>
-                    </span>
-                  </a>
-                </li>-->
         <OdsButton
           icon="Cancel"
           title="close menu"
@@ -121,7 +105,7 @@ onBeforeUnmount(() => {
           class="ods-close"
           @click="isOpen = false"
         >
-          <span class="ods-close">Schliessen</span>
+          <span class="ods-close">{{t('message.header.navigation.close')}}</span>
         </OdsButton>
       </div>
       <Transition :name="transitionName" mode="out-in">
@@ -160,14 +144,20 @@ onBeforeUnmount(() => {
 
 <style lang="scss" scoped>
 
+.activate-btn {
+  color: var(--color-primary-600);
+}
+
 .close-button-container {
   display: flex;
   justify-content: space-between;
 }
+
 .ods-close {
   white-space: nowrap;
   color: rgb(107 114 128 / var(--tw-text-opacity, 1));
 }
+
 .ods-hover:hover {
   background-color: var(--color-secondary-50);
   color: rgb(75 85 99 / var(--tw-text-opacity, 1));
@@ -184,19 +174,23 @@ onBeforeUnmount(() => {
   padding-top: 24px;
   z-index: 100;
 }
+
 .ods-dropdown {
   position: relative;
   display: inline-block;
 }
+
 .ods-dropdown > a {
   cursor: pointer;
   display: flex;
   align-items: center;
 }
+
 .ods-dropdown__arrow {
   margin-left: 0.5em;
   font-size: 0.8em;
 }
+
 .ods-dropdown__menu {
   position: absolute;
   top: 100%;
@@ -208,22 +202,22 @@ onBeforeUnmount(() => {
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   padding: 0.5em 0;
 }
+
 .ods-dropdown__menu li {
   list-style: none;
 }
+
 .ods-dropdown__menu a {
   display: block;
   padding: 0.5em 1em;
   color: inherit;
   text-decoration: none;
 }
+
 .ods-dropdown__menu a:hover {
   background: #f5f5f5;
 }
 
-.holly {
-  margin-top: -40px;
-}
 // list styles
 .navy {
   position: unset !important;
