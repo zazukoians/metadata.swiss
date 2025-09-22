@@ -5,6 +5,7 @@ import { useI18n } from 'vue-i18n';
 import OdsButton from './OdsButton.vue';
 import SvgIcon from './SvgIcon.vue';
 import type { OdsNavTabItem } from './headers/model/ods-nav-tab-item';
+import { NuxtLinkLocale } from '#components';
 
 const props = defineProps({
   label: {
@@ -166,7 +167,7 @@ onBeforeUnmount(() => {
 .ods-drop-down-panel {
   min-width: 160px;
   position: absolute;
-  top: 100%;
+  top: -17px;
   left: 0;
   padding-left: 48px;
   padding-right: 48px;
@@ -174,7 +175,16 @@ onBeforeUnmount(() => {
   padding-top: 24px;
   z-index: 100;
 }
-
+@media (min-width: 1280px) {
+  .ods-drop-down-panel {
+    top: -19px;
+  }
+}
+@media (min-width: 1920px) {
+  .ods-drop-down-panel {
+    top: -21px;
+  }
+}
 .ods-dropdown {
   position: relative;
   display: inline-block;

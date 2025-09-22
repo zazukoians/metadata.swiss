@@ -32,14 +32,8 @@ const emit = defineEmits<{
 
 const { t } = useI18n();
 
-const selectedTab = ref<number | null>(null);
 const menuOpen = ref(false);
 
-
-function setCurrentItemToMenuItem (tabIndex: number) {
-  console.log('setCurrentItemToMenuItem', tabIndex);
-   selectedTab.value = tabIndex;
-}
 
 watch(menuOpen, (val) => {
   emit('mobileMenuStateChange', val);
@@ -93,9 +87,9 @@ function isChildPageOfSubMenu(item: OdsNavTabItem) {
     <div class="container container--flex">
       <nav id="main-navigation" class="main-navigation main-navigation--desktop">
       <ul>
-        <template v-for="(item, index) in props.navigationItems" :key="item.label">
+        <template v-for="item in props.navigationItems" :key="item.label">
         <!-- a normal tab -->
-        <li v-if="!item.subMenu" class="tab" @click="setCurrentItemToMenuItem(index)">
+        <li v-if="!item.subMenu" class="tab">
           <NuxtLinkLocale :class="{ active: isChildPage(item) }" :to="item.to"><span> {{ t(item.label) }}</span></NuxtLinkLocale>
         </li>
 
@@ -104,7 +98,6 @@ function isChildPageOfSubMenu(item: OdsNavTabItem) {
             :label="item.label"
             :menu="item"
             :class="isChildPage(item) ? 'active' : ''"
-            @click="setCurrentItemToMenuItem(index)"
           />
         </li>
 
