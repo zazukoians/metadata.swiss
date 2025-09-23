@@ -25,6 +25,8 @@ const { t, locale} = useI18n()
 const router = useRouter()
 const route = useRoute()
 
+const isResettingFacets = ref(false)
+
 // Create a record of refs for each facet in ACTIVE_FACETS
 const facetRefs = Object.fromEntries(
   ACTIVE_FACETS.map(facet => [facet, ref<string[]>([])])
@@ -59,6 +61,17 @@ function resetSearch() {
     facetRefs[facet].value = []
   })
   piveauQueryParams.page = 0
+}
+
+function resetFacets() {
+  isResettingFacets.value = true
+  ACTIVE_FACETS.forEach(facet => {
+    facetRefs[facet].value = []
+  })
+  isResettingFacets.value = false
+  if(ACTIVE_FACETS[0]) {
+    facetRefs[ACTIVE_FACETS[0]].value = [] // Trigger at least one change to update facets
+  }
 }
 
 const sortOptions = computed(() => {
@@ -231,6 +244,7 @@ onMounted(() => {
 
   ACTIVE_FACETS.forEach(facet => {
     watch(facetRefs[facet], (newVal) => {
+      if (isResettingFacets.value) return; // Skip during reset
       const query = { ...route.query }
       // only set the facet if it has changed
       const hasFacetChanged = JSON.stringify(query[(facet)] ?? []) !== JSON.stringify(newVal)
@@ -292,7 +306,7 @@ await suspense()
             </div>
          </div>
          <div class="search__filters">
-           <OdsFilterPanel :facet-refs="facetRefs" :facets="activeFacets" />
+           <OdsFilterPanel :facet-refs="facetRefs" :facets="activeFacets" @reset-all-facets="resetFacets" />
          </div>
          <div class="filters__active" />
       </div>
