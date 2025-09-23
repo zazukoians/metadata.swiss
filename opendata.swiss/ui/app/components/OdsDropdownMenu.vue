@@ -89,7 +89,12 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <a href="#"  :class="props.class" @click.prevent="toggleDropdown">
+  <a
+    href="#"
+    :class="props.class"
+    @click.prevent="toggleDropdown"
+    @mouseenter="isOpen = true"
+  >
     <span class="activate-btn">{{ t(props.label) }}</span>
   </a>
   <div ref="dropdownRef" class="ods-dropdown">
