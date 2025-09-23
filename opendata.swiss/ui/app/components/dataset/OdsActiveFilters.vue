@@ -5,21 +5,19 @@
       :id="filter.key"
       :key="filter.key"
       :label="filter.value"
-      :is-icon-active="true"
       variant="primary"
       size="sm"
       icon="Cancel"
-      @icon-clicked="resetFacet(filter.key)"
+      @click="resetFacet(filter.key)"
     />
     <OdsTagItem
       v-if="activeFilter.length > 0"
       id="reset"
       label="Filter zurücksetzen"
-      :is-icon-active="true"
       variant="default"
       size="sm"
       icon="Repeat"
-      @icon-clicked="resetAllFilters"
+      @click.prevent="resetAllFilters"
     />
   </div>
 </template>
@@ -62,7 +60,6 @@ const activeFilter = computed<FilterEntry[]>(() => {
     return {key, value: valueTitles.join(', ')}
   })
   filters.sort((a, b) => a.key.localeCompare(b.key))
-  console.log('Active filters:', filters)
   return filters
 })
 

@@ -10,8 +10,7 @@
       <span class="tag-item__text">
         {{ label }}
       </span>
-      <SvgIcon v-if="icon && isIconActive" :icon="icon" class="tag-item__icon" @click="iconClicked" />
-      <SvgIcon v-if="icon && !isIconActive" :icon="icon" class="tag-item__icon" />
+      <SvgIcon v-if="icon" :icon="icon" class="tag-item__icon" />
     </span>
   </component>
 </template>
@@ -48,21 +47,8 @@ const props = defineProps({
     validator: (prop) =>
       ['default', 'primary', 'active'].includes(prop as string),
     default: () => undefined,
-  },
-  isIconActive: {
-    type: Boolean,
-    default: () => false,
-  },
-
+  }
 })
-
-const emit = defineEmits<{
-  (e: 'icon-clicked', id: string): void
-}>()
-
-function iconClicked() {
-  emit('icon-clicked', props.id)
-}
 
 const tag = computed(() => {
   return props.to ? 'a' : 'button'
