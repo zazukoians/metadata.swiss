@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { computed, onMounted, reactive, ref, toRefs, watch } from 'vue'
 
-import { useRoute, useRouter} from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
+import type { LocationQueryValue } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 
 import type { SearchParamsBase } from '@piveau/sdk-core'
@@ -45,6 +46,13 @@ function resetAllFacets() {
   for (const key in selectedFacets){
     selectedFacets[key] = [];
   }
+  // Reset the 'facets' query parameter
+  const query = { ...route.query }
+  if (query.page && query.page !== '1') {
+    query.page = '1'; // Reset page to 1 if facets are restored from route
+  }
+  query['facets'] = encodeURIComponent(JSON.stringify({}))
+  router.push({ query })
 }
 
 
@@ -54,21 +62,10 @@ if(import.meta.client) {
 }
 
 function syncFacetsFromRoute() {
+  const facetsFromQuerry = getSearchParamsWithFacets(route.query)
   ACTIVE_FACETS.forEach(facet => {
-    const val = route.query[facet]
-    if (val) {
-      let arr: string[] = [];
-      if (Array.isArray(val)) {
-        arr = val.filter((v): v is string => typeof v === 'string');
-      } else if (typeof val === 'string' && val.includes(',')) {
-        arr = val.split(',').map(v => v.trim()).filter(Boolean);
-      } else if (val) {
-        arr = [String(val)];
-      }
-      facetRefs[facet].value = arr;
-    } else {
-      facetRefs[facet].value = [];
-    }
+    const newVal = facetsFromQuerry[facet] || [];
+    facetRefs[facet].value = newVal;
   })
 }
 
@@ -200,6 +197,14 @@ const resultBreadcrumb = computed<BreadcrumbItem | null>(() => {
   return null
 })
 
+function getSearchParamsWithFacets(query: {[x: string]: LocationQueryValue | LocationQueryValue[]}) {
+    const facetsValue = decodeURIComponent(query.facets as string || '');
+    if (Array.isArray(facetsValue)) {
+      return { }  as Record<string, string[]>
+    }
+    return facetsValue ? JSON.parse(String(facetsValue)) as Record<string, string[]> : {} as Record<string, string[]>
+}
+
 const breadcrumbs = computed<BreadcrumbItem[]>(() => {
   const lastBreadcrumb = resultBreadcrumb.value
   if (lastBreadcrumb === null) {
@@ -252,19 +257,29 @@ onMounted(() => {
   ACTIVE_FACETS.forEach(facet => {
     watch(facetRefs[facet], (newVal) => {
       const query = { ...route.query }
+      const facetsFromQuerry = getSearchParamsWithFacets(query)
       // only set the facet if it has changed
-      const hasFacetChanged = JSON.stringify(query[(facet)] ?? []) !== JSON.stringify(newVal)
+      const hasFacetChanged = JSON.stringify(facetsFromQuerry[facet] ?? []) !== JSON.stringify(newVal)
 
       if (hasFacetChanged) {
-        query[facet] = newVal
+        facetsFromQuerry[facet] = newVal
         if (query.page && query.page !== '1') {
           query.page = '1'; // Reset page to 1 if facets are restored from route
         }
+        if(newVal.length === 0) {
+          // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
+          delete facetsFromQuerry[facet]
+        }
+        query['facets'] = encodeURIComponent(JSON.stringify(facetsFromQuerry))
         router.push({ query })
       }
     })
   })
 })
+
+watch(facetRefs , () => {
+  console.log('facetRefs changed', facetRefs.value);
+}, { deep: true })
 
 
 useSeoMeta({
