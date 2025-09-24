@@ -28,6 +28,6 @@
 }
 
 /* Fix MultiSelect background color */
-.select {
+.v-select {
   background-color: white;
 }
