@@ -26,3 +26,8 @@
     --color-secondary-900: #1F2937;
   }
 }
+
+/* Fix MultiSelect background color */
+.v-select {
+  background-color: white;
+}
