@@ -1,13 +1,15 @@
-import { resolve } from 'node:path'
+import * as path from 'node:path'
+import {resolve} from 'node:path'
 
-const { PIVEAU_HUB_REPO_URL, PIVEAU_HUB_SEARCH_URL } = process.env
+const __dirname = path.dirname(new URL(import.meta.url).pathname);
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   runtimeConfig: {
     public: {
-      PIVEAU_HUB_REPO_URL,
-      PIVEAU_HUB_SEARCH_URL
+      rootDir: __dirname,
+      piveauHubRepoUrl: 'https://piveau-hub-repo-ln.zazukoians.org/',
+      piveauHubSearchUrl: 'https://piveau-hub-search-ln.zazukoians.org/'
     }
   },
   compatibilityDate: '2025-07-15',
@@ -67,12 +69,18 @@ export default defineNuxtConfig({
       { code: 'en', name: 'English', file: 'en.json' },
       { code: 'fr', name: 'Francais', file: 'fr.json' },
       { code: 'it', name: 'Itlaliano', file: 'it.json' },
-    ]
+    ],
+    experimental: {
+      localeDetector: 'localeDetector.ts'
+    }
   },
   nitro: {
     devProxy: {
       '/admin/': 'http://localhost:5173/admin/',
-    }
+    },
+    plugins: [
+      '~~/server/plugins/zod-locale',
+    ]
   },
   icon: {
     mode: 'svg',
@@ -83,5 +91,8 @@ export default defineNuxtConfig({
         normalizeIconName: false
       },
     ],
-  }
+  },
+  routeRules: {
+    "*/showcases/submit": { ssr: false },
+  },
 })

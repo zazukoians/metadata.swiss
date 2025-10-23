@@ -16,7 +16,8 @@
                 "terms_of_use": "Conditions d'utilisation",
                 "handbook": "Manuel",
                 "showcases": "Showcases",
-                "close": "Fermer"
+                "close": "Fermer",
+                "showcase_submit": "Soumettre un showcase"
             }
         },
         "ods_toc": {
@@ -59,7 +60,8 @@
             "details": "Détails",
             "released": "Publié",
             "metadata_download": "Télécharger les métadonnées",
-            "metadata": "Métadonnées"
+            "metadata": "Métadonnées",
+            "keywords": "Mots-clés"
         },
         "showcase": {
             "type": {
@@ -128,6 +130,19 @@
             },
             "block_3": {
                 "title": "Plus d'informations"
+            }
+        }
+    },
+    "server": {
+        "api": {
+            "showcases": {
+                "post": {
+                    "error": {
+                        "submission_exists": "Une soumission avec exactement le même titre en allemand existe déjà.",
+                        "unspecified_error": "Une erreur s'est produite lors de la soumission. Veuillez réessayer plus tard."
+                    },
+                    "success": "Votre demande a été reçue et est en cours de traitement."
+                }
             }
         }
     }

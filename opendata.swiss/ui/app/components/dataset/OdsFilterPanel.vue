@@ -25,9 +25,19 @@
         :facet="facet"
         :options="facet.items"
         :label="facet.title"
-        :selected="facetRefs[facet.id]?.value"
-        @update:model-value="handleFacetChange(facet, $event)"
-      />
+        :model-value="facets.filter(f => f.id === facet.id).shift()?.items.filter(item => facetRefs[facet.id]?.value.includes(item.id)) || []"
+        @update:model-value="handleFacetChange(facet, $event as Item[])"
+      >
+        <template #option="option">
+          <span>
+            {{ option.title }}
+            <span style="float: right; color: #888;">({{ option.count }})</span>
+          </span>
+        </template>
+        <template #selected-option="option">
+          {{ option.title }}
+        </template>
+      </OdsMultiSelect>
     </div>
     <div v-show="!showFilters" class="filters__active">
       <OdsActiveFilters :facets="props.facets" :facet-refs="facetRefs" @reset-all-facets="emit('reset-all-facets')" />
@@ -38,7 +48,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useI18n } from 'vue-i18n'
+import { useI18n } from '#imports';
 
 import type { SearchResultFacetGroupLocalized } from '@piveau/sdk-vue';
 import OdsMultiSelect from './OdsMultiSelect.vue';
@@ -46,16 +56,17 @@ import OdsButton from '../OdsButton.vue';
 import OdsActiveFilters from './OdsActiveFilters.vue';
 import SvgIcon from "~/components/SvgIcon.vue";
 
-const props = defineProps({
-  facets: {
-    type: Array as PropType<SearchResultFacetGroupLocalized[]>,
-    required: true,
-  },
-  facetRefs: {
-    type: Object as PropType<Record<string, Ref<string[]>>>,
-    required: true,
-  }
-})
+interface Item {
+  id: string;
+  title: string | undefined;
+  count: number;
+}
+interface OdsFilterPanelProps {
+  facets: SearchResultFacetGroupLocalized[];
+  facetRefs: Record<string, Ref<string[]>>;
+}
+
+const props = defineProps<OdsFilterPanelProps>()
 
 const emit = defineEmits<{
   (e: 'reset-all-facets'): void
@@ -64,7 +75,8 @@ const emit = defineEmits<{
 const { t } = useI18n()
 const showFilters = ref(false)
 
-function handleFacetChange(facet: SearchResultFacetGroupLocalized, value: string[]) {
+function handleFacetChange(facet: SearchResultFacetGroupLocalized, items: Item[]) {
+  const value = items.map(i => i.id)
   currentFilters.value.set(facet.id, value)
   if (props.facetRefs[facet.id]) {
     props.facetRefs[facet.id]!.value = value

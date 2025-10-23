@@ -16,7 +16,8 @@
                 "terms_of_use": "Terms of use",
                 "handbook": "Handbook",
                 "showcases": "Showcases",
-                "close": "Close"
+                "close": "Close",
+                "showcase_submit": "Submit a showcase"
             }
         },
         "ods_toc": {
@@ -59,7 +60,8 @@
             "details": "Details",
             "released": "Released",
             "metadata_download": "Download metadata",
-            "metadata": "Metadata"
+            "metadata": "Metadata",
+            "keywords": "Keywords"
         },
         "showcase": {
             "type": {
@@ -128,6 +130,19 @@
             },
             "block_3": {
                 "title": "Further Information"
+            }
+        }
+    },
+    "server": {
+        "api": {
+            "showcases": {
+                "post": {
+                    "error": {
+                        "submission_exists": "A submission with the exact same German title already exists.",
+                        "unspecified_error": "An unspecified error occurred. Please try again later."
+                    },
+                    "success": "Your submission has been received and is pending review."
+                }
             }
         }
     }

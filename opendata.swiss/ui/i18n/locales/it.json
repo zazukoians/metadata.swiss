@@ -16,7 +16,8 @@
                 "terms_of_use": "Termini di utilizzo",
                 "handbook": "Manuale",
                 "showcases": "Showcases",
-                "close": "Chiudi"
+                "close": "Chiudi",
+                "showcase_submit": "Invia uno showcase"
             }
         },
         "ods_toc": {
@@ -59,7 +60,8 @@
             "details": "Dettagli",
             "released": "Rilasciato",
             "metadata_download": "Scarica i metadati",
-            "metadata": "Metadati"
+            "metadata": "Metadati",
+            "keywords": "Parole chiave"
         },
         "showcase": {
             "type": {
@@ -128,6 +130,19 @@
             },
             "block_3": {
                 "title": "Ulteriori informazioni"
+            }
+        }
+    },
+    "server": {
+        "api": {
+            "showcases": {
+                "post": {
+                    "error": {
+                        "submission_exists": "Esiste già una segnalazione con lo stesso titolo in tedesco.",
+                        "unspecified_error": "Si è verificato un errore imprevisto. Riprova più tardi."
+                    },
+                    "success": "La tua richiesta è stata ricevuta ed è in attesa di revisione."
+                }
             }
         }
     }
